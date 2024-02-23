@@ -1,4 +1,4 @@
-# shaheed Bhagat Singh
+# shaheed Bhagat Singh Museum 
 
 A new Flutter project.
 
