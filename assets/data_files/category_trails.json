@@ -1,0 +1,381 @@
+{
+  "status": true,
+  "code": 200,
+  "message": "Category Type Information",
+  "data": [
+    {
+      "category_type_id": 1,
+      "category_type_name": "Entrance hall",
+      "attributes": [
+        {
+          "category_name": "Reception",
+          "category_id": 1,
+          "icon": "1_image-4-min.png",
+          "category_type_id": 1,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/1_image-4-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The Bhagat Singh Museum, located in Khatkar Kalan, Punjab, India, pays homage to the legendary freedom fighter, Shaheed Bhagat Singh, one of the most influential revolutionaries of the Indian independence movement. The museum's reception area serves as the gateway for visitors to embark on a historical journey, offering a glimpse into the life and times of Bhagat Singh and his contributions to India's struggle for freedom.\r\n\r\nUpon entering the reception, visitors are greeted with an ambiance that resonates with the spirit of patriotism and sacrifice. The area is adorned with portraits of Bhagat Singh and other freedom fighters, alongside informative plaques that provide a brief overview of their heroic deeds and the significance of their struggle. The reception desk is staffed by knowledgeable personnel who guide visitors through the museum's exhibits, which include personal belongings of Bhagat Singh, letters, and documents related to the freedom movement, as well as a collection of books and literature that influenced his thoughts and actions.",
+              "location_id": 54,
+              "location_name": "Reception",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/54_150_image-4-min.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_type_id": 2,
+      "category_type_name": "Gallery",
+      "attributes": [
+        {
+          "category_name": "Gallery 1",
+          "category_id": 13,
+          "icon": "13_image-9-min.png",
+          "category_type_id": 2,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/13_image-9-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The \"Echoes of Jallianwala: April 13, 1919\" gallery in the Bhagat Singh Museum solemnly commemorates the Jallianwala Bagh massacre, a pivotal moment in India's struggle for independence. On that day, British forces brutally fired on unarmed civilians in Amritsar, causing significant loss of life and marking a turning point in public sentiment towards British rule. This gallery presents a concise yet powerful portrayal through photographs, documents, and survivor accounts, capturing the tragedy's impact and its role in galvanizing the Indian freedom movement. Visitors are invited to reflect on the sacrifice and resilience that shaped the nation's history, ensuring the memory of those lost continues to inspire future generations.",
+              "location_id": 62,
+              "location_name": "Echoes of Jallianwala: April 13, 1919",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/62_161_image-9-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Gallery 2",
+          "category_id": 14,
+          "icon": "14_image-15-min.png",
+          "category_type_id": 2,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/14_image-15-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The \"Journey of a Revolutionary: Bhagat Singh 1907-1931\" gallery encapsulates the life and legacy of Shaheed Bhagat Singh, one of India's most iconic freedom fighters. Born in 1907, Bhagat Singh grew up in a period of intense nationalistic fervor, which shaped his revolutionary ideals. This gallery takes visitors through a chronological journey of Bhagat Singh's life, highlighting key moments from his birth in Punjab, to his involvement in the Indian freedom movement, and his ultimate sacrifice in 1931.\r\n\r\nThrough a collection of photographs, personal letters, artifacts, and informative panels, the gallery portrays Bhagat Singh's evolution from a young patriot to a symbol of resistance against British rule. Key milestones include his participation in the Non-Cooperation Movement, the dramatic protest against the Simon Commission, the Lahore Conspiracy Case, and his hunger strike for equal rights for Indian prisoners.\r\n\r\nThe gallery culminates with Bhagat Singh's execution on March 23, 1931, leaving behind a legacy that continues to inspire generations. Visitors leave with a deeper understanding of Bhagat Singh's contribution to India's freedom struggle and his enduring significance in the nation's history.",
+              "location_id": 63,
+              "location_name": "The Journey of a Revolutionary: Bhagat Singh 1907-1931",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/63_162_image-15-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Gallery 3",
+          "category_id": 15,
+          "icon": "15_image-11-min.png",
+          "category_type_id": 2,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/15_image-11-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The \"Echoes of Inquilab: The Cry of Freedom\" gallery at the Bhagat Singh Museum captures the essence and impact of the iconic slogan \"Inquilab Zindabad\" (Long Live the Revolution), which became synonymous with India's struggle for independence. Coined and popularized by freedom fighters like Bhagat Singh, this powerful phrase ignited the hearts of millions, encouraging them to stand against colonial rule.\r\n\r\nThis gallery showcases the origins, spread, and significance of \"Inquilab Zindabad\" through a vivid collection of artifacts, photographs, and documents. Visitors can explore interactive displays that trace the slogan's journey from its inception, its adoption by various freedom movements across India, to its enduring legacy in the collective memory of the nation.\r\n\r\nFeaturing multimedia presentations that bring historical speeches and rallies to life, the gallery offers an immersive experience of the revolutionary fervor that \"Inquilab Zindabad\" inspired. It serves as a testament to the spirit of resistance and unity among Indians in their fight for sovereignty and self-determination.\r\n\r\n\"Echoes of Inquilab: The Cry of Freedom\" not only commemorates a pivotal moment in India's history but also celebrates the enduring power of words to inspire change and mobilize a nation towards its quest for freedom.",
+              "location_id": 66,
+              "location_name": "Echoes of Inquilab: The Cry of Freedom",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708594282_66_image-11-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Gallery 4",
+          "category_id": 19,
+          "icon": "19_image-13-min.png",
+          "category_type_id": 2,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/19_image-13-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The \"Relics of Revolution: Bhagat Singh's Legacy\" gallery in the Bhagat Singh Museum offers a profound insight into the life of one of India's most revered freedom fighters. This gallery is meticulously curated to display an array of artifacts and personal belongings that belonged to Bhagat Singh, each telling a story of courage, intellect, and sacrifice.\r\n\r\nVisitors can closely examine Bhagat Singh's handwritten notes, letters exchanged with fellow revolutionaries and family, as well as the books that influenced his revolutionary ideologies. The gallery also houses his personal items like clothing, the pen used for writing his last letter, and more, offering a tangible connection to the legend himself.\r\n\r\nEnhanced with graphic panels that provide detailed narratives of the items on display, the gallery invites visitors to delve deeper into Bhagat Singh's life. Touch kiosks placed strategically throughout the space allow for an interactive exploration, enabling visitors to engage with multimedia presentations on Bhagat Singh's contributions to India's freedom struggle, his philosophies, and his enduring legacy.\r\n\r\n\"Relics of Revolution: Bhagat Singh's Legacy\" stands as a powerful reminder of the sacrifices made for India's independence, inspiring visitors to reflect on the values of freedom, justice, and the indomitable spirit of resistance.",
+              "location_id": 67,
+              "location_name": "Relics of Revolution: Bhagat Singh's Legacy",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708594350_67_image-13-min.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_type_id": 3,
+      "category_type_name": "Attractions",
+      "attributes": [
+        {
+          "category_name": "Attraction 1",
+          "category_id": 9,
+          "icon": "9_image-5-min.png",
+          "category_type_id": 3,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/9_image-5-min.png",
+          "is_children": 0,
+          "is_location": 0,
+          "location_listing": null
+        },
+        {
+          "category_name": "Attraction 2",
+          "category_id": 10,
+          "icon": "10_image-8-min.png",
+          "category_type_id": 3,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/10_image-8-min.png",
+          "is_children": 0,
+          "is_location": 0,
+          "location_listing": null
+        },
+        {
+          "category_name": "Attraction 3",
+          "category_id": 11,
+          "icon": "11_image-12-min.png",
+          "category_type_id": 3,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/11_image-12-min.png",
+          "is_children": 0,
+          "is_location": 0,
+          "location_listing": null
+        },
+        {
+          "category_name": "Attraction 4",
+          "category_id": 12,
+          "icon": "12_image-14-min.png",
+          "category_type_id": 3,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/12_image-14-min.png",
+          "is_children": 0,
+          "is_location": 0,
+          "location_listing": null
+        }
+      ]
+    },
+    {
+      "category_type_id": 4,
+      "category_type_name": "Zones",
+      "attributes": [
+        {
+          "category_name": "Zone 1",
+          "category_id": 3,
+          "icon": "3_image-4-min.png",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/3_image-4-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The Bhagat Singh Museum, located in Khatkar Kalan, Punjab, India, pays homage to the legendary freedom fighter, Shaheed Bhagat Singh, one of the most influential revolutionaries of the Indian independence movement. The museum's reception area serves as the gateway for visitors to embark on a historical journey, offering a glimpse into the life and times of Bhagat Singh and his contributions to India's struggle for freedom.\r\n\r\nUpon entering the reception, visitors are greeted with an ambiance that resonates with the spirit of patriotism and sacrifice. The area is adorned with portraits of Bhagat Singh and other freedom fighters, alongside informative plaques that provide a brief overview of their heroic deeds and the significance of their struggle. The reception desk is staffed by knowledgeable personnel who guide visitors through the museum's exhibits, which include personal belongings of Bhagat Singh, letters, and documents related to the freedom movement, as well as a collection of books and literature that influenced his thoughts and actions.",
+              "location_id": 55,
+              "location_name": "Reception",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/55_151_image-4-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Zone 2",
+          "category_id": 4,
+          "icon": "4_image-5-min.png",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/4_image-5-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "Art Installation in the center with suspended “Inqilab Zindabad” ​\r\nrotating in several languages. ​The central art installation at the museum features the iconic slogan \"Inqilab Zindabad\" (Long Live the Revolution) suspended in mid-air, creating a dynamic and captivating display. This powerful phrase, synonymous with the Indian freedom movement and Bhagat Singh's revolutionary zeal, rotates gracefully, revealing its message in several languages. This multilingual presentation not only celebrates the universal appeal of the quest for freedom and justice but also pays homage to Bhagat Singh's impact across diverse cultures and communities.\r\n\r\nThe installation's design ingeniously combines aesthetic appeal with historical significance, allowing visitors to engage with the essence of the freedom struggle in a profoundly interactive manner. As the slogan rotates, it casts shadows and reflections, symbolizing the far-reaching influence of Bhagat Singh's ideals and the enduring relevance of the fight for independence. This central piece serves as a reminder of the unity and diversity within the struggle for freedom, encouraging reflection on the collective aspirations and sacrifices that shaped India's history.",
+              "location_id": 56,
+              "location_name": "Central Installation​",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/56_152_image-5-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Zone 3",
+          "category_id": 5,
+          "icon": "5_image-6-min.png",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/5_image-6-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "Digital Family Tree with Double exposure effect in the center. ​\r\nThe Bhagat Singh Museum introduces an innovative and engaging exhibit with its Digital Family Tree, centrally located and featuring a striking double exposure effect. This digital installation artfully merges contemporary technology with historical narrative, presenting Bhagat Singh's family lineage in an interactive and visually stunning manner.\r\n\r\nAt the heart of this exhibit, visitors find a detailed family tree that not only outlines Bhagat Singh's ancestral connections but also brings them to life through the double exposure effect. This technique overlays historical photographs of Bhagat Singh and his family members with significant landmarks, moments, and symbols from the freedom struggle, creating a layered and immersive visual experience.\r\n\r\nThis Digital Family Tree serves as a bridge connecting the past with the present, allowing visitors to explore the roots of Bhagat Singh's revolutionary spirit in a modern format. The use of double exposure not only enhances the aesthetic appeal of the exhibit but also deepens the emotional resonance, highlighting the intertwined destinies of Bhagat Singh's family with the broader narrative of India's fight for independence.",
+              "location_id": 57,
+              "location_name": "Early Life and Family​",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/57_153_image-6-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Zone 4",
+          "category_id": 6,
+          "icon": "6_image-7-min.png",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/6_image-7-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "An immersive room with Audio of Bhagat Singh’s mother’s speech, ​\r\nwho is represented through a holographic figure with a background ​\r\nof their ancestral home fabrications.",
+              "location_id": 58,
+              "location_name": "Mother’s Speech​",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/58_154_image-7-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Zone 5",
+          "category_id": 7,
+          "icon": "7_image-1_.png",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/7_image-1_.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "Highlights of Ghadar Movement through Spotlight Projection. ​\r\nThis installation showcases of India’s freedom struggle during 1913-14 through a mix of Projection Mapping and scaled 3D models of a cannon.​",
+              "location_id": 59,
+              "location_name": "Ghadar Party Movement​",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/59_155_image-8-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Zone 6",
+          "category_id": 20,
+          "icon": "20_image-8-min.png",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/20_image-8-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The Komagata Maru incident is a significant event in the history of the Indian independence movement, symbolizing the struggle against colonial oppression and the fight for civil rights. In 1914, the ship Komagata Maru, chartered by Sikh businessman Gurdit Singh, attempted to challenge the exclusionary immigration laws of Canada by transporting 376 passengers from Punjab, India, to Vancouver, Canada. These passengers, mostly Sikhs, with a few Muslims and Hindus, sought a new life in Canada but were met with strict immigration controls aimed at keeping out Asian immigrants. Upon arrival in Vancouver, the ship and its passengers were denied entry by Canadian authorities, leading to a two-month standoff. The incident highlighted the discriminatory policies of the time and the broader struggle against British colonial rule in India.",
+              "location_id": 68,
+              "location_name": "Komagatamaru Ship Incident",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/68_165_image-8-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Zone 7",
+          "category_id": 21,
+          "icon": "21_image-9-min.png",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/21_image-9-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The Immersive Show of the Jallianwala Bagh Massacre, which had a powerful and heartening impact on the young Bhagat Singh and became a cause behind the emergence of a great revolutionary like him. \r\n\r\nThis installation is visualized to represent the theme of the Jallianwala Bagh tragedy, which is achieved by projection mapping on the wall. \r\nThe well of Jallianwala Bagh is recreated in the center, and the room is complemented by various related elements with the help of scenography.",
+              "location_id": 69,
+              "location_name": "Jaliawala Bagh Tragedy",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/69_166_Jaliawala_Bagh.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Zone 8",
+          "category_id": 22,
+          "icon": "22_image-10-min.png",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/22_image-10-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "This exhibit vividly portrays the dynamic movements led by Bhagat Singh, a luminary of the Indian independence struggle. Central to the display is a meticulously arranged tableau of miniature models, each narrating a significant episode from Bhagat Singh's life and his revolutionary endeavors. The non-interactive screens enveloping the table weave a chronological tale of his valiant acts, from the dramatic protest against the Simon Commission to the symbolic bombing of the Central Legislative Assembly, designed not to harm but to make the deaf hear. Surrounding still graphics magnify crucial scenes, capturing the essence of Bhagat Singh's commitment to overthrow British rule. Through these vivid depictions, visitors gain a deep understanding of Bhagat Singh's role in mobilizing youth, advocating for national sovereignty, and his ultimate sacrifice for the freedom of India.",
+              "location_id": 70,
+              "location_name": "Movements led by Bhagat Singh",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/70_167_image-10-min.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Zone 9",
+          "category_id": 23,
+          "icon": "",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/assets/image-not-available.jpg",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The exhibition vividly brings to life Bhagat Singh's audacious protest against the Simon Commission through immersive projection technology. In 1928, the British government appointed the Simon Commission to report on India's political situation, excluding any Indian representatives. This exclusion sparked widespread outrage, leading Bhagat Singh and his comrades to lead a massive demonstration against the commission's arrival in Lahore. The projection captures the fervent energy of the protesters, the echoing chants of \"Simon Go Back,\" and the pivotal moment of Lala Lajpat Rai's tragic injury by police baton charge, an event that catalyzed further revolutionary activities. This display not only commemorates a significant act of defiance but also highlights Bhagat Singh's role in mobilizing public sentiment against colonial rule, embodying the spirit of resistance and the demand for self-governance.",
+              "location_id": 71,
+              "location_name": "Simon Commission Movements",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/71_168_Simon_Commission_Movement.png"
+            }
+          ]
+        },
+        {
+          "category_name": "Zone 10",
+          "category_id": 24,
+          "icon": "24_image-11-min.png",
+          "category_type_id": 4,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/24_image-11-min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "This immersive experience transports visitors back to April 8, 1929, reenacting the historic Delhi Assembly bombing orchestrated by Bhagat Singh and Batukeshwar Dutt. Within a specially designed closed room, spectators are given a bird's-eye view of the meticulously recreated scene of the Delhi Assembly. The exhibit captures the moment Bhagat Singh and Dutt threw non-lethal bombs onto the Assembly floor, not to harm but to \"make the deaf hear\" their demand for freedom and protest against repressive laws. Authentic sound effects, visual projections, and narrations recount the duo's courageous act and their subsequent arrest, highlighting their unwavering commitment to the cause of independence. This powerful depiction offers a unique insight into a pivotal event, emphasizing the sacrifices made in the struggle for India's freedom.",
+              "location_id": 72,
+              "location_name": "Delhi Assembly Bombing",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/72_169_image-11-min.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category_type_id": 5,
+      "category_type_name": "Anandpur Sahib",
+      "attributes": [
+        {
+          "category_name": "Anandpur projects",
+          "category_id": 17,
+          "icon": "17_image--min.png",
+          "category_type_id": 5,
+          "type_view": "L",
+          "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/17_image--min.png",
+          "is_children": 0,
+          "is_location": 1,
+          "location_listing": [
+            {
+              "description": "The Shaheed-e-Azam Bhagat Singh Museumlocated in Khatkar Kalan, the village where he grew up, displays an array of memorabilia associated with his life, and death, including personal effects, photographs and pages from his personal diary. A copy ofthe judgement of the Lahore Conspiracy case sentencing him to death by hanging along with Kartar Singh Sarabha can be viewed here; as also an edition of the Bhagwad Gita with his name on it. It was presented to him by an employee off the Lahore Jail where he was lodged. A stained and crumpled old newspaper, announcing their hanging, has been preserved alongside remainscollected by Bhagat Singh's sister from the cremation site.The most poignant of them all however, is the pen that pronounced the death sentence on Punjab's greatest revolutionaries. A section of the display hall pays photographic tribute to the martyrs of the Kuka movement as well as those of the Gadar Party. The remaining walls are lined by pictures of the countless revolutionaries involved in the freedom movement. The grounds of the museum also house Bhagat Singh's father's granite-clad samadh; it is located to the left of the entrance gate. Less than a kilometer away in the village lies his ancestral house and can be accessed free of cost, too. Timings: 9am–4.45 pm (Tues-Sun) / Closed: Monday& Public Holidays",
+              "location_id": 61,
+              "location_name": "Shaheed Bhagat Singh Museum",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708508906_61_image--min.png"
+            },
+            {
+              "description": "Dastaan - e - Shahadat",
+              "location_id": 64,
+              "location_name": "Dastaan - e - Shahadat",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708585228_64_dastan-e-shahadat.jpg"
+            },
+            {
+              "description": "Virasat E khalsa",
+              "location_id": 65,
+              "location_name": "Virasat E khalsa",
+              "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708585267_65_virasat-e-khalsa.jpeg"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

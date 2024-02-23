@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/assets_audio_player-3.0.4+1/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/assets_audio_player-3.0.4+1/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/assets_audio_player-3.0.4+1/build" />
+      <excludeFolder url="file://$MODULE_DIR$/awesome_bottom_bar/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/awesome_bottom_bar/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/awesome_bottom_bar/build" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_beacon-0.5.1/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_beacon-0.5.1/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_beacon-0.5.1/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Flutter Plugins" level="project" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
+    <orderEntry type="library" name="Dart Packages" level="project" />
+  </component>
+</module>
