@@ -93,6 +93,7 @@ class LanguageView extends GetView {
                   categoryTypeController.fetchTrailsData();
                   detailController.getOfflineLocationsData();
                   nearByController.getNearByData();
+                  // commonService.firstTime=false;
                   if (GetStorage().read('user_type') != "U") {
                     Get.toNamed('/emp_dashboard');
                     guestController.page = 1;
@@ -140,6 +141,8 @@ class LanguageView extends GetView {
                   categoryTypeController.fetchTrailsData();
                   detailController.getOfflineLocationsData();
                   nearByController.getNearByData();
+                  // commonService.firstTime=false;
+
                   if (GetStorage().read('user_type') != "U") {
                     Get.toNamed('/emp_dashboard');
                     guestController.page = 1;
@@ -187,6 +190,8 @@ class LanguageView extends GetView {
                   categoryTypeController.fetchTrailsData();
                   detailController.getOfflineLocationsData();
                   nearByController.getNearByData();
+                  // commonService.firstTime=false;
+
                   if (GetStorage().read('user_type') != "U") {
                     Get.toNamed('/emp_dashboard');
                     guestController.page = 1;

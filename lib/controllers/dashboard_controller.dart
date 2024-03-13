@@ -50,11 +50,11 @@ class DashboardController extends GetxController {
 
   startWelcomeSound(){
 
-    print(GetStorage().read('welcomeAudioPlayed'));
-    if (GetStorage().read('welcomeAudioPlayed') == null ||
-        GetStorage().read('welcomeAudioPlayed') == '') {
+    // print(GetStorage().read('welcomeAudioPlayed'));
+    // if (GetStorage().read('welcomeAudioPlayed') == null ||
+    //     GetStorage().read('welcomeAudioPlayed') == '') {
       Helper.playWelcomeSound();
-    }
+    // }
   }
   initBeaconService() async {
     // if (BluetoothState.stateOff.value == "STATE_OFF") {

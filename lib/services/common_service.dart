@@ -35,4 +35,5 @@ class CommonService extends GetxService {
   var guestData = GuestItem().obs;
   var qrStatus = 3.obs;
   var dateType = "T".obs;
+  bool firstTime=false;
 }

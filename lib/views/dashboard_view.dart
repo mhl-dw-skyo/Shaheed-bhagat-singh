@@ -6,25 +6,42 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:upgrader/upgrader.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../core.dart';
 
-class DashboardView extends GetView<DashboardController> {
+class DashboardView extends StatefulWidget {
   DashboardView({Key key}) : super(key: key);
+
+  @override
+  _DashboardViewState createState() => _DashboardViewState();
+}
+
+class _DashboardViewState extends State<DashboardView> {
   DateTime currentBackPressTime;
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
   GuestController guestController = Get.find();
+  DashboardController controller = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!commonService.firstTime) {
+        commonService.firstTime = true;
+        controller.startWelcomeSound();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    controller.startWelcomeSound();
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-          statusBarColor: Get.theme.primaryColor,
-          statusBarIconBrightness: Brightness.dark),
+        statusBarColor: Get.theme.primaryColor,
+        statusBarIconBrightness: Brightness.dark,
+      ),
     );
     return UpgradeAlert(
       upgrader: Platform.isIOS
@@ -118,14 +135,15 @@ class DashboardView extends GetView<DashboardController> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                     gradient: LinearGradient(
-                                        colors: [
-                                          Get.theme.colorScheme.primary,
-                                          Get.theme.colorScheme.secondary,
-                                        ],
-                                        begin: const FractionalOffset(0.0, 0.0),
-                                        end: const FractionalOffset(0.0, 1.0),
-                                        stops: const [0.0, 1.0],
-                                        tileMode: TileMode.clamp),
+                                      colors: [
+                                        Get.theme.colorScheme.primary,
+                                        Get.theme.colorScheme.secondary,
+                                      ],
+                                      begin: const FractionalOffset(0.0, 0.0),
+                                      end: const FractionalOffset(0.0, 1.0),
+                                      stops: const [0.0, 1.0],
+                                      tileMode: TileMode.clamp,
+                                    ),
                                   ),
                                   child: Row(
                                     children: [

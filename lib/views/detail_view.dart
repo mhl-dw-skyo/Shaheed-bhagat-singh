@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:readmore/readmore.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../core.dart';
@@ -157,6 +155,9 @@ class DetailView extends GetView<DetailController> {
                           ],
                         ).pSymmetric(h: 25)
                       : const SizedBox(height: 0),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   SizedBox(
                     height: commonService.selectedAudioFile.value.isNotEmpty ? 20 : 0,
                   ),

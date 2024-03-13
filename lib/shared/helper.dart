@@ -1131,11 +1131,12 @@ class Helper {
     }
 
     AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+    AssetsAudioPlayer.allPlayers().forEach((key, value) {value.stop();});
     await assetsAudioPlayer.open(
       Audio('data/assets/audios/$file'),
       showNotification: true,
       autoStart: true,
-      playInBackground: PlayInBackground.enabled,
+      playInBackground: PlayInBackground.disabledRestoreOnForeground,
     );
     await GetStorage().write('welcomeAudioPlayed', 1);
   }
