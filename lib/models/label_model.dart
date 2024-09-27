@@ -82,11 +82,13 @@ class LabelItem {
   String today = '';
   String weekly = '';
   String monthly = '';
+  String phoneInvalid = '';
+
   LabelItem();
   LabelItem.fromJSON(Map<String, dynamic> json) {
     punjabTourism = json["punjab_tourism"] ?? '';
     welcomeTo = json["welcome_to"] ?? '';
-    virastEKhalsa = json["virast_e_khalsa"] ?? '';
+    virastEKhalsa = json["dastaan_e_khalsa"] ?? '';
     signOut = json["sign_out"] ?? '';
     logoutMsg = json["logout_msg"] ?? '';
     cancel = json["cancel"] ?? '';
@@ -103,6 +105,8 @@ class LabelItem {
     phoneFieldValidation = json["phone_field_validation"] ?? '';
     titleFieldValidation = json["title_field_validation"] ?? '';
     messageFieldValidation = json["message_field_validation"] ?? '';
+    phoneInvalid= json["phone_invalid"] ?? 'Enter a valid phone Number.';
+
     login = json["login"] ?? '';
     verifyMobileNo = json["verify_mobile_no"] ?? '';
     or = json["or"] ?? '';

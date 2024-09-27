@@ -22,9 +22,9 @@ class SplashController extends GetxController {
   GuestController guestController = Get.find();
   bool checkPermission = false;
   String mobileNumber = '';
-  Timer timer;
+  late Timer timer;
   CommonService commonService = Get.find();
-  Stream<String> _tokenStream;
+  late Stream<String> _tokenStream;
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -98,9 +98,7 @@ class SplashController extends GetxController {
   }
 
   pushNotifications() async {
-    FirebaseMessaging.instance
-        .getInitialMessage()
-        .then((RemoteMessage message) {
+    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? message) {
       print('A new onMessageOpenedApp event was published!');
       if (message != null) {
         print(333333);
@@ -110,7 +108,7 @@ class SplashController extends GetxController {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       print('B new onMessageOpenedApp event was published!');
       print(44444);
-      RemoteNotification notification = message.notification;
+      RemoteNotification? notification = message.notification;
       print(notification);
       if (notification != null) {
         String qrStatus = message.data['qr_status'] ?? '';
@@ -119,7 +117,7 @@ class SplashController extends GetxController {
         commonService.qrStatus.value = int.parse(qrStatus);
         commonService.qrStatus.refresh();
         guestController.forUser.refresh();
-        await Future.delayed(Duration(seconds: 3));
+        await Future.delayed(Duration(seconds: 2));
         Get.toNamed('/thank-you');
         // Helper.onBackgroundSound(message);
       }
@@ -127,21 +125,17 @@ class SplashController extends GetxController {
   }
 
   Future<void> updateFCMToken() async {
-    FirebaseMessaging.instance
-        .getToken(
-            vapidKey:
-                'BJujnbaevDAIiUInLIMli_8LgyoUQ-bW9O0oDKT8OeB5V84D1bfOtdyH4kIbdNyFRyA0Gw0BlCj1Jyq-jX3n6cc')
-        .then(setToken);
+    FirebaseMessaging.instance.getToken(vapidKey: 'BJujnbaevDAIiUInLIMli_8LgyoUQ-bW9O0oDKT8OeB5V84D1bfOtdyH4kIbdNyFRyA0Gw0BlCj1Jyq-jX3n6cc').then(setToken);
     _tokenStream = FirebaseMessaging.instance.onTokenRefresh;
     _tokenStream.listen(setToken);
   }
 
-  void setToken(String token) async {
+  void setToken(String? token) async {
     print('FCM Token: $token');
     if (token != "" && token != null) {
-      GuestApi guestApi = Get.find();
-      guestApi.updateFCMToken(token);
       await GetStorage().write('fcm_token', token);
+      GuestApi guestApi = Get.find();
+      guestApi.updateFCMToken(token??'');
     }
   }
 
@@ -160,20 +154,16 @@ class SplashController extends GetxController {
       }
     }
     await Future.delayed(Duration(seconds: 3));
-    // bool check = GetStorage().read('EULA_agree') ?? false;
-    bool check = true;
-
+    updateFCMToken();
+    bool check = GetStorage().read('EULA_agree') ?? false;
     if (!check) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Get.toNamed('/eula');
       });
     } else {
-      if (GetStorage().read('token') != null &&
-          GetStorage().read('token') != '') {
-        updateFCMToken();
+      if (GetStorage().read('token') != null && GetStorage().read('token') != '') {
         WidgetsBinding.instance.addPostFrameCallback((_) async {
-          if (GetStorage().read('language_id') == "" ||
-              GetStorage().read('language_id') == null) {
+          if (GetStorage().read('language_id') == "" || GetStorage().read('language_id') == null) {
             Get.offNamed('/language');
           } else {
             dashboardController.fetchLabelData();
@@ -199,10 +189,11 @@ class SplashController extends GetxController {
         dashboardController.fetchLabelData();
         WidgetsBinding.instance.addPostFrameCallback((_) {
           print("djgsadgd");
-
-          // Get.offNamed('/login');
-          AuthController authController=Get.find();
-          authController.checkMobileNumber("test@gmail.com");
+          print(GetStorage().read('welcomeAudioPlayed'));
+          if (GetStorage().read('welcomeAudioPlayed') == null || GetStorage().read('welcomeAudioPlayed') == '') {
+            Helper.playWelcomeSound();
+          }
+          Get.offNamed('/login');
         });
       }
     }

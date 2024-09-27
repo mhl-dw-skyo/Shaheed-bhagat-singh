@@ -17,10 +17,10 @@ class DashboardSliderWidget extends StatelessWidget {
   final List<Attributes> attributes;
   var selectedIndex = 2.obs;
   DashboardSliderWidget({
-    Key key,
-    this.attributes,
+    Key? key,
+    required this.attributes,
   }) : super(key: key);
-  YoutubePlayerController controller;
+  YoutubePlayerController? controller;
   var youTubeId = ''.obs;
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class DashboardSliderWidget extends StatelessWidget {
                         final id = Helper.convertUrlToId(attributesData.link);
                         String thumb = "https://img.youtube.com/vi/$id/0.jpg";
                         controller = YoutubePlayerController(
-                          initialVideoId: id,
+                          initialVideoId: id!,
                           params: YoutubePlayerParams(
                             autoPlay: true,
                             startAt: Duration(seconds: 0),
@@ -55,16 +55,16 @@ class DashboardSliderWidget extends StatelessWidget {
                             desktopMode: true,
                           ),
                         );
-                        controller.onEnterFullscreen = () {
+                        controller?.onEnterFullscreen = () {
                           SystemChrome.setPreferredOrientations([
                             DeviceOrientation.landscapeLeft,
                             DeviceOrientation.landscapeRight,
                           ]);
                         };
-                        controller.onExitFullscreen = () {
+                        controller?.onExitFullscreen = () {
                           SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
                           Future.delayed(const Duration(seconds: 1), () {
-                            controller.play();
+                            controller?.play();
                           });
                           Future.delayed(const Duration(seconds: 5), () {
                             SystemChrome.setPreferredOrientations(DeviceOrientation.values);
@@ -80,19 +80,19 @@ class DashboardSliderWidget extends StatelessWidget {
                               elevation: 0,
                               automaticallyImplyLeading: true,
                               centerTitle: true,
-                              title: "360 Video".text.textStyle(Get.textTheme.headline1.copyWith(color: Get.theme.indicatorColor)).make(),
+                              title: "360 Video".text.textStyle(Get.textTheme.headline1!.copyWith(color: Get.theme.indicatorColor)).make(),
                             ),
                             backgroundColor: Get.theme.primaryColor,
                             body: InkWell(
                               onTap: () async {
-                                youTubeId.value = id;
+                                youTubeId.value = id!;
                                 if (Platform.isIOS) {
                                   if (await canLaunchUrlString(attributesData.link)) {
                                     await launch(attributesData.link, forceSafariVC: false);
                                   }
                                 } else {
-                                  controller.play();
-                                  controller.hideTopMenu();
+                                  controller?.play();
+                                  controller?.hideTopMenu();
                                 }
                               },
                               child: Container(
@@ -155,7 +155,7 @@ class DashboardSliderWidget extends StatelessWidget {
                               elevation: 0,
                               automaticallyImplyLeading: true,
                               centerTitle: true,
-                              title: "Picture".text.textStyle(Get.textTheme.headline1.copyWith(color: Get.theme.indicatorColor)).make(),
+                              title: "Picture".text.textStyle(Get.textTheme.headline1!.copyWith(color: Get.theme.indicatorColor)).make(),
                             ),
                             backgroundColor: Get.theme.primaryColor,
                             body: Container(
@@ -215,7 +215,7 @@ class DashboardSliderWidget extends StatelessWidget {
                                   height: 300,
                                   child: attributesData.title.text
                                       .textStyle(
-                                        Get.textTheme.headline2.copyWith(
+                                        Get.textTheme.headline2!.copyWith(
                                           color: Get.theme.highlightColor,
                                         ),
                                       )
@@ -245,7 +245,7 @@ class DashboardSliderWidget extends StatelessWidget {
                       quarterTurns: 3,
                       child: currentValue.title.text
                           .textStyle(
-                            Get.textTheme.headline3.copyWith(
+                            Get.textTheme.headline3!.copyWith(
                               color: Get.theme.indicatorColor.withOpacity(selectedIndex.value == index ? 1 : 0.5),
                             ),
                           )

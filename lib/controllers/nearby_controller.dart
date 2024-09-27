@@ -36,7 +36,7 @@ class NearByController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
     // getUserLocation('from');
-    DirectionModel directionModel1 = DirectionModel(id: 1, name: 'Bhagat Singh Museum');
+    DirectionModel directionModel1 = DirectionModel(id: 1, name: 'Virasat E Khalsa');
     directions.add(directionModel1);
     DirectionModel directionModel2 = DirectionModel(id: 2, name: 'Current Location');
     directions.add(directionModel2);
@@ -65,7 +65,7 @@ class NearByController extends GetxController {
     Location location = Location();
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
-    LocationData _locationData;
+    LocationData? _locationData;
     _serviceEnabled = await location.serviceEnabled();
     if (!_serviceEnabled) {
       _serviceEnabled = await location.requestService();
@@ -83,11 +83,11 @@ class NearByController extends GetxController {
     } else {
       _locationData = await location.getLocation();
       if (type == "from") {
-        fromLat.value = _locationData.latitude;
-        fromLng.value = _locationData.longitude;
+        fromLat.value = _locationData.latitude??0;
+        fromLng.value = _locationData.longitude??0;
       } else {
-        toLat.value = _locationData.latitude;
-        toLng.value = _locationData.longitude;
+        toLat.value = _locationData.latitude??0;
+        toLng.value = _locationData.longitude??0;
       }
       if (fromLat.value != 0.0 && fromLng.value != 0.0 && toLat.value != 0.0 && toLng.value != 0.0) {
         calculateDistance(fromLat.value, fromLng.value, toLat.value, toLng.value);

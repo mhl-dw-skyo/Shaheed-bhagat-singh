@@ -18,7 +18,7 @@ class GuestController extends GetxController {
   int limit = 10;
   var forUser = true.obs;
   bool showLoadMore = true;
-  VoidCallback guestScrollListener;
+  late VoidCallback guestScrollListener;
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -102,6 +102,7 @@ class GuestController extends GetxController {
       commonService.qrStatus.value = response['qr_status'];
       commonService.qrStatus.refresh();
     }
+    if(response['fcm_token']!=null&&response['fcm_token']!=""){
     Map<String, dynamic> notification = {
       "body": "",
       "title": "",
@@ -113,6 +114,7 @@ class GuestController extends GetxController {
       "fcm_token": GetStorage().read('fcm_token') ?? '',
     };
     Helper.sendNotification(response['fcm_token'], notification, data);
+    }
   }
 
   Future<void> fetchGuestInformationHistory() async {

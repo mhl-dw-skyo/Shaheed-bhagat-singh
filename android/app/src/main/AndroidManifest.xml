@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="bhagatsm.dwgroup.app" xmlns:tools="http://schemas.android.com/tools" >
+    package="des.dwgroup.app" xmlns:tools="http://schemas.android.com/tools" >
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide
@@ -9,8 +9,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <!--BLUETOOTH PERMISSION-->
     <!-- Request legacy Bluetooth permissions on older devices. -->
-    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH"  />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!-- Needed only if your app looks for Bluetooth devices.
              If your app doesn't use Bluetooth scan results to derive physical
              location information, you can strongly assert that your app
@@ -19,11 +19,11 @@
     <!-- Needed only if your app communicates with already-paired Bluetooth
            devices. -->
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-
     <!-- Needed only if your app uses Bluetooth scan results to derive physical location. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
     <queries>
         <intent>
             <action android:name="android.speech.RecognitionService" />
@@ -34,7 +34,7 @@
     </queries>
 	<application
         android:name="${applicationName}"
-        android:label="Bhagat Singh Museum"
+        android:label="Dastaan-e-Shahadat"
         android:exported="true"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
@@ -115,7 +115,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="vek"
+                <data android:scheme="des"
                     android:host=""/>
             </intent-filter>
         </activity>

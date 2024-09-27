@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../core.dart';
 
 class DrawerWidget extends GetView {
-  DrawerWidget({Key key}) : super(key: key);
+  DrawerWidget({Key? key}) : super(key: key);
   CommonService commonService = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -48,14 +48,14 @@ class DrawerWidget extends GetView {
                       children: [
                         Text(
                           GetStorage().read('name') ?? 'Guest',
-                          style: Get.theme.textTheme.headline1.copyWith(color: Get.theme.highlightColor),
+                          style: Get.theme.textTheme.headline1!.copyWith(color: Get.theme.highlightColor),
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         Text(
                           GetStorage().read('username') ?? '',
-                          style: Get.theme.textTheme.bodyMedium.copyWith(color: Get.theme.highlightColor),
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(color: Get.theme.highlightColor),
                         ),
                       ],
                     ),
@@ -92,7 +92,7 @@ class DrawerWidget extends GetView {
                         height: 20,
                         color: Get.theme.highlightColor,
                       ),
-                      title: commonService.labelData.value.data.home.text.textStyle(Get.textTheme.headline2.copyWith(color: Get.theme.highlightColor)).make(),
+                      title: commonService.labelData.value.data.home.text.textStyle(Get.textTheme.headline2!.copyWith(color: Get.theme.highlightColor)).make(),
                     ),
                     ListTile(
                       onTap: () async {
@@ -107,7 +107,7 @@ class DrawerWidget extends GetView {
                         height: 20,
                         color: Get.theme.highlightColor,
                       ),
-                      title: commonService.labelData.value.data.contentLanguage.text.textStyle(Get.textTheme.headline2.copyWith(color: Get.theme.highlightColor)).make(),
+                      title: commonService.labelData.value.data.contentLanguage.text.textStyle(Get.textTheme.headline2!.copyWith(color: Get.theme.highlightColor)).make(),
                     ),
                     ListTile(
                       onTap: () async {
@@ -122,34 +122,34 @@ class DrawerWidget extends GetView {
                         height: 20,
                         color: Get.theme.highlightColor,
                       ),
-                      title: commonService.labelData.value.data.feedback.text.textStyle(Get.textTheme.headline2.copyWith(color: Get.theme.highlightColor)).make(),
+                      title: commonService.labelData.value.data.feedback.text.textStyle(Get.textTheme.headline2!.copyWith(color: Get.theme.highlightColor)).make(),
                     ),
-                    // ListTile(
-                    //   onTap: () async {
-                    //     Helper.logoutConfirmation();
-                    //   },
-                    //   dense: true,
-                    //   leading: SvgPicture.asset(
-                    //     "assets/images/logout.svg",
-                    //     width: 20,
-                    //     height: 20,
-                    //     color: Get.theme.highlightColor,
-                    //   ),
-                    //   title: commonService.labelData.value.data.logout.text.textStyle(Get.textTheme.headline2.copyWith(color: Get.theme.highlightColor)).make(),
-                    // ),
-                    // ListTile(
-                    //   onTap: () async {
-                    //     Helper.deleteAccountConfirmation();
-                    //   },
-                    //   dense: true,
-                    //   leading: SvgPicture.asset(
-                    //     "assets/images/delete-person.svg",
-                    //     width: 20,
-                    //     height: 20,
-                    //     color: Get.theme.highlightColor,
-                    //   ),
-                    //   title: commonService.labelData.value.data.deleteAccount.text.textStyle(Get.textTheme.headline2.copyWith(color: Get.theme.highlightColor)).make(),
-                    // )
+                    ListTile(
+                      onTap: () async {
+                        Helper.logoutConfirmation();
+                      },
+                      dense: true,
+                      leading: SvgPicture.asset(
+                        "assets/images/logout.svg",
+                        width: 20,
+                        height: 20,
+                        color: Get.theme.highlightColor,
+                      ),
+                      title: commonService.labelData.value.data.logout.text.textStyle(Get.textTheme.headline2!.copyWith(color: Get.theme.highlightColor)).make(),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        Helper.deleteAccountConfirmation();
+                      },
+                      dense: true,
+                      leading: SvgPicture.asset(
+                        "assets/images/delete-person.svg",
+                        width: 20,
+                        height: 20,
+                        color: Get.theme.highlightColor,
+                      ),
+                      title: commonService.labelData.value.data.deleteAccount.text.textStyle(Get.textTheme.headline2!.copyWith(color: Get.theme.highlightColor)).make(),
+                    )
                   ],
                 ),
               ],
@@ -163,11 +163,11 @@ class DrawerWidget extends GetView {
                 children: [
                   InkWell(
                     onTap: () {
-                      Helper.launchURL("https://bhagatsm.dwgroup.in/policies");
+                      Helper.launchURL("https://des.dwgroup.in/policies");
                     },
                     child: "Privacy Policy"
                         .text
-                        .textStyle(Get.theme.textTheme.bodyMedium.copyWith(
+                        .textStyle(Get.theme.textTheme.bodyMedium!.copyWith(
                           color: Get.theme.highlightColor,
                         ))
                         .make(),
@@ -179,11 +179,11 @@ class DrawerWidget extends GetView {
                   ).pSymmetric(h: 10),
                   InkWell(
                     onTap: () {
-                      Helper.launchURL("https://bhagatsm.dwgroup.in/terms");
+                      Helper.launchURL("https://des.dwgroup.in/terms");
                     },
                     child: "Terms & Conditions"
                         .text
-                        .textStyle(Get.theme.textTheme.bodyMedium.copyWith(
+                        .textStyle(Get.theme.textTheme.bodyMedium!.copyWith(
                           color: Get.theme.highlightColor,
                         ))
                         .make(),

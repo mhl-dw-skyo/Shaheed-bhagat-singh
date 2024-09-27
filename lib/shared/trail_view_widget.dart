@@ -15,14 +15,14 @@ class TrailViewWidget extends StatelessWidget {
   final bool bigSize;
   final VoidCallback onTap;
   const TrailViewWidget({
-    Key key,
-    this.width,
-    this.height,
-    this.attributes,
-    this.showTitle,
-    this.showVideoIcon,
-    this.bigSize,
-    this.onTap,
+    Key? key,
+    required this.width,
+    required this.height,
+    required this.attributes,
+     required this.showTitle,
+    required this.showVideoIcon,
+    required this.bigSize,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -59,23 +59,21 @@ class TrailViewWidget extends StatelessWidget {
                   bottomRight: Radius.circular(50),
                 ),
               ),
-              child:
-              ClipRRect(
+              child: ClipRRect(
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(50),
                   topRight: Radius.circular(15),
                   bottomLeft: Radius.circular(15),
                   bottomRight: Radius.circular(50),
                 ),
-                child:
-                Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     attributes.title.text
                         .textStyle(
-                          Get.textTheme.headline2.copyWith(
+                          Get.textTheme.headline2!.copyWith(
                             color: Get.theme.indicatorColor,
                             fontSize: bigSize ? 20 : 16,
                           ),
@@ -86,7 +84,7 @@ class TrailViewWidget extends StatelessWidget {
                         .minFontSize(bigSize ? 18 : 14)
                         .maxLines(bigSize ? 2 : 3)
                         .textStyle(
-                          Get.textTheme.headline1.copyWith(
+                          Get.textTheme.headline1!.copyWith(
                             color: Get.theme.indicatorColor.withOpacity(0.5),
                             fontWeight: FontWeight.w500,
                           ),
@@ -111,7 +109,7 @@ class TrailViewWidget extends StatelessWidget {
                     fit: BoxFit.cover,
                     width: bigSize ? 120 : 95,
                     height: bigSize ? 120 : 95,
-                    errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                       return Image.asset(
                         Helper.localAssetPath(attributes.imagePath),
                         width: bigSize ? 120 : 95,

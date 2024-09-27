@@ -4,8 +4,8 @@
     "message": "Module Information",
     "data": [
         {
-            "module_id": 6,
-            "module_name": "ਲੇਫਟ ਸਾਈਡ ਐਡਜਸਟਮੈਂਟ",
+            "module_id": 4,
+            "module_name": "ਖੱਬੇ ਪਾਸੇ ਦੀ ਵਿਵਸਥਾ",
             "language_id": 1,
             "module_visibility": "all",
             "module_type": 12,
@@ -22,53 +22,53 @@
                     "type": "V",
                     "att_type": [
                         {
-                            "video_thumb": "https://bhagatsm.dwgroup.in/assets/outlinkedimages/15image-14-min1.png",
-                            "video_link": "https://www.youtube.com/embed/qiHQ6dx4KsQ?si=Yx83UgpcyjJpbI3K",
+                            "video_thumb": "https://des.dwgroup.in/assets/outlinkedimages/miri_piri_2.jpg",
+                            "video_link": "https://www.youtube.com/embed/rq8P6Qfrgro",
                             "title": "360 ਵੀਡੀਓ 2",
                             "id": 2
                         },
                         {
-                            "video_thumb": "https://bhagatsm.dwgroup.in/assets/outlinkedimages/image-14-min.png",
-                            "video_link": "https://www.youtube.com/embed/qiHQ6dx4KsQ?si=Yx83UgpcyjJpbI3K",
-                            "title": "360 ਵੀਡੀਓ 3",
-                            "id": 3,
-                            "module_id": 14
-                        },
-                        {
-                            "video_thumb": "https://bhagatsm.dwgroup.in/assets/outlinkedimages/15image-14-min.png",
-                            "video_link": "https://www.youtube.com/embed/qiHQ6dx4KsQ?si=Yx83UgpcyjJpbI3K",
+                            "video_thumb": "https://des.dwgroup.in/assets/outlinkedimages/main3.jpg",
+                            "video_link": "https://www.youtube.com/embed/og1zy5OYaqg",
                             "title": "360 ਵੀਡੀਓ 1",
                             "id": 1,
-                            "module_id": 14
+                            "module_id": 1
+                        },
+                        {
+                            "video_thumb": "https://des.dwgroup.in/assets/outlinkedimages/main_42.jpg",
+                            "video_link": "https://www.youtube.com/embed/6JvbTXM-WaU",
+                            "title": "ਵਿਰਾਸਤ ਏ ਖਾਲਸਾ",
+                            "id": 4,
+                            "module_id": 1
+                        },
+                        {
+                            "video_thumb": "https://des.dwgroup.in/assets/outlinkedimages/khanda_1.jpg",
+                            "video_link": "https://www.youtube.com/embed/DcOVb-i7gOU",
+                            "title": "360 ਵੀਡੀਓ 3",
+                            "id": 3,
+                            "module_id": 1
                         }
                     ]
                 },
                 {
-                    "title": "ਭਗਤ ਸਿੰਘ ਬਾਰੇ",
+                    "title": "ਅਜਾਇਬ ਘਰ",
                     "image_path": null,
                     "description": "",
-                    "rank": null,
-                    "type": null,
+                    "rank": 2,
+                    "type": "I",
                     "att_type": [
                         {
-                            "location_id": 61,
-                            "image_link": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708513050_63_image-17-min.png",
-                            "title": "Virasat E Khalsa",
-                            "id": 10
+                            "location_id": 14,
+                            "image_link": "https://des.dwgroup.in/assets/outlinkedimages/2_1_1.jpg",
+                            "title": "ਸ਼ਹੀਦ ਭਗਤ ਸਿੰਘ ਅਜਾਇਬ ਘਰ",
+                            "id": 8
                         },
                         {
-                            "location_id": 61,
-                            "image_link": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708508906_61_image--min.png",
-                            "title": "Shaheed Bhagat Singh Museum",
-                            "id": 8,
-                            "module_id": 15
-                        },
-                        {
-                            "location_id": 61,
-                            "image_link":"https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708512767_62_image-13-min.png",
-                            "title": "Dastaan - e - Shahadat",
-                            "id": 9,
-                            "module_id": 15
+                            "location_id": 13,
+                            "image_link": "https://des.dwgroup.in/assets/outlinkedimages/main2.jpg",
+                            "title": "ਅਜਾਇਬ ਘਰ",
+                            "id": 2,
+                            "module_id": 9
                         }
                     ]
                 },
@@ -77,136 +77,122 @@
                     "image_path": null,
                     "description": "",
                     "rank": 3,
-                    "type": null,
+                    "type": "I",
                     "att_type": [
                         {
-                            "title": "ਗੈਲਰੀ 2",
-                            "location_id": 63,
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/63_162_image-15-min.png"
+                            "location_id": 0,
+                            "image_link": "https://des.dwgroup.in/assets/outlinkedimages/khanda_31.jpg",
+                            "title": "ਖੰਡੇ ਦਾ ਪ੍ਰਤੀਕ",
+                            "id": 7
                         },
                         {
-                            "title": "ਗੈਲਰੀ 3",
-                            "location_id": 66,
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708594282_66_image-11-min.png"
+                            "location_id": 0,
+                            "image_link": "https://des.dwgroup.in/assets/outlinkedimages/miri_piri_3.jpg",
+                            "title": "ਮੀਰੀ ਪੀਰੀ",
+                            "id": 5,
+                            "module_id": 10
                         },
                         {
-                            "title": "ਗੈਲਰੀ 4",
-                            "location_id": 67,
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708594350_67_image-13-min.png"
+                            "location_id": 0,
+                            "image_link": "https://des.dwgroup.in/assets/outlinkedimages/open_air_theatre_1.jpg",
+                            "title": "ਸੈਮੀਨਾਰ ਹਾਲ",
+                            "id": 4,
+                            "module_id": 10
+                        },
+                        {
+                            "location_id": 0,
+                            "image_link": "https://des.dwgroup.in/assets/outlinkedimages/reception_31.jpg",
+                            "title": "  ਉਡੀਕ ਖੇਤਰ",
+                            "id": 3,
+                            "module_id": 10
+                        },
+                        {
+                            "location_id": 0,
+                            "image_link": "https://des.dwgroup.in/assets/outlinkedimages/main_21.jpg",
+                            "title": "ਐਂਟਰੀ ਪੁਆਇੰਟ",
+                            "id": 1,
+                            "module_id": 10
                         }
                     ]
-
                 }
             ]
         },
-            {
-                "module_id": 10,
-                "module_name": "ਭਗਤ ਸਿੰਘ ਮਿਊਜ਼ੀਅਮ ਜ਼ੋਨ 1 ਤੋਂ 5",
-                "language_id": 1,
-                "module_visibility": "all",
-                "module_type": 1,
-                "module_layout": 2,
-                "no_of_records": 10,
-                "is_latest": 2,
-                "mtype": "filters",
-                "attributes": [
-                    {
-                        "title": "ਜ਼ੋਨ 1",
-                        "location_id": 55,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/55_151_image-4-min.png"
-                    },
-                    {
-                        "title": "ਜ਼ੋਨ 2",
-                        "location_id": 56,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/56_152_image-5-min.png"
-                    },
-                    {
-                        "title": "ਜ਼ੋਨ 3",
-                        "location_id": 57,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/57_153_image-6-min.png"
-                    },
-                    {
-                        "title": "ਜ਼ੋਨ 4",
-                        "location_id": 58,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/58_154_image-7-min.png"
-                    },
-                    {
-                        "title": "ਜ਼ੋਨ 5",
-                        "location_id": 59,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/59_155_image-8-min.png"
-                    }
-                ]
-            },
-            {
-                "module_id": 10,
-                "module_name": "ਭਗਤ ਸਿੰਘ ਮਿਊਜ਼ੀਅਮ ਜ਼ੋਨ 6 ਤੋਂ 10",
-                "language_id": 1,
-                "module_visibility": "all",
-                "module_type": 1,
-                "module_layout": 2,
-                "no_of_records": 10,
-                "is_latest": 2,
-                "mtype": "filters",
-                "attributes": [
-                    {
-                        "title": "ਜ਼ੋਨ 6",
-                        "location_id": 68,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/68_165_image-8-min.png"
-                    },
-                    {
-                        "title": "ਜ਼ੋਨ 7",
-                        "location_id": 69,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/69_166_Jaliawala_Bagh.png"
-                    },
-                    {
-                        "title": "ਜ਼ੋਨ 8",
-                        "location_id": 70,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/70_167_image-10-min.png"
-                    },
-                    {
-                        "title": "ਜ਼ੋਨ 9",
-                        "location_id": 71,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/71_168_Simon_Commission_Movement.png"
-                    },
-                    {
-                        "title": "ਜ਼ੋਨ 10",
-                        "location_id": 72,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/72_169_image-11-min.png"
-                    }
-                ]
-            },
-            {
-                "module_id": 10,
-                "module_name": "ਭਗਤ ਸਿੰਘ ਮਿਊਜ਼ੀਅਮ ਗੈਲਰੀ 1 ਤੋਂ 4",
-                "language_id": 1,
-                "module_visibility": "all",
-                "module_type": 1,
-                "module_layout": 2,
-                "no_of_records": 10,
-                "is_latest": 2,
-                "mtype": "filters",
-                "attributes": [
-                    {
-                        "title": "ਗੈਲਰੀ 1",
-                        "location_id": 62,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/62_161_image-9-min.png"
-                    },
-                    {
-                        "title": "ਗੈਲਰੀ 2",
-                        "location_id": 63,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/63_162_image-15-min.png"
-                    },
-                    {
-                        "title": "ਗੈਲਰੀ 3",
-                        "location_id": 66,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708594282_66_image-11-min.png"
-                    },
-                    {
-                        "title": "ਗੈਲਰੀ 4",
-                        "location_id": 67,
-                        "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708594350_67_image-13-min.png"
-                    }
-                ]
-            }
+        {
+            "module_id": 5,
+            "module_name": "ਦਾਸਤਾਨ ਏ ਸ਼ਹਾਦਤ ਦੇ ਅੰਦਰ",
+            "language_id": 1,
+            "module_visibility": "all",
+            "module_type": 1,
+            "module_layout": 2,
+            "no_of_records": 3,
+            "is_latest": 2,
+            "mtype": "filters",
+            "attributes": [
+                {
+                    "title": "ਦਾਸਤਾਨ ਏ ਸ਼ਹਾਦਤ",
+                    "id": 1,
+                    "icon": "1_reception_4.jpg",
+                    "description": "ਦਾਸਤਾਨ ਏ ਸ਼ਹਾਦਤ",
+                    "image_path": "https://des.dwgroup.in/assets/images/categorytype-icons/1_reception_4.jpg"
+                },
+                {
+                    "title": "ਗੈਲਰੀਆਂ",
+                    "id": 2,
+                    "icon": "2_audi4_2.jpg",
+                    "description": "ਗੈਲਰੀਆਂ",
+                    "image_path": "https://des.dwgroup.in/assets/images/categorytype-icons/2_audi4_2.jpg"
+                },
+                {
+                    "title": "ਮੂਰਤੀਆਂ",
+                    "id": 3,
+                    "icon": "3_main_4.jpg",
+                    "description": "ਮੂਰਤੀਆਂ",
+                    "image_path": "https://des.dwgroup.in/assets/images/categorytype-icons/3_main_4.jpg"
+                },
+                {
+                    "description": "",
+                    "id": 4,
+                    "title": "ਸਿੱਖ ਵਾਰੀਅਰਜ਼ ਸਮਾਰਕ",
+                    "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/18_159_main_4.jpg"
+                }
+            ]
+        },
+        {
+            "module_id": 5,
+            "module_name": "ਗੈਲਰੀ 1 ਤੋਂ 4",
+            "language_id": 1,
+            "module_visibility": "all",
+            "module_type": 1,
+            "module_layout": 2,
+            "no_of_records": 3,
+            "is_latest": 2,
+            "mtype": "filters",
+            "attributes": [
+                {
+                    "description": "",
+                    "id": 1,
+                    "title": " ਗੈਲਰੀ 1",
+                    "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/1_141_audi1_2.jpg"
+                },
+                {
+                    "description": "",
+                    "id": 2,
+                    "title": " ਗੈਲਰੀ 2",
+                    "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/3_142_audi2_2.jpg"
+                },
+                {
+                    "description": "",
+                    "id": 3,
+                    "title": " ਗੈਲਰੀ 3",
+                    "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/4_143_audi3.jpg"
+                },
+                {
+                    "description": "",
+                    "id": 4,
+                    "title": " ਗੈਲਰੀ 4",
+                    "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/5_144_audi4_1.jpg"
+                }
+            ]
+        }
     ]
 }

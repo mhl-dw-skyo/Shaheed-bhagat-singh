@@ -13,8 +13,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../core.dart';
 
 class EmpDashboardView extends GetView<GuestController> {
-  EmpDashboardView({Key key}) : super(key: key);
-  DateTime currentBackPressTime;
+  EmpDashboardView({Key? key}) : super(key: key);
+  late DateTime currentBackPressTime;
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
@@ -26,9 +26,10 @@ class EmpDashboardView extends GetView<GuestController> {
           statusBarIconBrightness: Brightness.dark),
     );
     return UpgradeAlert(
-      upgrader: Platform.isIOS
-          ? Upgrader(dialogStyle: UpgradeDialogStyle.cupertino)
-          : Upgrader(dialogStyle: UpgradeDialogStyle.material),
+      dialogStyle: Platform.isIOS
+          ? UpgradeDialogStyle.cupertino
+          : UpgradeDialogStyle.material,
+      upgrader: Upgrader(),
       child: Container(
         color: Get.theme.primaryColor,
         child: SafeArea(
@@ -44,7 +45,7 @@ class EmpDashboardView extends GetView<GuestController> {
               centerTitle: true,
               title: commonService.labelData.value.data.punjabTourism.text
                   .textStyle(
-                    Get.textTheme.headline1.copyWith(
+                    Get.textTheme.headline1!.copyWith(
                       color: Get.theme.indicatorColor,
                     ),
                   )
@@ -52,7 +53,7 @@ class EmpDashboardView extends GetView<GuestController> {
               actions: [
                 InkWell(
                   onTap: () {
-                    scaffoldDashboardKey.currentState.openEndDrawer();
+                    scaffoldDashboardKey.currentState?.openEndDrawer();
                   },
                   child: SvgPicture.asset(
                     "assets/images/menu.svg",
@@ -103,7 +104,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                   commonService
                                       .labelData.value.data.today.text.center
                                       .textStyle(
-                                        Get.textTheme.headline3.copyWith(
+                                        Get.textTheme.headline3!.copyWith(
                                           color: commonService.dateType.value ==
                                                   "T"
                                               ? Get.theme.colorScheme.primary
@@ -129,7 +130,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                   commonService
                                       .labelData.value.data.weekly.text.center
                                       .textStyle(
-                                        Get.textTheme.headline3.copyWith(
+                                        Get.textTheme.headline3!.copyWith(
                                           color: commonService.dateType.value ==
                                                   "W"
                                               ? Get.theme.colorScheme.primary
@@ -155,7 +156,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                   commonService
                                       .labelData.value.data.monthly.text.center
                                       .textStyle(
-                                        Get.textTheme.headline3.copyWith(
+                                        Get.textTheme.headline3!.copyWith(
                                           color: commonService.dateType.value ==
                                                   "M"
                                               ? Get.theme.colorScheme.primary
@@ -231,7 +232,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                   commonService
                                       .labelData.value.data.totalGuests.text
                                       .textStyle(
-                                        Get.textTheme.headline2.copyWith(
+                                        Get.textTheme.headline2!.copyWith(
                                           color: Get.theme.highlightColor,
                                         ),
                                       )
@@ -246,7 +247,7 @@ class EmpDashboardView extends GetView<GuestController> {
                               commonService
                                   .guestInformationData.value.totalGuests.text
                                   .textStyle(
-                                    Get.textTheme.headline1.copyWith(
+                                    Get.textTheme.headline1!.copyWith(
                                       color: Get.theme.highlightColor,
                                       fontSize: 40,
                                     ),
@@ -264,7 +265,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                   commonService.labelData.value.data
                                       .guestsEntered.text.center
                                       .textStyle(
-                                        Get.textTheme.headline4.copyWith(
+                                        Get.textTheme.headline4!.copyWith(
                                           color: Get.theme.indicatorColor,
                                         ),
                                       )
@@ -272,7 +273,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                   commonService.labelData.value.data.viewAll
                                       .text.underline.center
                                       .textStyle(
-                                        Get.textTheme.headline5.copyWith(
+                                        Get.textTheme.headline5!.copyWith(
                                           color: Get.theme.colorScheme.primary,
                                         ),
                                       )
@@ -331,7 +332,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                             commonService.labelData.value.data
                                                 .name.text.center
                                                 .textStyle(
-                                                  Get.textTheme.headline4
+                                                  Get.textTheme.headline4!
                                                       .copyWith(
                                                     color: Get.theme.colorScheme
                                                         .primary,
@@ -343,7 +344,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                                 .text
                                                 .center
                                                 .textStyle(
-                                                  Get.textTheme.headline4
+                                                  Get.textTheme.headline4!
                                                       .copyWith(
                                                     color: Get.theme.colorScheme
                                                         .primary,
@@ -353,7 +354,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                                 .pOnly(right: 15),
                                             currentValue.name.text.center
                                                 .textStyle(
-                                                  Get.textTheme.bodyMedium
+                                                  Get.textTheme.bodyMedium!
                                                       .copyWith(
                                                     color: Get
                                                         .theme.indicatorColor,
@@ -372,7 +373,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                             commonService.labelData.value.data
                                                 .guests.text.center
                                                 .textStyle(
-                                                  Get.textTheme.headline4
+                                                  Get.textTheme.headline4!
                                                       .copyWith(
                                                     color: Get.theme.colorScheme
                                                         .primary,
@@ -384,7 +385,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                                 .text
                                                 .center
                                                 .textStyle(
-                                                  Get.textTheme.headline4
+                                                  Get.textTheme.headline4!
                                                       .copyWith(
                                                     color: Get.theme.colorScheme
                                                         .primary,
@@ -394,7 +395,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                                 .pOnly(right: 15),
                                             currentValue.guests.text.center
                                                 .textStyle(
-                                                  Get.textTheme.bodyMedium
+                                                  Get.textTheme.bodyMedium!
                                                       .copyWith(
                                                     color: Get
                                                         .theme.indicatorColor,
@@ -413,7 +414,7 @@ class EmpDashboardView extends GetView<GuestController> {
                                               .text
                                               .center
                                               .textStyle(
-                                                Get.textTheme.bodyMedium
+                                                Get.textTheme.bodyMedium!
                                                     .copyWith(
                                                   color:
                                                       Get.theme.indicatorColor,

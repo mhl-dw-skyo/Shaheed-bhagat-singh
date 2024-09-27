@@ -8,8 +8,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../core.dart';
 
 class ThankYouView extends GetView {
-  ThankYouView({Key key}) : super(key: key);
-  DateTime currentBackPressTime;
+  ThankYouView({Key? key}) : super(key: key);
+late  DateTime currentBackPressTime;
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
@@ -26,33 +26,34 @@ class ThankYouView extends GetView {
         child: Scaffold(
           key: scaffoldDashboardKey,
           backgroundColor: Get.theme.primaryColor,
-          appBar: AppBar(
-            bottomOpacity: 0,
-            shadowColor: Colors.transparent,
-            backgroundColor: Get.theme.primaryColor,
-            elevation: 0,
-            automaticallyImplyLeading: false,
-            centerTitle: true,
-            title: commonService.labelData.value.data.punjabTourism.text
-                .textStyle(
-                  Get.textTheme.headline1.copyWith(
-                    color: Get.theme.indicatorColor,
-                  ),
-                )
-                .make(),
-            actions: [
-              InkWell(
-                onTap: () {
-                  scaffoldDashboardKey.currentState.openEndDrawer();
-                },
-                child: SvgPicture.asset(
-                  "assets/images/menu.svg",
-                  color: Get.theme.indicatorColor,
-                ),
-              ).pOnly(right: 20)
-            ],
-          ),
-          endDrawer: DrawerWidget(),
+          appBar: AppBar(),
+          // AppBar(
+          //   bottomOpacity: 0,
+          //   shadowColor: Colors.transparent,
+          //   backgroundColor: Get.theme.primaryColor,
+          //   elevation: 0,
+          //   automaticallyImplyLeading: false,
+          //   centerTitle: true,
+          //   title: commonService.labelData.value.data.punjabTourism.text
+          //       .textStyle(
+          //         Get.textTheme.headline1!.copyWith(
+          //           color: Get.theme.indicatorColor,
+          //         ),
+          //       )
+          //       .make(),
+          //   actions: [
+          //     InkWell(
+          //       onTap: () {
+          //         scaffoldDashboardKey.currentState?.openEndDrawer();
+          //       },
+          //       child: SvgPicture.asset(
+          //         "assets/images/menu.svg",
+          //         color: Get.theme.indicatorColor,
+          //       ),
+          //     ).pOnly(right: 20)
+          //   ],
+          // ),
+          // endDrawer: DrawerWidget(),
           body: Container(
             width: Get.width,
             height: Get.height,
@@ -68,7 +69,7 @@ class ThankYouView extends GetView {
                 ).pOnly(bottom: 20),
                 commonService.labelData.value.data.thankYou.text.center
                     .textStyle(
-                      Get.textTheme.headline1.copyWith(
+                      Get.textTheme.headline1!.copyWith(
                         color: Get.theme.indicatorColor,
                       ),
                     )
@@ -79,7 +80,7 @@ class ThankYouView extends GetView {
           ),
           bottomNavigationBar: BottomNavWidget(
             onTap: (int index) {
-              Helper.onBottomBarClick(controller, index);
+              Helper.onBottomBarClick(null, index);
             },
           ),
           floatingActionButton: SpeedDialWidget(),

@@ -5,24 +5,30 @@
     "data": [
         {
             "category_type_id": 1,
-            "category_type_name": "Entrance hall",
+            "category_type_name": "Dastaan e Shahadat",
             "attributes": [
                 {
-                    "category_name": "प्राप्ति ",
-                    "category_id": 1,
-                    "icon": "1_image-4-min.png",
+                    "category_name": "संग्रहालय के अंदर",
+                    "category_id": 5,
+                    "icon": "5_main_2.jpg",
                     "category_type_id": 1,
                     "type_view": "L",
-                    "description": "प्राप्ति ",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/1_image-4-min.png",
+                    "description": "संग्रहालय के अंदर",
+                    "image_path": "https://des.dwgroup.in/images/category-icons/5_main_2.jpg",
                     "is_children": 0,
                     "is_location": 1,
                     "location_listing": [
                         {
-                            "description": "भगत सिंह संग्रहालय, जो कि खटकर कलां, पंजाब, भारत में स्थित है, भारतीय स्वतंत्रता आंदोलन के सबसे प्रभावशाली क्रांतिकारियों में से एक, शहीद भगत सिंह को श्रद्धांजलि अर्पित करता है। संग्रहालय का प्रवेश क्षेत्र आगंतुकों को ऐतिहासिक यात्रा पर ले जाने का द्वार है, जो भगत सिंह के जीवन और भारत की स्वतंत्रता संग्राम में उनके योगदान की एक झलक प्रदान करता है।\r\n\r\nप्रवेश क्षेत्र में प्रवेश करते ही, आगंतुकों का स्वागत देशभक्ति और बलिदान की भावना से गूंजते हुए वातावरण से होता है। क्षेत्र भगत सिंह और अन्य स्वतंत्रता सेनानियों के चित्रों से सजाया गया है, साथ ही सूचनापट भी हैं जो उनके वीरतापूर्ण कार्यों और उनके संघर्ष के महत्व का संक्षिप्त अवलोकन प्रदान करते हैं। प्रवेश डेस्क पर ज्ञानी कर्मचारी मौजूद होते हैं जो आगंतुकों को संग्रहालय की प्रदर्शनियों के माध्यम से मार्गदर्शन करते हैं, जिसमें भगत सिंह की व्यक्तिगत सामग्री, पत्र, और स्वतंत्रता आंदोलन से संबंधित दस्तावेज़, साथ ही उनके विचारों और क्रियाकलापों को प्रभावित करने वाली पुस्तकों और साहित्य का संग्रह शामिल है।",
-                            "location_id": 54,
-                            "location_name": "स्वागत",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/54_150_image-4-min.png"
+                            "description": "",
+                            "location_id": 15,
+                            "location_name": "स्वागत क्षेत्र",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/15_155_reception_2.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 16,
+                            "location_name": "मिरी पीरी",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/16_156_miri_piri_3.jpg"
                         }
                     ]
                 }
@@ -30,81 +36,110 @@
         },
         {
             "category_type_id": 2,
-            "category_type_name": "Gallery",
+            "category_type_name": "Galleries",
             "attributes": [
                 {
-                    "category_name": " गैलरी 1",
-                    "category_id": 13,
-                    "icon": "13_image-9-min.png",
+                    "category_name": "गैलरी 1 से 3",
+                    "category_id": 1,
+                    "icon": "1_audi3.jpg",
                     "category_type_id": 2,
                     "type_view": "L",
-                    "description": " गैलरी 1",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/13_image-9-min.png",
+                    "description": "गैलरी 1 से 3",
+                    "image_path": "https://des.dwgroup.in/images/category-icons/1_audi3.jpg",
                     "is_children": 0,
                     "is_location": 1,
                     "location_listing": [
                         {
-                            "description": "जलियाँवाला की गूँज: 13 अप्रैल, 1919\" गैलरी भगत सिंह संग्रहालय में जलियाँवाला बाग नरसंहार की गंभीर स्मृति को समर्पित है, जो भारत की स्वतंत्रता संग्राम के इतिहास में एक निर्णायक क्षण था। उस दिन, ब्रिटिश सेनाओं ने अमृतसर में निहत्थे नागरिकों पर क्रूरतापूर्वक गोलीबारी की, जिससे भारी जनहानि हुई और ब्रिटिश शासन के प्रति जनता की भावना में एक मोड़ आया। यह गैलरी फोटोग्राफ्स, दस्तावेज़ों, और बचे लोगों की गवाहियों के माध्यम से त्रासदी के प्रभाव और इसकी भारतीय स्वतंत्रता आंदोलन को प्रेरित करने में भूमिका को संक्षिप्त परंतु शक्तिशाली ढंग से प्रस्तुत करती है। आगंतुकों को उस बलिदान और सहनशीलता पर चिंतन करने का निमंत्रण दिया जाता है जिसने राष्ट्र के इतिहास को आकार दिया, सुनिश्चित करते हुए कि खोए गए लोगों की स्मृति भविष्य की पीढ़ियों को प्रेरित करती रहे।",
-                            "location_id": 62,
-                            "location_name": "जलियांवाला बाग की गूंज: 13 अप्रैल, 1919",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/62_161_image-9-min.png"
+                            "description": "",
+                            "location_id": 1,
+                            "location_name": " गैलरी 1",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/1_141_audi1_2.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 3,
+                            "location_name": " गैलरी 2",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/3_142_audi2_2.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 4,
+                            "location_name": " गैलरी 3",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/4_143_audi3.jpg"
                         }
                     ]
                 },
                 {
-                    "category_name": " गैलरी 2",
-                    "category_id": 14,
-                    "icon": "14_image-15-min.png",
+                    "category_name": "गैलरी 4 से 8",
+                    "category_id": 2,
+                    "icon": "2_audi6_1.jpg",
                     "category_type_id": 2,
                     "type_view": "L",
-                    "description": " गैलरी 2",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/14_image-15-min.png",
+                    "description": "गैलरी 4 से 8",
+                    "image_path": "https://des.dwgroup.in/images/category-icons/2_audi6_1.jpg",
                     "is_children": 0,
                     "is_location": 1,
                     "location_listing": [
                         {
-                            "description": "क्रांतिकारी की यात्रा: भगत सिंह 1907-1931\" गैलरी, भारत के सबसे प्रतिष्ठित स्वतंत्रता सेनानियों में से एक, शहीद भगत सिंह के जीवन और विरासत को समेटे हुए है। 1907 में जन्मे, भगत सिंह ने एक ऐसे समय में पले-बढ़े जब राष्ट्रवादी उत्साह अपने चरम पर था, जिसने उनके क्रांतिकारी आदर्शों को आकार दिया। यह गैलरी भगत सिंह के जीवन के महत्वपूर्ण क्षणों को उजागर करते हुए उनकी यात्रा के माध्यम से आगंतुकों को ले जाती है, पंजाब में उनके जन्म से लेकर भारतीय स्वतंत्रता आंदोलन में उनकी भागीदारी, और अंततः 1931 में उनके बलिदान तक।\r\n\r\nफोटोग्राफ्स, व्यक्तिगत पत्र, कलाकृतियाँ, और जानकारीपूर्ण पैनलों के संग्रह के माध्यम से, यह गैलरी भगत सिंह के एक युवा देशभक्त से ब्रिटिश शासन के विरुद्ध प्रतिरोध के प्रतीक के रूप में उनके विकास को दर्शाती है। महत्वपूर्ण मील के पत्थरों में उनकी असहयोग आंदोलन में भागीदारी, साइमन कमीशन के विरोध में नाटकीय प्रदर्शन, लाहौर षड्यंत्र मामला, और भारतीय कैदियों के लिए समान अधिकारों के लिए उनकी भूख हड़ताल शामिल हैं।\r\n\r\nगैलरी 23 मार्च, 1931 को भगत सिंह के निष्पादन के साथ समाप्त होती है, जो पीछे एक ऐसी विरासत छोड़ जाती है जो पीढ़ियों को प्रेरित करती रहती है। आगंतुक भगत सिंह के भारत की स्वतंत्रता संग्राम में योगदान और उनके स्थायी महत्व की गहरी समझ के साथ बाहर आते हैं।",
-                            "location_id": 63,
-                            "location_name": "क्रांतिकारी की यात्रा: भगत सिंह 1907-1931",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/63_162_image-15-min.png"
+                            "description": "",
+                            "location_id": 5,
+                            "location_name": " गैलरी 4",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/5_144_audi4_1.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 6,
+                            "location_name": " गैलरी 5",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/6_145_audi5.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 7,
+                            "location_name": " गैलरी 6",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/7_146_audi6_1.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 8,
+                            "location_name": " गैलरी 7",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/8_147_audi7_2.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 9,
+                            "location_name": " गैलरी 8",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/9_148_audi8_1.jpg"
                         }
                     ]
                 },
                 {
-                    "category_name": " गैलरी 3",
-                    "category_id": 15,
-                    "icon": "15_image-11-min.png",
+                    "category_name": "गैलरी 9 से 11",
+                    "category_id": 3,
+                    "icon": "3_audi10_2.jpg",
                     "category_type_id": 2,
                     "type_view": "L",
-                    "description": " गैलरी 3",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/15_image-11-min.png",
+                    "description": "गैलरी 9 से 11",
+                    "image_path": "https://des.dwgroup.in/images/category-icons/3_audi10_2.jpg",
                     "is_children": 0,
                     "is_location": 1,
                     "location_listing": [
                         {
-                            "description": "इंकलाब की गूँज: स्वतंत्रता की पुकार\" गैलरी भगत सिंह संग्रहालय में भारत की स्वतंत्रता संग्राम के साथ पर्यायवाची बन चुके प्रतिष्ठित नारे \"इंकलाब ज़िंदाबाद\" (क्रांति दीर्घायु हो) के सार और प्रभाव को दर्शाती है। भगत सिंह जैसे स्वतंत्रता सेनानियों द्वारा गढ़ा और लोकप्रिय बनाया गया, यह शक्तिशाली वाक्यांश लाखों दिलों को प्रज्वलित करता है, उन्हें उपनिवेशवादी शासन के विरुद्ध खड़े होने के लिए प्रोत्साहित करता है।\r\n\r\nयह गैलरी \"इंकलाब ज़िंदाबाद\" की उत्पत्ति, प्रसार और महत्व को वस्तुओं, फोटोग्राफों, और दस्तावेज़ों के जीवंत संग्रह के माध्यम से प्रदर्शित करती है। आगंतुक इंटरैक्टिव प्रदर्शनों के माध्यम से इस नारे की यात्रा को इसके आरंभ से, भारत भर के विभिन्न स्वतंत्रता आंदोलनों द्वारा इसकी अपनाई जाने की प्रक्रिया से, लेकर राष्ट्र की सामूहिक स्मृति में इसकी स्थायी विरासत तक का पता लगा सकते हैं।",
-                            "location_id": 66,
-                            "location_name": "इंक़लाब की गूंज: स्वतंत्रता की पुकार",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708594282_66_image-11-min.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "गैलरी 4",
-                    "category_id": 19,
-                    "icon": "19_image-13-min.png",
-                    "category_type_id": 2,
-                    "type_view": "L",
-                    "description": "गैलरी 4",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/19_image-13-min.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
+                            "description": "",
+                            "location_id": 11,
+                            "location_name": " गैलरी 10",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/11_150_audi10_2.jpg"
+                        },
                         {
-                            "description": "क्रांति के अवशेष: भगत सिंह की विरासत\" गैलरी भगत सिंह संग्रहालय में भारत के सबसे पूज्य स्वतंत्रता सेनानियों में से एक के जीवन की गहराई से झलक प्रदान करती है। यह गैलरी भगत सिंह की विभिन्न वस्तुओं और निजी सामग्रियों को प्रदर्शित करने के लिए सावधानीपूर्वक क्यूरेट की गई है, प्रत्येक वीरता, बुद्धिमत्ता, और त्याग की कहानी कहती है।\r\n\r\nआगंतुक भगत सिंह के हस्तलिखित नोट्स, साथी क्रांतिकारियों और परिवार के साथ आदान-प्रदान किए गए पत्रों, साथ ही उनकी क्रांतिकारी विचारधाराओं को प्रभावित करने वाली पुस्तकों को करीब से देख सकते हैं। गैलरी में उनके व्यक्तिगत सामान जैसे कपड़े, उनके अंतिम पत्र को लिखने के लिए इस्तेमाल किया गया पेन, और अधिक भी हैं, जो स्वयं किंवदंती से एक ठोस संबंध प्रदान करते हैं।\r\n\r\nप्रदर्शन पर वस्तुओं की विस्तृत कथाओं को प्रदान करने वाले ग्राफिक पैनलों के साथ, गैलरी आगंतुकों को भगत सिंह के जीवन में गहराई से उतरने का निमंत्रण देती है। स्थान के चारों ओर रणनीतिक रूप से रखे गए टच कियोस्क इंटरैक्टिव खोज की अनुमति देते हैं, आगंतुकों को भगत सिंह के भारत की स्वतंत्रता संग्राम में योगदान, उनकी दर्शन, और उनकी स्थायी विरासत पर मल्टीमीडिया प्रस्तुतियों के साथ संलग्न करने की अनुमति देते हैं।",
-                            "location_id": 67,
-                            "location_name": "क्रांति के अवशेष: भगत सिंह की विरासत",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708594350_67_image-13-min.png"
+                            "description": "",
+                            "location_id": 10,
+                            "location_name": " गैलरी 9",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/10_149_audi9_2.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 12,
+                            "location_name": " गैलरी 11",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/12_151_audi11.jpg"
                         }
                     ]
                 }
@@ -112,281 +147,73 @@
         },
         {
             "category_type_id": 3,
-            "category_type_name": "Attractions",
+            "category_type_name": "Sculptures",
             "attributes": [
                 {
-                    "category_name": "आकर्षण 1",
-                    "category_id": 9,
-                    "icon": "9_image-5-min.png",
+                    "category_name": "संग्रहालय के बाहर",
+                    "category_id": 6,
+                    "icon": "6_main_2_1.jpg",
                     "category_type_id": 3,
                     "type_view": "L",
-                    "description": "आकर्षण 1",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/9_image-5-min.png",
+                    "description": "संग्रहालय के बाहर",
+                    "image_path": "https://des.dwgroup.in/images/category-icons/6_main_2_1.jpg",
                     "is_children": 0,
-                    "is_location": 0,
-                    "location_listing": null
-                },
-                {
-                    "category_name": "आकर्षण 2",
-                    "category_id": 10,
-                    "icon": "10_image-8-min.png",
-                    "category_type_id": 3,
-                    "type_view": "L",
-                    "description": "आकर्षण 2",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/10_image-8-min.png",
-                    "is_children": 0,
-                    "is_location": 0,
-                    "location_listing": null
-                },
-                {
-                    "category_name": "आकर्षण 3",
-                    "category_id": 11,
-                    "icon": "11_image-12-min.png",
-                    "category_type_id": 3,
-                    "type_view": "L",
-                    "description": "आकर्षण 3",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/11_image-12-min.png",
-                    "is_children": 0,
-                    "is_location": 0,
-                    "location_listing": null
-                },
-                {
-                    "category_name": "आकर्षण 4",
-                    "category_id": 12,
-                    "icon": "12_image-14-min.png",
-                    "category_type_id": 3,
-                    "type_view": "L",
-                    "description": "आकर्षण 4",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/12_image-14-min.png",
-                    "is_children": 0,
-                    "is_location": 0,
-                    "location_listing": null
+                    "is_location": 1,
+                    "location_listing": [
+                        {
+                            "description": "",
+                            "location_id": 17,
+                            "location_name": "खंडा (सिख धर्म का प्रतीक)",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/17_157_khanda_4.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 18,
+                            "location_name": "सिख योद्धा स्मारक",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/18_159_main_4.jpg"
+                        },
+                        {
+                            "description": "",
+                            "location_id": 19,
+                            "location_name": "ओपन थियेटर",
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/19_160_open_air_theatre_1.jpg"
+                        }
+                    ]
                 }
             ]
         },
         {
             "category_type_id": 4,
-            "category_type_name": "Zones",
+            "category_type_name": "Museums",
             "attributes": [
                 {
-                    "category_name": "क्षेत्र 1",
-                    "category_id": 3,
-                    "icon": "3_image-4-min.png",
-                    "category_type_id": 4,
-                    "type_view": "L",
-                    "description": "क्षेत्र 1",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/3_image-4-min.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "भगत सिंह संग्रहालय, जो कि खटकर कलां, पंजाब, भारत में स्थित है, भारतीय स्वतंत्रता आंदोलन के सबसे प्रभावशाली क्रांतिकारियों में से एक, शहीद भगत सिंह को श्रद्धांजलि अर्पित करता है। संग्रहालय का प्रवेश क्षेत्र आगंतुकों को ऐतिहासिक यात्रा पर ले जाने का द्वार है, जो भगत सिंह के जीवन और भारत की स्वतंत्रता संग्राम में उनके योगदान की एक झलक प्रदान करता है।\r\n\r\nप्रवेश क्षेत्र में प्रवेश करते ही, आगंतुकों का स्वागत देशभक्ति और बलिदान की भावना से गूंजते हुए वातावरण से होता है। क्षेत्र भगत सिंह और अन्य स्वतंत्रता सेनानियों के चित्रों से सजाया गया है, साथ ही सूचनापट भी हैं जो उनके वीरतापूर्ण कार्यों और उनके संघर्ष के महत्व का संक्षिप्त अवलोकन प्रदान करते हैं। प्रवेश डेस्क पर ज्ञानी कर्मचारी मौजूद होते हैं जो आगंतुकों को संग्रहालय की प्रदर्शनियों के माध्यम से मार्गदर्शन करते हैं, जिसमें भगत सिंह की व्यक्तिगत सामग्री, पत्र, और स्वतंत्रता आंदोलन से संबंधित दस्तावेज़, साथ ही उनके विचारों और क्रियाकलापों को प्रभावित करने वाली पुस्तकों और साहित्य का संग्रह शामिल है।",
-                            "location_id": 55,
-                            "location_name": "स्वागत",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/55_151_image-4-min.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "क्षेत्र 2",
+                    "category_name": "संग्रहालय",
                     "category_id": 4,
-                    "icon": "4_image-5-min.png",
+                    "icon": "4_audi10.jpg",
                     "category_type_id": 4,
                     "type_view": "L",
-                    "description": "क्षेत्र 2",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/4_image-5-min.png",
+                    "description": "संग्रहालय",
+                    "image_path": "https://des.dwgroup.in/images/category-icons/4_audi10.jpg",
                     "is_children": 0,
                     "is_location": 1,
                     "location_listing": [
                         {
-                            "description": "संग्रहालय की केंद्रीय कला स्थापना में \"इंकलाब ज़िंदाबाद\" (क्रांति दीर्घायु हो) का प्रतिष्ठित नारा मध्य-वायु में लटका हुआ है, जो एक गतिशील और मनमोहक प्रदर्शनी बनाता है। यह शक्तिशाली वाक्यांश, जो भारतीय स्वतंत्रता आंदोलन और भगत सिंह की क्रांतिकारी उत्साह के साथ समानार्थी है, कई भाषाओं में अपना संदेश प्रकट करते हुए सुंदरता से घूमता है। यह बहुभाषी प्रस्तुति न केवल स्वतंत्रता और न्याय की खोज की विश्वव्यापी अपील का जश्न मनाती है, बल्कि विविध संस्कृतियों और समुदायों में भगत सिंह के प्रभाव को भी सम्मानित करती है।\r\n\r\nस्थापना का डिज़ाइन बुद्धिमानी से सौंदर्य अपील और ऐतिहासिक महत्व को संयोजित करता है, जिससे आगंतुक स्वतंत्रता संघर्ष के सार के साथ गहन रूप से संलग्न हो सकते हैं। जैसे ही नारा घूमता है, यह छायाएँ और प्रतिबिंब बनाता है, जो भगत सिंह के आदर्शों के व्यापक प्रभाव और स्वतंत्रता की लड़ाई की स्थायी प्रासंगिकता का प्रतीक है। यह केंद्रीय टुकड़ा स्वतंत्रता के संघर्ष में एकता और विविधता की याद दिलाता है, भारत के इतिहास को आकार देने वाली सामूहिक आकांक्षाओं और त्यागों पर चिंतन करने के लिए प्रोत्साहित करता है।",
-                            "location_id": 56,
-                            "location_name": "केंद्रीय स्थापना",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/56_152_image-5-min.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "क्षेत्र 3",
-                    "category_id": 5,
-                    "icon": "5_image-6-min.png",
-                    "category_type_id": 4,
-                    "type_view": "L",
-                    "description": "क्षेत्र 3",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/5_image-6-min.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "मध्य में डबल एक्सपोज़र प्रभाव के साथ डिजिटल परिवार पेड़.भगत सिंह संग्रहालय अपने डिजिटल वंशावली के साथ एक नवीन और आकर्षक प्रदर्शनी पेश करता है, जो केंद्र में स्थित है और एक आकर्षक डबल एक्सपोजर प्रभाव के साथ आता है। यह डिजिटल स्थापना कलात्मक रूप से आधुनिक तकनीक और ऐतिहासिक कथा को मिलाती है, भगत सिंह की वंशावली को एक इंटरैक्टिव और दृश्य रूप से अद्भुत तरीके से प्रस्तुत करती है।\r\n\r\nइस प्रदर्शनी के केंद्र में, आगंतुकों को एक विस्तृत वंशावली मिलती है जो न केवल भगत सिंह के पूर्वजों के संबंधों को रेखांकित करती है बल्कि उन्हें डबल एक्सपोजर प्रभाव के माध्यम से जीवंत भी करती है। यह तकनीक भगत सिंह और उनके परिवार के सदस्यों की ऐतिहासिक तस्वीरों को स्वतंत्रता संग्राम से जुड़े महत्वपूर्ण स्थलों, क्षणों, और प्रतीकों के साथ ओवरले करती है, जिससे एक परतदार और गहन दृश्य अनुभव बनता है।",
-                            "location_id": 57,
-                            "location_name": "प्रारंभिक जीवन और परिवार",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/57_153_image-6-min.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "क्षेत्र 4",
-                    "category_id": 6,
-                    "icon": "6_image-7-min.png",
-                    "category_type_id": 4,
-                    "type_view": "L",
-                    "description": "क्षेत्र 4",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/6_image-7-min.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "एक लीपात्मक कक्ष जिसमें भगत सिंह की मां के भाषण का ऑडियो है, जो एक होलोग्राफिक आकृति के माध्यम से प्रतिनिधित की जाती है, उनके पूर्वजों के घर के संरचनात्मक पृष्ठभूमि के साथ।",
-                            "location_id": 58,
-                            "location_name": "मां का भाषण",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/58_154_image-7-min.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "क्षेत्र 5",
-                    "category_id": 7,
-                    "icon": "7_image-1_.png",
-                    "category_type_id": 4,
-                    "type_view": "L",
-                    "description": "क्षेत्र 5",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/7_image-1_.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "Ghadar Movement के उच्चारण की चर्चा द्वारा महत्वपूर्ण घटनाएं। यह स्थापना भारत के स्वतंत्रता संघर्ष का प्रदर्शन करती है जो 1913-14 में हुआ, परिप्रेक्षण मैपिंग और एक तोप के स्केल 3 डी मॉडल के मिश्रण के माध्यम से।",
-                            "location_id": 59,
-                            "location_name": "ग़दर पार्टी आंदोलन",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/59_155_image-8-min.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "Zone 6",
-                    "category_id": 20,
-                    "icon": "20_image-8-min.png",
-                    "category_type_id": 4,
-                    "type_view": "L",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/20_image-8-min.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "The Komagata Maru incident is a significant event in the history of the Indian independence movement, symbolizing the struggle against colonial oppression and the fight for civil rights. In 1914, the ship Komagata Maru, chartered by Sikh businessman Gurdit Singh, attempted to challenge the exclusionary immigration laws of Canada by transporting 376 passengers from Punjab, India, to Vancouver, Canada. These passengers, mostly Sikhs, with a few Muslims and Hindus, sought a new life in Canada but were met with strict immigration controls aimed at keeping out Asian immigrants. Upon arrival in Vancouver, the ship and its passengers were denied entry by Canadian authorities, leading to a two-month standoff. The incident highlighted the discriminatory policies of the time and the broader struggle against British colonial rule in India.",
-                            "location_id": 68,
-                            "location_name": "Komagatamaru Ship Incident",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/68_165_image-8-min.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "Zone 7",
-                    "category_id": 21,
-                    "icon": "21_image-9-min.png",
-                    "category_type_id": 4,
-                    "type_view": "L",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/21_image-9-min.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "The Immersive Show of the Jallianwala Bagh Massacre, which had a powerful and heartening impact on the young Bhagat Singh and became a cause behind the emergence of a great revolutionary like him. \r\n\r\nThis installation is visualized to represent the theme of the Jallianwala Bagh tragedy, which is achieved by projection mapping on the wall. \r\nThe well of Jallianwala Bagh is recreated in the center, and the room is complemented by various related elements with the help of scenography.",
-                            "location_id": 69,
-                            "location_name": "Jaliawala Bagh Tragedy",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/69_166_Jaliawala_Bagh.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "Zone 8",
-                    "category_id": 22,
-                    "icon": "22_image-10-min.png",
-                    "category_type_id": 4,
-                    "type_view": "L",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/22_image-10-min.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "This exhibit vividly portrays the dynamic movements led by Bhagat Singh, a luminary of the Indian independence struggle. Central to the display is a meticulously arranged tableau of miniature models, each narrating a significant episode from Bhagat Singh's life and his revolutionary endeavors. The non-interactive screens enveloping the table weave a chronological tale of his valiant acts, from the dramatic protest against the Simon Commission to the symbolic bombing of the Central Legislative Assembly, designed not to harm but to make the deaf hear. Surrounding still graphics magnify crucial scenes, capturing the essence of Bhagat Singh's commitment to overthrow British rule. Through these vivid depictions, visitors gain a deep understanding of Bhagat Singh's role in mobilizing youth, advocating for national sovereignty, and his ultimate sacrifice for the freedom of India.",
-                            "location_id": 70,
-                            "location_name": "Movements led by Bhagat Singh",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/70_167_image-10-min.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "Zone 9",
-                    "category_id": 23,
-                    "icon": "",
-                    "category_type_id": 4,
-                    "type_view": "L",
-                    "image_path": "https://bhagatsm.dwgroup.in/assets/image-not-available.jpg",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "The exhibition vividly brings to life Bhagat Singh's audacious protest against the Simon Commission through immersive projection technology. In 1928, the British government appointed the Simon Commission to report on India's political situation, excluding any Indian representatives. This exclusion sparked widespread outrage, leading Bhagat Singh and his comrades to lead a massive demonstration against the commission's arrival in Lahore. The projection captures the fervent energy of the protesters, the echoing chants of \"Simon Go Back,\" and the pivotal moment of Lala Lajpat Rai's tragic injury by police baton charge, an event that catalyzed further revolutionary activities. This display not only commemorates a significant act of defiance but also highlights Bhagat Singh's role in mobilizing public sentiment against colonial rule, embodying the spirit of resistance and the demand for self-governance.",
-                            "location_id": 71,
-                            "location_name": "Simon Commission Movements",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/71_168_Simon_Commission_Movement.png"
-                        }
-                    ]
-                },
-                {
-                    "category_name": "Zone 10",
-                    "category_id": 24,
-                    "icon": "24_image-11-min.png",
-                    "category_type_id": 4,
-                    "type_view": "L",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/24_image-11-min.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "This immersive experience transports visitors back to April 8, 1929, reenacting the historic Delhi Assembly bombing orchestrated by Bhagat Singh and Batukeshwar Dutt. Within a specially designed closed room, spectators are given a bird's-eye view of the meticulously recreated scene of the Delhi Assembly. The exhibit captures the moment Bhagat Singh and Dutt threw non-lethal bombs onto the Assembly floor, not to harm but to \"make the deaf hear\" their demand for freedom and protest against repressive laws. Authentic sound effects, visual projections, and narrations recount the duo's courageous act and their subsequent arrest, highlighting their unwavering commitment to the cause of independence. This powerful depiction offers a unique insight into a pivotal event, emphasizing the sacrifices made in the struggle for India's freedom.",
-                            "location_id": 72,
-                            "location_name": "Delhi Assembly Bombing",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/72_169_image-11-min.png"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "category_type_id": 5,
-            "category_type_name": "Anandpur Sahib",
-            "attributes": [
-                {
-                    "category_name": "आनंदपुर परियोजनाएँ",
-                    "category_id": 17,
-                    "icon": "17_image--min.png",
-                    "category_type_id": 5,
-                    "type_view": "L",
-                    "description": "आनंदपुर परियोजनाएँ",
-                    "image_path": "https://bhagatsm.dwgroup.in/images/category-icons/17_image--min.png",
-                    "is_children": 0,
-                    "is_location": 1,
-                    "location_listing": [
-                        {
-                            "description": "शहीद-ए-आज़म भगत सिंह संग्रहालय\" जो खटकड़ कलां में स्थित है, जहाँ उन्होंने अपना बचपन बिताया था, उसमें उनके जीवन और मौत से जुड़े अनेक यादगारों का प्रदर्शन किया जाता है, जिसमें उनके व्यक्तिगत सामग्री, फोटोग्राफ और उनकी व्यक्तिगत डायरी के पृष्ठ शामिल हैं। यहाँ उनकी मौत की सजा को फांसी पर लटकाने के लाहौर के साजिश मामले के फैसले की एक प्रति भी देखी जा सकती है; साथ ही, उनके नाम के साथ भगवद गीता की एक संस्करण भी है। इसे लाहौर जेल के कर्मचारी ने प्रस्तुत किया था जहां उन्हें रखा गया था। उनके फांसी की घोषणा करने वाली एक कलम भी है, जो पंजाब के महान क्रांतिकारियों पर मृत्यु की सजा को घोषित करती है। एक विभाग में, फोटोग्राफिक श्रद्धांजलि मौका देती है कुका आंदोलन के शहीदों और गदर पार्टी के शहीदों को। शेष दीवारों पर अनगिनत क्रांतिकारियों की तस्वीरें लगी हुई हैं, जो स्वतंत्रता आंदोलन में शामिल थे। संग्रहालय के मैदान में भगत सिंह के पिता के ग्रेनाइट-सजीव समाधि भी है; यह प्रवेश द्वार के बायें ओर स्थित है। गांव में उनका पूर्वजों का घर भी है, जिसे बिना किसी शुल्क के पहुंचा जा सकता है। समय: सुबह 9 बजे से शाम 4:45 बजे तक (मंगलवार से रविवार) / बंद: सोमवार और सार्वजनिक अवकाश।",
-                            "location_id": 61,
+                            "description": "शहीद-ए-आजम सरदार भगत सिंह संग्रहालय शहीद-ए-आजम के पैतृक गांव में स्थित है जो जालंधर से नवांशहर-बंगा रोड तक लगभग 41 किलोमीटर की दूरी पर स्थित है। यहां हमने सरदार भगत सिंह संग्रहालय के इतिहास का जिक्र किया है। इसे 23 मार्च 1981 को सरदार भगत सिंह की 50वीं शहीदी जयंती पर गांव में खोला गया था। खटकड़ कलां एक प्राचीन गांव है जो सरदार अजीत सिंह, सरदार स्वर्ण सिंह और शहीद-ए-आज़म सरदार भगत सिंह जैसे देशभक्तों और स्वतंत्रता सेनानियों के लिए प्रसिद्ध है। यह संग्रहालय अपनी ऐतिहासिक विशेषताओं के कारण प्रसिद्ध है। इसमें भगत सिंह से संबंधित कई दस्तावेज और लेख हैं जैसे कि तस्वीरें, उनकी लिखावट को दर्शाने वाले नोट्स आदि। भगत सिंह और उनकी संपत्ति या सामान के बारे में विस्तृत जानकारी प्रदान की गई है। आप संग्रहालय में शहीद-ए-आज़म से संबंधित गैल्वनाइजिंग आइटम पा सकते हैं। इतिहास के प्रति उत्साही लोगों को इस संग्रहालय को अवश्य देखना चाहिए। संग्रहालय महान किंवदंती के लिए एक श्रद्धांजलि है।\r\n\r\nसरदार भगत सिंह संग्रहालय के अंदर क्या देखना है?\r\nप्रदर्शन में उनके जीवन से संबंधित सामान जैसे पौराणिक तस्वीरें, लेख, अधजली हड्डियाँ और खून से सने अख़बार जिनमें राख लपेटी गई थी, को अच्छी तरह से संरक्षित और प्रदर्शित किया गया है। चीजें कांच के दरवाजों के अंदर बंद हैं और हम कांच के माध्यम से देख सकते हैं। एक संग्रहालय के रूप में एक महान सांस्कृतिक मूल्य रखता है। पंजाब में सरदार भगत सिंह मेमोरियल संग्रहालय के आसपास देखने के लिए चीजें या आकर्षण गुरुद्वारा सुखचैनाना साहिब लगभग 15 किमी, देवी तालाब मंदिर मंदिर (36 किमी), डेरा बाबा मुराद शाह (44 किमी) हैं। संग्रहालय में जाने का सबसे अच्छा समय सुबह, दोपहर और शाम को भी न्यूनतम दो घंटे की सिफारिश के साथ है। यह राजपत्रित अवकाश और सोमवार को बंद रहता है। मुझे यकीन है कि आप संग्रहालय का दौरा करते समय देशभक्ति महसूस कर सकते हैं।",
+                            "location_id": 20,
                             "location_name": "शहीद भगत सिंह संग्रहालय",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708508906_61_image--min.png"
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/20_161_bhagat_singh.png"
                         },
                         {
-                            "description": "दास्तान-ए-शहादत",
-                            "location_id": 64,
+                            "description": "दास्तान-ए-शहादत, श्री चमकौर साहिब में सिख इतिहास का चित्रण। दास्तान-ए-शहादत का उद्घाटन राज्यपाल बनवारी लाल पुरोहित और मुख्यमंत्री चरनजीत सिंह चन्नी ने श्री गुरु नानक देव जी के प्रकाश पर्व के अवसर पर किया।\r\n\r\nसिख धर्म के इतिहास को गैलरी में फिल्माया गया है\r\n\r\nयहां बनाई गई 11 गैलरियों में सिख धर्म के इतिहास को आधुनिक तरीके से फिल्माकर दुनिया के सामने लाने की कोशिश की गई है। प्रथम पातशाही श्री गुरु नानक देव जी के जीवन से लेकर दस गुरु साहिबानों के जीवन तक और भाई जैता जी द्वारा श्री गुरु तेग बहादुर जी के सिर पर लाए गए सिर के दृश्य फिल्माए गए हैं। दसवें पिता श्री गुरु गोबिंद सिंह जी की शहादत के बाद बाबा बंदा सिंह बहादुर द्वारा सरहिंद पर किए गए फतेह के दृश्य और शेरों की शहादत के दृश्य भी इन दीर्घाओं में दिखाए गए हैं।",
+                            "location_id": 13,
                             "location_name": "दास्तान-ए-शहादत",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708585228_64_dastan-e-shahadat.jpg"
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/13_153_main.jpg"
                         },
                         {
-                            "description": "विरासत ए खालसा",
-                            "location_id": 65,
+                            "description": "विरासत-ए-खालसा (जिसे पहले खालसा हेरिटेज मेमोरियल कॉम्प्लेक्स के नाम से जाना जाता था) आनंदपुर साहिब में स्थित एक संग्रहालय है। संग्रहालय पांच सौ साल पहले पंजाब में हुई उन घटनाओं की जानकारी देता है जिन्होंने सिख धर्म और अंत में खालसा पंथ को जन्म दिया। संग्रहालय महान गुरुओं के दर्शन, शांति और भाईचारे के शाश्वत संदेश पर प्रकाश डालता है जो उन्होंने पूरी मानव जाति और पंजाब की समृद्ध संस्कृति और विरासत को दिया। संग्रहालय का उद्देश्य सिख इतिहास के 500 वर्षों और खालसा की 300 वीं वर्षगांठ मनाने का है, जो 10 वें और अंतिम गुरु श्री द्वारा लिखे गए ग्रंथ हैं। आधुनिक सिख धर्म के संस्थापक गुरु गोबिंद सिंह जी।\r\n\r\nविरासत-ए-खालसा की कल्पना खालसा की समृद्ध विरासत, इसके इतिहास और पंजाब की संस्कृति के भंडार के रूप में की गई है ताकि आगंतुकों को गुरुओं की दृष्टि से प्रेरित किया जा सके, जो पूरी मानव जाति के लिए महान गुरुओं के शाश्वत संदेश पर जोर देते हैं।\r\nपंद्रहवीं शताब्दी के अंत में, उत्तरी भारत के पंजाब क्षेत्र में, गुरु नानक देव जी ने सार्वभौमिकता, उदारवाद और मानवतावाद के मूल मूल्यों में निहित एक विश्वास की स्थापना की। उनका अनुसरण करने वाले नौ गुरुओं ने उनकी शिक्षाओं का निर्माण किया और उन्हें समेकित किया, जिससे न केवल एक विश्वास प्रणाली के रूप में बल्कि जीवन के एक तरीके के रूप में भी सिख धर्म की स्थापना हुई।\r\nदो सौ साल बाद, 1699 में, बैसाखी के अवसर पर, दसवें गुरु, गुरु गोबिंद सिंह जी ने औपचारिक रूप से आनंदपुर साहिब में खालसा पंथ की स्थापना की, सभी के लिए शांति, समानता और न्याय के लिए प्रतिबद्ध एक सामाजिक व्यवस्था की स्थापना की। आज, उसी स्थान पर, राजसी गुरुद्वारा तख्त श्री केसगढ़ साहिब खड़ा है।\r\n\r\nवर्ष 1999 को खालसा के जन्म की त्रिशताब्दी के रूप में चिह्नित किया गया। इस घटना को मनाने के लिए, पंजाब के मुख्यमंत्री एस. प्रकाश सिंह बादल ने श्री आनंदपुर साहिब में विरासत-ए-खालसा के नाम से जानी जाने वाली एक शानदार इमारत की रूपरेखा तैयार की।\r\nहेरिटेज कॉम्प्लेक्स श्री आनंदपुर साहिब की समृद्ध प्राकृतिक और स्थापत्य विरासत से प्रेरित है, जबकि सिख और क्षेत्रीय वास्तुकला से भी बहुत कुछ आकर्षित करता है। गुंबदों की परंपरा के विपरीत, जो पवित्र सिख स्थलों का ताज है, संग्रहालय की छतें आकाश के सामने अवतल आकार के रिसेप्टर्स हैं। स्टेनलेस स्टील में लिपटे, वे सूर्य के प्रकाश को गुरुद्वारे और किले की ओर दर्शाते हैं।\r\n\r\nतेरह साल के निर्माण के बाद 25 नवंबर, 2011 को इसका उद्घाटन किया गया। इसे 27 नवंबर, 2011 को जनता के लिए खोला गया था। एक खड्ड के दोनों ओर दो परिसर हैं, जो एक औपचारिक पुल से जुड़े हुए हैं:\r\n• छोटे, पश्चिमी परिसर में एक प्रवेश द्वार पियाज़ा, 400 बैठने की क्षमता वाला एक सभागार, दो मंजिला अनुसंधान और संदर्भ पुस्तकालय और बदलती प्रदर्शनी दीर्घाएँ शामिल हैं।",
+                            "location_id": 14,
                             "location_name": "विरासत ए खालसा",
-                            "image_path": "https://bhagatsm.dwgroup.in/assets/static/locations/gallery/1708585267_65_virasat-e-khalsa.jpeg"
+                            "image_path": "https://des.dwgroup.in/assets/static/locations/gallery/800800/14_154_1.jpg"
                         }
                     ]
                 }

@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:dastaan_e_shahadat/controllers/detail_controller.dart';
+import 'package:dastaan_e_shahadat/controllers/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -10,26 +12,33 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:sms_autofill/sms_autofill.dart';
+// import 'package:sms_autofill/sms_autofill.dart';
 
 import '../core.dart';
+import 'bottom_nav_controller.dart';
 
 class AuthController extends GetxController {
   ScrollController scrollController = ScrollController();
   DashboardController dashboardController = Get.find();
   GuestController guestController = Get.find();
-  CategoryTypeController categoryTypeController = Get.find();
-  DetailController detailController = Get.find();
-  NearByController nearByController = Get.find();
+  CategoryTypeController categoryTypeController = Get.put(CategoryTypeController());
+  DetailController detailController = Get.put(DetailController());
+  NearByController nearByController = Get.put(NearByController());
+  SplashController splashController = Get.put(SplashController());
+  BottomNavController bottomNavController = Get.put(BottomNavController());
+
   var email = "".obs;
+  var mobileNumber="".obs;
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   ScrollController otpScrollController = ScrollController();
   var otp = "".obs;
   var countTimer = 59.obs;
   var bHideTimer = false.obs;
-  Timer timer;
+  late Timer timer;
   final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
-  final SmsAutoFill autoFillSMS = SmsAutoFill();
+  // final SmsAutoFill autoFillSMS = SmsAutoFill();
+  GuestApi guestApi = Get.find();
+
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -38,7 +47,8 @@ class AuthController extends GetxController {
   Future<void> checkMobileNumber(String mobileNo) async {
     bool apiStatus = await verifyMobileNo(mobileNo);
     if (apiStatus) {
-      if (GetStorage().read('language_id') == "" || GetStorage().read('language_id') == null) {
+      if (GetStorage().read('language_id') == "" ||
+          GetStorage().read('language_id') == null) {
         Get.toNamed('/language');
       } else {
         dashboardController.fetchLabelData();
@@ -46,10 +56,20 @@ class AuthController extends GetxController {
         categoryTypeController.fetchTrailsData();
         detailController.getOfflineLocationsData();
         nearByController.getNearByData();
+        bottomNavController.updateIndex();
         Get.toNamed('/dashboard');
         await dashboardController.fetchBeaconData();
         dashboardController.initBeaconService();
       }
+    }
+  }
+
+  updateFcmToken() {
+    String fcmToken = GetStorage().read("fcm_token") ?? '';
+    if (fcmToken != null && fcmToken != "") {
+      guestApi.updateFCMToken(fcmToken);
+    } else {
+      splashController.updateFCMToken();
     }
   }
 
@@ -64,9 +84,10 @@ class AuthController extends GetxController {
         await GetStorage().write('token', response['data']);
         await GetStorage().write('username', response['username']);
         await GetStorage().write('user_type', "U");
+        updateFcmToken();
         return true;
       } else {
-        return true;
+        return false;
       }
     } else {
       return false;
@@ -129,7 +150,10 @@ class AuthController extends GetxController {
         await GetStorage().write('username', response['username']);
         await GetStorage().write('user_type', response['usertype']);
         await GetStorage().write('name', response['name']);
-        if (GetStorage().read('language_id') == "" || GetStorage().read('language_id') == null) {
+        updateFcmToken();
+
+        if (GetStorage().read('language_id') == "" ||
+            GetStorage().read('language_id') == null) {
           Get.toNamed('/language');
         } else {
           dashboardController.fetchLabelData();
@@ -143,8 +167,12 @@ class AuthController extends GetxController {
             guestController.forUser.value = false;
             guestController.forUser.refresh();
             guestController.fetchGuestInformationHistory();
+            bottomNavController.updateIndex();
+
             Get.toNamed('/emp_dashboard');
           } else {
+            bottomNavController.updateIndex();
+
             Get.toNamed('/dashboard');
             await dashboardController.fetchBeaconData();
             dashboardController.initBeaconService();
@@ -170,17 +198,23 @@ class AuthController extends GetxController {
     final LoginResult fBResult = await FacebookAuth.instance.login();
     switch (fBResult.status) {
       case LoginStatus.success:
-        final AccessToken accessToken = fBResult.accessToken;
+        final AccessToken? accessToken = fBResult.accessToken;
         // OverlayEntry loader = Helper.overlayLoader(GlobalVariable.navState.currentContext);
         // Overlay.of(GlobalVariable.navState.currentContext).insert(loader);
-        final graphResponse = await http.get(Uri.parse('https://graph.facebook.com/v2.12/me?fields=name,email,first_name,last_name,picture.width(720).height(720),birthday,gender,languages,location{location}&access_token=${accessToken.token}'));
+        final graphResponse = await http.get(Uri.parse(
+            'https://graph.facebook.com/v2.12/me?fields=name,email,first_name,last_name,picture.width(720).height(720),birthday,gender,languages,location{location}&access_token=${accessToken?.token}'));
         final profile = jsonDecode(graphResponse.body);
         // exit;
         if (profile["email"] == "") {
-          Fluttertoast.showToast(msg: "Your facebook profile does not provide email address. Please try with another method");
+          Fluttertoast.showToast(
+              msg:
+              "Your facebook profile does not provide email address. Please try with another method");
           return false;
         }
-        Map<String, dynamic> glData = {'user_input': profile["email"], 'register_type': '2'};
+        Map<String, dynamic> glData = {
+          'user_input': profile["email"],
+          'register_type': '2'
+        };
         AuthApi authApi = Get.find();
         EasyLoading.show(status: 'loading...');
         var response = await authApi.loginWithSocialMedia(glData);
@@ -190,7 +224,8 @@ class AuthController extends GetxController {
           await GetStorage().write('token', response['data']);
           await GetStorage().write('username', response['username']);
           await GetStorage().write('user_type', response['usertype']);
-          if (GetStorage().read('language_id') == "" || GetStorage().read('language_id') == null) {
+          if (GetStorage().read('language_id') == "" ||
+              GetStorage().read('language_id') == null) {
             Get.toNamed('/language');
           } else {
             dashboardController.fetchLabelData();
@@ -199,6 +234,7 @@ class AuthController extends GetxController {
             detailController.getOfflineLocationsData();
             nearByController.getNearByData();
             if (GetStorage().read('user_type') != "U") {
+              bottomNavController.updateIndex();
               Get.toNamed('/emp_dashboard');
               guestController.page = 1;
               guestController.showLoadMore = true;
@@ -206,6 +242,8 @@ class AuthController extends GetxController {
               guestController.forUser.refresh();
               guestController.fetchGuestInformationHistory();
             } else {
+              bottomNavController.updateIndex();
+
               Get.toNamed('/dashboard');
               await dashboardController.fetchBeaconData();
               dashboardController.initBeaconService();
@@ -243,7 +281,10 @@ class AuthController extends GetxController {
   loginWithGoogle() async {
     await googleSignIn.signIn();
     if (googleSignIn.currentUser != null) {
-      Map<String, dynamic> glData = {'user_input': googleSignIn.currentUser.email, 'register_type': '3'};
+      Map<String, dynamic> glData = {
+        'user_input': googleSignIn.currentUser?.email ?? '',
+        'register_type': '3'
+      };
       print(glData);
       AuthApi authApi = Get.find();
       EasyLoading.show(status: 'loading...');
@@ -254,7 +295,10 @@ class AuthController extends GetxController {
         await GetStorage().write('token', response['data']);
         await GetStorage().write('username', response['username']);
         await GetStorage().write('user_type', response['usertype']);
-        if (GetStorage().read('language_id') == "" || GetStorage().read('language_id') == null) {
+        updateFcmToken();
+
+        if (GetStorage().read('language_id') == "" ||
+            GetStorage().read('language_id') == null) {
           Get.toNamed('/language');
         } else {
           dashboardController.fetchLabelData();
@@ -263,6 +307,8 @@ class AuthController extends GetxController {
           detailController.getOfflineLocationsData();
           nearByController.getNearByData();
           if (GetStorage().read('user_type') != "U") {
+            bottomNavController.updateIndex();
+
             Get.toNamed('/emp_dashboard');
             guestController.page = 1;
             guestController.showLoadMore = true;
@@ -270,6 +316,8 @@ class AuthController extends GetxController {
             guestController.forUser.refresh();
             guestController.fetchGuestInformationHistory();
           } else {
+            bottomNavController.updateIndex();
+
             Get.toNamed('/dashboard');
             await dashboardController.fetchBeaconData();
             dashboardController.initBeaconService();
@@ -308,7 +356,7 @@ class AuthController extends GetxController {
         ],
         webAuthenticationOptions: WebAuthenticationOptions(
           // TODO: Set the `clientId` and `redirectUri` arguments to the values you entered in the Apple Developer portal during the setup
-          clientId: 'bhagatsm.dwgroup.app',
+          clientId: 'des.dwgroup.app',
           redirectUri: Uri.parse(
             'https://smiling-abrupt-screw.glitch.me/callbacks/sign_in_with_apple',
           ),
@@ -328,7 +376,10 @@ class AuthController extends GetxController {
         print(response['data']);
         await GetStorage().write('token', response['data']);
         await GetStorage().write('username', response['username']);
-        if (GetStorage().read('language_id') == "" || GetStorage().read('language_id') == null) {
+        updateFcmToken();
+
+        if (GetStorage().read('language_id') == "" ||
+            GetStorage().read('language_id') == null) {
           Get.toNamed('/language');
         } else {
           dashboardController.fetchLabelData();
@@ -337,6 +388,8 @@ class AuthController extends GetxController {
           detailController.getOfflineLocationsData();
           nearByController.getNearByData();
           if (GetStorage().read('user_type') != "U") {
+            bottomNavController.updateIndex();
+
             Get.toNamed('/emp_dashboard');
             guestController.page = 1;
             guestController.showLoadMore = true;
@@ -344,6 +397,8 @@ class AuthController extends GetxController {
             guestController.forUser.refresh();
             guestController.fetchGuestInformationHistory();
           } else {
+            bottomNavController.updateIndex();
+
             Get.toNamed('/dashboard');
             await dashboardController.fetchBeaconData();
             dashboardController.initBeaconService();

@@ -19,8 +19,8 @@ class DetailController extends GetxController {
   CommonService commonService = Get.find();
   final List<StreamSubscription> audioSubscriptions = [];
   var isBufferingStream = false.obs;
-  ItemScrollController itemScrollController;
-  ItemPositionsListener itemPositionsListener;
+  late ItemScrollController itemScrollController;
+  late ItemPositionsListener itemPositionsListener;
   var selectedBeaconId = 0.obs;
   @override
   Future<void> onInit() async {
@@ -46,14 +46,14 @@ class DetailController extends GetxController {
               break;
           }
         }
-        Directory appDocDir;
+        Directory? appDocDir;
         if (Platform.isAndroid) {
           appDocDir = await getExternalStorageDirectory();
         } else {
           appDocDir = await getApplicationDocumentsDirectory();
         }
         String fileName = file.split('/').last;
-        String outputDirectory = '${appDocDir.path}/$folderName';
+        String outputDirectory = '${appDocDir?.path}/$folderName';
         if (!File("$outputDirectory/$fileName").existsSync()) {
           await commonService.assetsAudioPlayer.value.open(
             Audio.network(
@@ -87,7 +87,7 @@ class DetailController extends GetxController {
             print("Entering");
 
             AssetsAudioPlayer.allPlayers().forEach((key, value) {
-             // value.stop();
+              value.stop();
             });
             commonService.assetsAudioPlayer.value.play();
             commonService.isAudioPlaying.value = false;
@@ -112,7 +112,7 @@ class DetailController extends GetxController {
     final id = Helper.convertUrlToId(file);
 
     commonService.ytpController.value = YoutubePlayerController(
-      initialVideoId: id,
+      initialVideoId: id!,
       params: YoutubePlayerParams(
         autoPlay: true,
         startAt: Duration(seconds: 0),
@@ -151,7 +151,7 @@ class DetailController extends GetxController {
     selectedBeaconId.value = 0;
     commonService.selectedFileType.value = "";
     AssetsAudioPlayer.allPlayers().forEach((key, value) {
-    //  value.stop();
+      value.stop();
     });
     commonService.assetsAudioPlayer.value.dispose();
     commonService.assetsAudioPlayer.value = AssetsAudioPlayer();

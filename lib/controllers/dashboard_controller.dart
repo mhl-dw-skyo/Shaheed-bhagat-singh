@@ -13,7 +13,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:punjab_tourism/models/label_model.dart';
 
 import '../core.dart';
 
@@ -29,33 +28,20 @@ class DashboardController extends GetxController {
   var skipFirstTimeSteamData = true.obs;
   List<Beacon> beaconsJsonData = [];
   final StreamController<BluetoothState> streamController = StreamController();
-  StreamSubscription<BluetoothState> _streamBluetooth;
-  StreamSubscription<RangingResult> _streamRanging;
+  late StreamSubscription<BluetoothState> _streamBluetooth;
+  late StreamSubscription<RangingResult> _streamRanging;
   bool authorizationStatusOk = false;
   bool locationServiceEnabled = false;
   bool bluetoothEnabled = false;
   var catId = 0.obs;
   final _beacons = <Beacon>[];
   final GlobalKey<FormState> complaintFormKey = GlobalKey<FormState>();
+
   @override
   Future<void> onInit() async {
     super.onInit();
-
-  }
-  @override
-  void onReady() {
-    super.onReady();
-
   }
 
-  startWelcomeSound(){
-
-    // print(GetStorage().read('welcomeAudioPlayed'));
-    // if (GetStorage().read('welcomeAudioPlayed') == null ||
-    //     GetStorage().read('welcomeAudioPlayed') == '') {
-      Helper.playWelcomeSound();
-    // }
-  }
   initBeaconService() async {
     // if (BluetoothState.stateOff.value == "STATE_OFF") {
     //   if (Platform.isAndroid) {
@@ -68,7 +54,9 @@ class DashboardController extends GetxController {
     // }
     print("3333333333");
     try {
-      _streamBluetooth = flutterBeacon.bluetoothStateChanged().listen((BluetoothState state) async {
+      _streamBluetooth = flutterBeacon
+          .bluetoothStateChanged()
+          .listen((BluetoothState state) async {
         print("stateddd $state");
         streamController.add(state);
         switch (state.value) {
@@ -99,8 +87,11 @@ class DashboardController extends GetxController {
     final bluetoothState = await flutterBeacon.bluetoothState;
     final bluetoothEnabled = bluetoothState == BluetoothState.stateOn;
     await flutterBeacon.authorizationStatus.then((element) async {
-      final authorizationStatusOk = element.value == "ALLOWED" || element.value == "ALWAYS" || element.value == "WHEN_IN_USE";
-      final locationServiceEnabled = await flutterBeacon.checkLocationServicesIfEnabled;
+      final authorizationStatusOk = element.value == "ALLOWED" ||
+          element.value == "ALWAYS" ||
+          element.value == "WHEN_IN_USE";
+      final locationServiceEnabled =
+          await flutterBeacon.checkLocationServicesIfEnabled;
 
       // setState(() {
       this.authorizationStatusOk = authorizationStatusOk;
@@ -123,8 +114,11 @@ class DashboardController extends GetxController {
       print("EXEPPPPPPP $e");
     }
     await checkAllRequirements();
-    print("$authorizationStatusOk -- $locationServiceEnabled -- $bluetoothEnabled");
-    if (!authorizationStatusOk || !locationServiceEnabled || !bluetoothEnabled) {
+    print(
+        "$authorizationStatusOk -- $locationServiceEnabled -- $bluetoothEnabled");
+    if (!authorizationStatusOk ||
+        !locationServiceEnabled ||
+        !bluetoothEnabled) {
       return;
     }
     List<Region> regions = [];
@@ -132,7 +126,7 @@ class DashboardController extends GetxController {
       for (var item in commonService.macAddresses) {
         regions.add(Region(
           identifier: item,
-          macAddress: item,
+          // macAddress: item,
         ));
       }
     } else {
@@ -144,20 +138,15 @@ class DashboardController extends GetxController {
       }
     }
 
-    if (_streamRanging != null) {
-      if (_streamRanging.isPaused) {
-        _streamRanging.resume();
-        return;
-      }
-    }
-
     if (regions.isNotEmpty) {
       List<Region> regionsList = regions;
       if (Platform.isAndroid) {
         regionsList = [regions.first];
       }
       // print(regionsList);
-      _streamRanging = flutterBeacon.ranging(regionsList).listen((RangingResult result) async {
+      _streamRanging = flutterBeacon
+          .ranging(regionsList)
+          .listen((RangingResult result) async {
         // print("Entered");
         // print(result);
         if (result != null && result.beacons.isNotEmpty) {
@@ -181,33 +170,47 @@ class DashboardController extends GetxController {
       if (commonService.beaconsData.value.data.isNotEmpty) {
         double deviceDistanceInMeter = 99999999999999;
         if (beaconItem.rssi != 0) {
-          deviceDistanceInMeter = double.parse(pow(10, (((beaconItem.rssi).abs() - (-59).abs()) / (10 * 2))).toStringAsFixed(2).toString());
+          deviceDistanceInMeter = double.parse(
+              pow(10, (((beaconItem.rssi).abs() - (-59).abs()) / (10 * 2)))
+                  .toStringAsFixed(2)
+                  .toString());
         }
         int deviceInOurRangeIndex = -1;
         if (Platform.isAndroid) {
-          deviceInOurRangeIndex = commonService.beaconsData.value.data.indexWhere((element) {
-            return (element.macAddress.toLowerCase() == beaconItem.macAddress.toString().toLowerCase()) && (element.startRange <= deviceDistanceInMeter && deviceDistanceInMeter <= element.endRange);
+          deviceInOurRangeIndex =
+              commonService.beaconsData.value.data.indexWhere((element) {
+            return (element.macAddress.toLowerCase() ==
+                    beaconItem.macAddress.toString().toLowerCase()) &&
+                (element.startRange <= deviceDistanceInMeter &&
+                    deviceDistanceInMeter <= element.endRange);
           });
           //print("111MacAddress : ${beaconItem.macAddress} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter");
         } else {
-          deviceInOurRangeIndex = commonService.beaconsData.value.data.indexWhere((element) {
-            return (element.uuid.toLowerCase() == beaconItem.proximityUUID.toString().toLowerCase()) && (element.startRange <= deviceDistanceInMeter && deviceDistanceInMeter <= element.endRange);
+          deviceInOurRangeIndex =
+              commonService.beaconsData.value.data.indexWhere((element) {
+            return (element.uuid.toLowerCase() ==
+                    beaconItem.proximityUUID.toString().toLowerCase()) &&
+                (element.startRange <= deviceDistanceInMeter &&
+                    deviceDistanceInMeter <= element.endRange);
           });
           //print("proximityUUID : ${beaconItem.proximityUUID} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter");
         }
 
         if (deviceInOurRangeIndex > -1) {
-          BeaconItem beaconItemObj = commonService.beaconsData.value.data.elementAt(deviceInOurRangeIndex);
+          BeaconItem beaconItemObj = commonService.beaconsData.value.data
+              .elementAt(deviceInOurRangeIndex);
           if (Platform.isAndroid) {
-            print("Detected 111MacAddress : ${beaconItem.macAddress} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter");
+            print(
+                "Detected 111MacAddress : ${beaconItem.macAddress} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter");
           } else {
-            print("Detected 111proximityUUID : ${beaconItem.proximityUUID} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter --- ${beaconItemObj.startRange}:${beaconItemObj.endRange}");
+            print(
+                "Detected 111proximityUUID : ${beaconItem.proximityUUID} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter --- ${beaconItemObj.startRange}:${beaconItemObj.endRange}");
           }
           if (beaconItemObj.action == '2') {
             commonService.inMuseum.value = false;
             commonService.inMuseum.refresh();
             AssetsAudioPlayer.allPlayers().forEach((key, value) {
-              //value.stop();
+              value.stop();
             });
             commonService.assetsAudioPlayer.value.dispose();
             commonService.assetsAudioPlayer.value = AssetsAudioPlayer();
@@ -220,7 +223,8 @@ class DashboardController extends GetxController {
             commonService.inMuseum.value = true;
             commonService.inMuseum.refresh();
             if (Platform.isAndroid) {
-              if (commonService.lastPlayedMacAddress.value != beaconItemObj.macAddress) {
+              if (commonService.lastPlayedMacAddress.value !=
+                  beaconItemObj.macAddress) {
                 commonService.selectedBeacon.value = beaconItemObj;
                 commonService.selectedBeacon.refresh();
                 if (commonService.selectedFileType.value == "V") {
@@ -232,7 +236,8 @@ class DashboardController extends GetxController {
                   commonService.isPopSVPopupOpen.refresh();
                 } else {
                   DetailController detailController = Get.find();
-                  detailController.getLocationDetailData(beaconItemObj.locationId);
+                  detailController
+                      .getLocationDetailData(beaconItemObj.locationId);
                   if (Get.currentRoute != "/detail") {
                     Get.toNamed('/detail');
                   }
@@ -240,7 +245,8 @@ class DashboardController extends GetxController {
                 catId.value = beaconItemObj.type;
               }
             } else {
-              if (commonService.lastPlayedMacAddress.value != beaconItemObj.uuid) {
+              if (commonService.lastPlayedMacAddress.value !=
+                  beaconItemObj.uuid) {
                 commonService.selectedBeacon.value = beaconItemObj;
                 commonService.selectedBeacon.refresh();
                 if (commonService.selectedFileType.value == "V") {
@@ -251,7 +257,8 @@ class DashboardController extends GetxController {
                   commonService.isPopSVPopupOpen.refresh();
                 } else {
                   DetailController detailController = Get.find();
-                  detailController.getLocationDetailData(beaconItemObj.locationId);
+                  detailController
+                      .getLocationDetailData(beaconItemObj.locationId);
                   if (Get.currentRoute != "/detail") {
                     Get.toNamed('/detail');
                   }
@@ -261,8 +268,10 @@ class DashboardController extends GetxController {
             }
 
             for (var element in commonService.beaconsData.value.data) {
-              if (element.type == beaconItemObj.type && element.locationId > 0) {
-                int sameTypeBeaconIndex = commonService.sameCategoryBeacons.indexWhere((ele) => ele.locationId == element.locationId);
+              if (element.type == beaconItemObj.type &&
+                  element.locationId > 0) {
+                int sameTypeBeaconIndex = commonService.sameCategoryBeacons
+                    .indexWhere((ele) => ele.locationId == element.locationId);
                 if (sameTypeBeaconIndex == -1) {
                   commonService.sameCategoryBeacons.add(element);
                   commonService.sameCategoryBeacons.refresh();
@@ -270,7 +279,9 @@ class DashboardController extends GetxController {
               }
             }
           }
-          commonService.lastPlayedMacAddress.value = Platform.isAndroid ? beaconItemObj.macAddress : beaconItemObj.uuid;
+          commonService.lastPlayedMacAddress.value = Platform.isAndroid
+              ? beaconItemObj.macAddress
+              : beaconItemObj.uuid;
           commonService.lastPlayedMacAddress.refresh();
         }
       }
@@ -279,7 +290,8 @@ class DashboardController extends GetxController {
 
   Future<void> fetchEmpDashboardData() async {
     String file = "dashboard.json";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+    if (GetStorage().read('language_id') != '' ||
+        GetStorage().read('language_id') != null) {
       switch (GetStorage().read('language_id')) {
         case 1:
           file = "dashboard.json";
@@ -293,7 +305,8 @@ class DashboardController extends GetxController {
       }
     }
     try {
-      final String data = await rootBundle.loadString('assets/data_files/$file');
+      final String data =
+          await rootBundle.loadString('assets/data_files/$file');
       var response = jsonDecode(data);
       if (response['status']) {
         commonService.dashboardData.value = DashboardModel.fromJSON(response);
@@ -306,7 +319,8 @@ class DashboardController extends GetxController {
 
   Future<void> fetchDashboardData() async {
     String file = "dashboard.json";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+    if (GetStorage().read('language_id') != '' ||
+        GetStorage().read('language_id') != null) {
       switch (GetStorage().read('language_id')) {
         case 1:
           file = "dashboard.json";
@@ -320,7 +334,8 @@ class DashboardController extends GetxController {
       }
     }
     try {
-      final String data = await rootBundle.loadString('assets/data_files/$file');
+      final String data =
+          await rootBundle.loadString('assets/data_files/$file');
       var response = jsonDecode(data);
       if (response['status']) {
         commonService.dashboardData.value = DashboardModel.fromJSON(response);
@@ -333,7 +348,8 @@ class DashboardController extends GetxController {
 
   Future<void> fetchLabelData() async {
     String file = "label.json";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+    if (GetStorage().read('language_id') != '' ||
+        GetStorage().read('language_id') != null) {
       switch (GetStorage().read('language_id')) {
         case 1:
           file = "label.json";
@@ -347,7 +363,8 @@ class DashboardController extends GetxController {
       }
     }
     try {
-      final String data = await rootBundle.loadString('assets/data_files/$file');
+      final String data =
+          await rootBundle.loadString('assets/data_files/$file');
       var response = jsonDecode(data);
       if (response['status']) {
         commonService.labelData.value = LabelModel.fromJSON(response);
@@ -361,7 +378,8 @@ class DashboardController extends GetxController {
   Future<void> fetchBeaconData() async {
     String file = "beacon.json";
     String folderName = "english";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+    if (GetStorage().read('language_id') != '' ||
+        GetStorage().read('language_id') != null) {
       switch (GetStorage().read('language_id')) {
         case 1:
           file = "beacon.json";
@@ -378,7 +396,8 @@ class DashboardController extends GetxController {
       }
     }
     try {
-      final String data = await rootBundle.loadString('assets/data_files/$file');
+      final String data =
+          await rootBundle.loadString('assets/data_files/$file');
       var response = jsonDecode(data);
       if (response['status'] == 200) {
         commonService.soundFiles.value = [];
@@ -386,10 +405,13 @@ class DashboardController extends GetxController {
         commonService.beaconsData.value = BeaconModel.fromJSON(response);
         commonService.beaconsData.refresh();
         for (var element in commonService.beaconsData.value.data) {
-          if (!commonService.soundFiles.contains(element.soundFile) && element.soundFile.isNotEmpty && element.id > 10) {
+          if (!commonService.soundFiles.contains(element.soundFile) &&
+              element.soundFile.isNotEmpty &&
+              element.id > 10) {
             commonService.soundFiles.add(element.soundFile);
           }
-          if (!commonService.macAddresses.contains(element.macAddress) && element.macAddress.length == 17) {
+          if (!commonService.macAddresses.contains(element.macAddress) &&
+              element.macAddress.length == 17) {
             commonService.macAddresses.add(element.macAddress);
           }
           if (!commonService.uuid.contains(element.uuid)) {
@@ -399,13 +421,13 @@ class DashboardController extends GetxController {
         commonService.soundFiles.refresh();
         commonService.macAddresses.refresh();
         commonService.uuid.refresh();
-        Directory appDocDir;
+        Directory? appDocDir;
         if (Platform.isAndroid) {
           appDocDir = await getExternalStorageDirectory();
         } else {
           appDocDir = await getApplicationDocumentsDirectory();
         }
-        String outputDirectory = '${appDocDir.path}/$folderName';
+        String outputDirectory = '${appDocDir?.path}/$folderName';
         await Directory(outputDirectory).create(recursive: true);
         Helper.downloadAudios(folderName);
       }
@@ -423,7 +445,7 @@ class DashboardController extends GetxController {
         "Inside Virasat e khalsa"
             .text
             .textStyle(
-              Get.textTheme.headline2.copyWith(
+              Get.textTheme.headline2!.copyWith(
                 color: Get.theme.indicatorColor.withOpacity(0.5),
               ),
             )
@@ -440,9 +462,11 @@ class DashboardController extends GetxController {
               shrinkWrap: true,
               itemCount: 5,
               itemBuilder: (context, index) {
-                LocationModel locationModel = LocationModel(image: 'assets/images/1.jpg');
+                LocationModel locationModel =
+                    LocationModel(image: 'assets/images/1.jpg');
                 return SmallLocationViewWidget(
                   data: locationModel,
+                  onTap: (int) {},
                 );
               }),
         ).pSymmetric(h: 20)

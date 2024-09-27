@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:punjab_tourism/controllers/nearby_controller.dart';
 
 import '../core.dart';
 

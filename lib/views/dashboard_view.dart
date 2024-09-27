@@ -1,52 +1,32 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:upgrader/upgrader.dart';
-
 import '../core.dart';
 
-class DashboardView extends StatefulWidget {
-  DashboardView({Key key}) : super(key: key);
-
-  @override
-  _DashboardViewState createState() => _DashboardViewState();
-}
-
-class _DashboardViewState extends State<DashboardView> {
-  DateTime currentBackPressTime;
+class DashboardView extends GetView<DashboardController> {
+  DashboardView({Key? key}) : super(key: key);
+  late DateTime currentBackPressTime;
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
   GuestController guestController = Get.find();
-  DashboardController controller = Get.find();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!commonService.firstTime) {
-        commonService.firstTime = true;
-        controller.startWelcomeSound();
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: Get.theme.primaryColor,
-        statusBarIconBrightness: Brightness.dark,
-      ),
+          statusBarColor: Get.theme.primaryColor,
+          statusBarIconBrightness: Brightness.dark),
     );
     return UpgradeAlert(
-      upgrader: Platform.isIOS
-          ? Upgrader(dialogStyle: UpgradeDialogStyle.cupertino)
-          : Upgrader(dialogStyle: UpgradeDialogStyle.material),
+      dialogStyle: Platform.isIOS
+          ? UpgradeDialogStyle.cupertino
+          : UpgradeDialogStyle.material,
+      upgrader: Upgrader(),
       child: Container(
         color: Get.theme.primaryColor,
         child: SafeArea(
@@ -63,7 +43,7 @@ class _DashboardViewState extends State<DashboardView> {
                 centerTitle: true,
                 title: commonService.labelData.value.data.punjabTourism.text
                     .textStyle(
-                      Get.textTheme.headline1.copyWith(
+                      Get.textTheme.headline1!.copyWith(
                         color: Get.theme.indicatorColor,
                       ),
                     )
@@ -71,7 +51,7 @@ class _DashboardViewState extends State<DashboardView> {
                 actions: [
                   InkWell(
                     onTap: () {
-                      scaffoldDashboardKey.currentState.openEndDrawer();
+                      scaffoldDashboardKey.currentState?.openEndDrawer();
                     },
                     child: SvgPicture.asset(
                       "assets/images/menu.svg",
@@ -112,7 +92,7 @@ class _DashboardViewState extends State<DashboardView> {
                             children: [
                               commonService.labelData.value.data.welcomeTo.text
                                   .textStyle(
-                                    Get.textTheme.headline1.copyWith(
+                                    Get.textTheme.headline1!.copyWith(
                                       color: Get.theme.indicatorColor
                                           .withOpacity(0.5),
                                     ),
@@ -135,22 +115,21 @@ class _DashboardViewState extends State<DashboardView> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                     gradient: LinearGradient(
-                                      colors: [
-                                        Get.theme.colorScheme.primary,
-                                        Get.theme.colorScheme.secondary,
-                                      ],
-                                      begin: const FractionalOffset(0.0, 0.0),
-                                      end: const FractionalOffset(0.0, 1.0),
-                                      stops: const [0.0, 1.0],
-                                      tileMode: TileMode.clamp,
-                                    ),
+                                        colors: [
+                                          Get.theme.colorScheme.primary,
+                                          Get.theme.colorScheme.secondary,
+                                        ],
+                                        begin: const FractionalOffset(0.0, 0.0),
+                                        end: const FractionalOffset(0.0, 1.0),
+                                        stops: const [0.0, 1.0],
+                                        tileMode: TileMode.clamp),
                                   ),
                                   child: Row(
                                     children: [
                                       commonService
                                           .labelData.value.data.entryAccess.text
                                           .textStyle(
-                                            Get.textTheme.headline4.copyWith(
+                                            Get.textTheme.headline4!.copyWith(
                                               color: Get.theme.highlightColor,
                                             ),
                                           )
@@ -172,7 +151,7 @@ class _DashboardViewState extends State<DashboardView> {
                             child: commonService
                                 .labelData.value.data.virastEKhalsa.text
                                 .textStyle(
-                                  Get.textTheme.headline1.copyWith(
+                                  Get.textTheme.headline1!.copyWith(
                                     color: Get.theme.indicatorColor,
                                     fontSize: 35,
                                   ),

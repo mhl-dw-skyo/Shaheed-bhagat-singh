@@ -8,7 +8,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../core.dart';
 
 class VerifyOTPView extends GetView<AuthController> {
-  VerifyOTPView({Key key}) : super(key: key);
+  VerifyOTPView({Key? key}) : super(key: key);
   CommonService commonService = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -40,14 +40,14 @@ class VerifyOTPView extends GetView<AuthController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             commonService.labelData.value.data.verifyOtp.text
-                .textStyle(Get.theme.textTheme.headline1.copyWith(
+                .textStyle(Get.theme.textTheme.headline1!.copyWith(
                   color: Get.theme.indicatorColor,
                   fontSize: 35,
                 ))
                 .make()
                 .pOnly(bottom: 10),
             commonService.labelData.value.data.verifyOtpDesc.text
-                .textStyle(Get.theme.textTheme.bodyText1.copyWith(
+                .textStyle(Get.theme.textTheme.bodyText1!.copyWith(
                   fontSize: 17,
                   color: Get.theme.indicatorColor.withOpacity(0.5),
                 ))
@@ -86,7 +86,7 @@ class VerifyOTPView extends GetView<AuthController> {
                 controller.otp.value = value;
               },
               beforeTextPaste: (text) {
-                controller.otp.value = text;
+                controller.otp.value = text!;
                 //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
                 //but you can show anything you want here, like your pop up saying wrong paste format or etc
                 return true;
@@ -120,7 +120,7 @@ class VerifyOTPView extends GetView<AuthController> {
                 ),
                 child: commonService.labelData.value.data.verify.text.uppercase
                     .textStyle(
-                      Get.textTheme.headline2.copyWith(
+                      Get.textTheme.headline2!.copyWith(
                         color: Get.theme.highlightColor,
                       ),
                     )
@@ -133,9 +133,9 @@ class VerifyOTPView extends GetView<AuthController> {
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        commonService.labelData.value.data.didntRecvOtp.text.center.textStyle(Get.textTheme.bodyText1.copyWith(color: Get.theme.indicatorColor.withOpacity(0.8))).make(),
+                        commonService.labelData.value.data.didntRecvOtp.text.center.textStyle(Get.textTheme.bodyText1!.copyWith(color: Get.theme.indicatorColor.withOpacity(0.8))).make(),
                         const SizedBox(width: 10),
-                        commonService.labelData.value.data.resendOtp.text.center.textStyle(Get.textTheme.headline3.copyWith(color: Get.theme.indicatorColor.withOpacity(0.8))).make().onInkTap(() {
+                        commonService.labelData.value.data.resendOtp.text.center.textStyle(Get.textTheme.headline3!.copyWith(color: Get.theme.indicatorColor.withOpacity(0.8))).make().onInkTap(() {
                           if (!controller.bHideTimer.value) {
                             controller.sendOtpToEmail(false);
                             controller.startTimer();
@@ -148,11 +148,11 @@ class VerifyOTPView extends GetView<AuthController> {
                       children: [
                         SizedBox(
                           width: 75,
-                          child: commonService.labelData.value.data.resendIn.text.textStyle(Get.textTheme.bodyText1.copyWith(fontSize: 16, color: Get.theme.indicatorColor.withOpacity(0.8))).center.make(),
+                          child: commonService.labelData.value.data.resendIn.text.textStyle(Get.textTheme.bodyText1!.copyWith(fontSize: 16, color: Get.theme.indicatorColor.withOpacity(0.8))).center.make(),
                         ),
                         SizedBox(
                           width: 50,
-                          child: "${controller.countTimer.value}s".text.textStyle(Get.textTheme.headline1.copyWith(color: Get.theme.indicatorColor.withOpacity(0.8))).center.make().objectCenterRight(),
+                          child: "${controller.countTimer.value}s".text.textStyle(Get.textTheme.headline1!.copyWith(color: Get.theme.indicatorColor.withOpacity(0.8))).center.make().objectCenterRight(),
                         ),
                       ],
                     ),

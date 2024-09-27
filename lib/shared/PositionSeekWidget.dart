@@ -7,9 +7,9 @@ class PositionSeekWidget extends StatefulWidget {
   final Function(Duration) seekTo;
 
   const PositionSeekWidget({
-    this.currentPosition,
-    this.duration,
-    this.seekTo,
+    required this.currentPosition,
+    required this.duration,
+    required this.seekTo,
   });
 
   @override
@@ -17,7 +17,7 @@ class PositionSeekWidget extends StatefulWidget {
 }
 
 class _PositionSeekWidgetState extends State<PositionSeekWidget> {
-  Duration _visibleValue;
+  late Duration _visibleValue;
   bool listenOnlyUserInterraction = false;
   double get percent => widget.duration.inMilliseconds == 0 ? 0 : _visibleValue.inMilliseconds / widget.duration.inMilliseconds;
 
@@ -105,15 +105,15 @@ String durationToString(Duration duration) {
 class CustomTrackShape extends RoundedRectSliderTrackShape {
   @override
   Rect getPreferredRect({
-    RenderBox parentBox,
+    required RenderBox parentBox,
     Offset offset = Offset.zero,
-    SliderThemeData sliderTheme,
+    required SliderThemeData sliderTheme,
     bool isEnabled = false,
     bool isDiscrete = false,
   }) {
-    final double trackHeight = sliderTheme.trackHeight;
+    final double? trackHeight = sliderTheme.trackHeight;
     final double trackLeft = offset.dx;
-    final double trackTop = offset.dy + (parentBox.size.height - trackHeight) / 2;
+    final double trackTop = offset.dy + (parentBox.size.height - trackHeight!) / 2;
     final double trackWidth = parentBox.size.width;
     return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }

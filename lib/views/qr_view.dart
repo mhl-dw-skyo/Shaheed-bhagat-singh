@@ -10,7 +10,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../core.dart';
 
 class QRView extends GetView<GuestController> {
-  QRView({Key key}) : super(key: key);
+  QRView({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
@@ -53,7 +53,7 @@ class QRView extends GetView<GuestController> {
             actions: [
               InkWell(
                 onTap: () {
-                  scaffoldDashboardKey.currentState.openEndDrawer();
+                  scaffoldDashboardKey.currentState?.openEndDrawer();
                 },
                 child: SvgPicture.asset(
                   "assets/images/menu.svg",
@@ -91,7 +91,7 @@ class QRView extends GetView<GuestController> {
                       child: commonService
                           .labelData.value.data.qrcodeEntryPoint.text.center
                           .textStyle(
-                            Get.textTheme.headline1.copyWith(
+                            Get.textTheme.headline1!.copyWith(
                               color: Get.theme.colorScheme.primary,
                             ),
                           )
@@ -100,7 +100,7 @@ class QRView extends GetView<GuestController> {
                           .pSymmetric(h: 20),
                     ).pSymmetric(h: 40),
                     Container(
-                      height: Get.height * 0.5,
+                      height: Get.height * 0.55,
                       width: Get.width,
                       decoration: new BoxDecoration(
                         image: new DecorationImage(
@@ -115,7 +115,7 @@ class QRView extends GetView<GuestController> {
                           commonService
                               .labelData.value.data.virastEKhalsa.text.center
                               .textStyle(
-                                Get.textTheme.headline1.copyWith(
+                                Get.textTheme.headline1!.copyWith(
                                   color: Get.theme.highlightColor,
                                   fontSize: 25,
                                 ),
@@ -150,7 +150,7 @@ class QRView extends GetView<GuestController> {
                                                         .text
                                                         .textStyle(
                                                           Get.textTheme
-                                                              .bodyMedium
+                                                              .bodyMedium!
                                                               .copyWith(
                                                             color: Get.theme
                                                                 .indicatorColor,
@@ -162,7 +162,7 @@ class QRView extends GetView<GuestController> {
                                                 child: commonService
                                                     .guestData.value.guests.text
                                                     .textStyle(
-                                                      Get.textTheme.headline4
+                                                      Get.textTheme.headline4!
                                                           .copyWith(
                                                         color: Get
                                                             .theme
@@ -183,7 +183,7 @@ class QRView extends GetView<GuestController> {
                                                         .text
                                                         .textStyle(
                                                           Get.textTheme
-                                                              .bodyMedium
+                                                              .bodyMedium!
                                                               .copyWith(
                                                             color: Get.theme
                                                                 .indicatorColor,
@@ -195,7 +195,7 @@ class QRView extends GetView<GuestController> {
                                                 child: commonService
                                                     .guestData.value.name.text
                                                     .textStyle(
-                                                      Get.textTheme.headline4
+                                                      Get.textTheme.headline4!
                                                           .copyWith(
                                                         color: Get
                                                             .theme
@@ -216,7 +216,7 @@ class QRView extends GetView<GuestController> {
                                                         .text
                                                         .textStyle(
                                                           Get.textTheme
-                                                              .bodyMedium
+                                                              .bodyMedium!
                                                               .copyWith(
                                                             color: Get.theme
                                                                 .indicatorColor,
@@ -230,7 +230,7 @@ class QRView extends GetView<GuestController> {
                                                         .text
                                                         .textStyle(
                                                           Get.textTheme
-                                                              .headline4
+                                                              .headline4!
                                                               .copyWith(
                                                             color: Get
                                                                 .theme
@@ -250,7 +250,7 @@ class QRView extends GetView<GuestController> {
                                   .text
                                   .center
                                   .textStyle(
-                                    Get.textTheme.headline1.copyWith(
+                                    Get.textTheme.headline1!.copyWith(
                                       color: Get.theme.highlightColor,
                                       fontSize: 22,
                                     ),
@@ -272,6 +272,7 @@ class QRView extends GetView<GuestController> {
                         ],
                       ).pSymmetric(v: 15),
                     ).pSymmetric(h: 40),
+                    SizedBox(height: 50,)
                   ],
                 ).pSymmetric(h: 10),
               ),

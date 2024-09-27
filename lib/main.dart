@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'core.dart';
 import 'routes.dart' as r;
 
@@ -20,17 +19,14 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await initService();
   // await Helper.getCurrentUser();
   await Firebase.initializeApp();
-  // SplashController splashController = Get.find();
-  // splashController.backgroundMsg(message);
-  // Helper.onBackgroundSound(message);
   print('Handling a background message ${message.messageId}');
 }
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
-AndroidNotificationChannel channel;
+AndroidNotificationChannel? channel;
 
 /// Initialize the [FlutterLocalNotificationsPlugin] package.
-FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
@@ -40,8 +36,7 @@ Future<void> main() async {
     channel = const AndroidNotificationChannel(
       'high_importance_channel', // id
       'High Importance Notifications', // title
-      description:
-          'This channel is used for important notifications.', // description,
+      description: 'This channel is used for important notifications.', // description,
       importance: Importance.high,
     );
 
@@ -51,15 +46,11 @@ Future<void> main() async {
     ///
     /// We use this channel in the `AndroidManifest.xml` file to override the
     /// default FCM channel to enable heads up notifications.
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
+    await flutterLocalNotificationsPlugin?.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel!);
 
     /// Update the iOS foreground notification presentation options to allow
     /// heads up notifications.
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
+    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
       sound: true,
@@ -68,7 +59,7 @@ Future<void> main() async {
 
   await GlobalConfiguration().loadFromAsset("configuration");
   await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
-  FlutterDownloader.registerCallback(TestClass.callback);
+  // FlutterDownloader.registerCallback(TestClass.callback);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -79,7 +70,7 @@ Future<void> main() async {
   configLoading();
 
   runApp(GetMaterialApp(
-    title: 'Bhagat Singh Museum',
+    title: 'Dastaan-e-Shahadat',
     debugShowCheckedModeBanner: false,
     defaultTransition: Transition.rightToLeft,
     getPages: r.Router.route,
@@ -101,18 +92,10 @@ Future<void> main() async {
       brightness: Brightness.light,
       errorColor: const Color(0xffF6534C),
       buttonTheme: ButtonThemeData(
-          buttonColor: Helper.parseColorCode(Get.find<ConfigService>()
-              .configData
-              .value
-              .btnColorLight), //  <-- dark color
+          buttonColor: Helper.parseColorCode(Get.find<ConfigService>().configData.value.btnColorLight), //  <-- dark color
           textTheme: ButtonTextTheme.primary, //
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-              primary: Helper.parseColorCode(
-                  Get.find<ConfigService>().configData.value.btnColorLight),
-              secondary: Helper.parseColorCode(Get.find<ConfigService>()
-                  .configData
-                  .value
-                  .btnTextColorLight)) // <-- this auto selects the right color
+          colorScheme: ColorScheme.fromSwatch()
+              .copyWith(primary: Helper.parseColorCode(Get.find<ConfigService>().configData.value.btnColorLight), secondary: Helper.parseColorCode(Get.find<ConfigService>().configData.value.btnTextColorLight)) // <-- this auto selects the right color
           ),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: const Color(0xffF2660F),
@@ -121,55 +104,15 @@ Future<void> main() async {
       highlightColor: Colors.white,
       hintColor: Colors.grey[300],
       textTheme: TextTheme(
-        headline6: GoogleFonts.poppins().copyWith(
-            fontSize: 10,
-            color: Helper.parseColorCode(
-                Get.find<ConfigService>().configData.value.textColorLight),
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Gilroy'),
-        headline5: GoogleFonts.poppins().copyWith(
-            fontSize: 12,
-            color: Helper.parseColorCode(
-                Get.find<ConfigService>().configData.value.textColorLight),
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Gilroy'),
-        headline4: GoogleFonts.poppins().copyWith(
-            fontSize: 14,
-            color: Helper.parseColorCode(
-                Get.find<ConfigService>().configData.value.textColorLight),
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Gilroy'),
-        headline3: GoogleFonts.poppins().copyWith(
-            fontSize: 16,
-            color: Helper.parseColorCode(
-                Get.find<ConfigService>().configData.value.textColorLight),
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Gilroy'),
-        headline2: GoogleFonts.poppins().copyWith(
-            fontSize: 18,
-            color: Helper.parseColorCode(
-                Get.find<ConfigService>().configData.value.textColorLight),
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Gilroy'),
-        headline1: GoogleFonts.poppins().copyWith(
-            fontSize: 20,
-            color: Helper.parseColorCode(
-                Get.find<ConfigService>().configData.value.textColorLight),
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Gilroy'),
+        headline6: GoogleFonts.poppins().copyWith(fontSize: 10, color: Helper.parseColorCode(Get.find<ConfigService>().configData.value.textColorLight), fontWeight: FontWeight.bold, fontFamily: 'Gilroy'),
+        headline5: GoogleFonts.poppins().copyWith(fontSize: 12, color: Helper.parseColorCode(Get.find<ConfigService>().configData.value.textColorLight), fontWeight: FontWeight.bold, fontFamily: 'Gilroy'),
+        headline4: GoogleFonts.poppins().copyWith(fontSize: 14, color: Helper.parseColorCode(Get.find<ConfigService>().configData.value.textColorLight), fontWeight: FontWeight.bold, fontFamily: 'Gilroy'),
+        headline3: GoogleFonts.poppins().copyWith(fontSize: 16, color: Helper.parseColorCode(Get.find<ConfigService>().configData.value.textColorLight), fontWeight: FontWeight.bold, fontFamily: 'Gilroy'),
+        headline2: GoogleFonts.poppins().copyWith(fontSize: 18, color: Helper.parseColorCode(Get.find<ConfigService>().configData.value.textColorLight), fontWeight: FontWeight.bold, fontFamily: 'Gilroy'),
+        headline1: GoogleFonts.poppins().copyWith(fontSize: 20, color: Helper.parseColorCode(Get.find<ConfigService>().configData.value.textColorLight), fontWeight: FontWeight.bold, fontFamily: 'Gilroy'),
         subtitle1: GoogleFonts.poppins(),
-        bodyText1: GoogleFonts.poppins().copyWith(
-            fontSize: 15,
-            color: Helper.parseColorCode(
-                Get.find<ConfigService>().configData.value.textColorLight),
-            fontWeight: FontWeight.w400,
-            fontFamily: 'Gilroy'),
-        bodyText2: GoogleFonts.poppins().copyWith(
-            fontSize: 14,
-            color: Helper.parseColorCode(
-                Get.find<ConfigService>().configData.value.textColorLight),
-            fontWeight: FontWeight.w400,
-            fontFamily: 'Gilroy'),
+        bodyText1: GoogleFonts.poppins().copyWith(fontSize: 15, color: Helper.parseColorCode(Get.find<ConfigService>().configData.value.textColorLight), fontWeight: FontWeight.w400, fontFamily: 'Gilroy'),
+        bodyText2: GoogleFonts.poppins().copyWith(fontSize: 14, color: Helper.parseColorCode(Get.find<ConfigService>().configData.value.textColorLight), fontWeight: FontWeight.w400, fontFamily: 'Gilroy'),
       ),
     ),
   ));
@@ -202,5 +145,5 @@ initService() async {
 }
 
 class TestClass {
-  static void callback(String id, DownloadTaskStatus status, int progress) {}
+  static void callback(String id, int status, int progress) {}
 }

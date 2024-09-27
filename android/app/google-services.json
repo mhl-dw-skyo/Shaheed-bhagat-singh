@@ -1,26 +1,59 @@
 {
   "project_info": {
-    "project_number": "334285887545",
-    "project_id": "bhagat-singh-museum",
-    "storage_bucket": "bhagat-singh-museum.appspot.com"
+    "project_number": "908180815583",
+    "project_id": "dastaan-e-shahadat",
+    "storage_bucket": "dastaan-e-shahadat.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:334285887545:android:03566e0d002ddc357255e8",
+        "mobilesdk_app_id": "1:908180815583:android:58a5171c52c5595f81336a",
         "android_client_info": {
-          "package_name": "bhagatsm.dwgroup.app"
+          "package_name": "des.dwgroup.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "908180815583-ed71v673iltnqqt8rc0u6bnhcvb8uut4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "des.dwgroup.app",
+            "certificate_hash": "e1246a9795b75d040dea3c2638361b84011da52a"
+          }
+        },
+        {
+          "client_id": "908180815583-jbs5in13h2ahb1mrb7kffj6cfnf2ccmd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "des.dwgroup.app",
+            "certificate_hash": "ff882c0da5b77b7a432480fc872e36517844c7a6"
+          }
+        },
+        {
+          "client_id": "908180815583-qhbupceactjpsfhks89bn7k02elondeo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCGmKZRt90X7662j_1UXoxjOaUEMCvB6mY"
+          "current_key": "AIzaSyCq6zkJVGoZj4-kk98q8QEfDzpeW3Mwtac"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "908180815583-qhbupceactjpsfhks89bn7k02elondeo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "908180815583-h7qe29659658abbtt5ncqem6m3rl9c1o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "des.dwgroup.app"
+              }
+            }
+          ]
         }
       }
     }

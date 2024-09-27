@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Virasat-e-Khalsa</string>
+	<string>Dastaan-e-Shahadat</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -29,13 +29,13 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.15568613291-d5sf4114nbvm0950kkn3dmrudrq65m2u</string>
+				<string>com.googleusercontent.apps.908180815583-h7qe29659658abbtt5ncqem6m3rl9c1o</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb859674768508093</string>
+				<string>fb463630632625219</string>
 			</array>
 		</dict>
 	</array>
@@ -44,11 +44,12 @@
 	<key>FDMaximumConcurrentTasks</key>
 	<integer>1</integer>
 	<key>FacebookAppID</key>
-	<string>859674768508093</string>
+	<string>463630632625219</string>
 	<key>FacebookClientToken</key>
-	<string>1fddf4116757e29b608b9b933933ad47</string>
+	<string>bcaef6cdc8ea5c35af786971a0e595e5</string>
 	<key>FacebookDisplayName</key>
-	<string>Virasat-e-Khalsa</string>
+	<string>Dastaan-e-Shahadat</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -132,5 +133,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>

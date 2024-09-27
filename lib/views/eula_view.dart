@@ -8,8 +8,8 @@ import 'package:get_storage/get_storage.dart';
 import '../core.dart';
 
 class EulaView extends GetView {
-  EulaView({Key key}) : super(key: key);
-  DateTime currentBackPressTime;
+  EulaView({Key? key}) : super(key: key);
+ late DateTime currentBackPressTime;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -28,7 +28,7 @@ class EulaView extends GetView {
             elevation: 0,
             automaticallyImplyLeading: false,
             centerTitle: true,
-            title: "EULA".text.ellipsis.center.textStyle(Get.textTheme.headline1.copyWith(color: Get.theme.colorScheme.primary)).make(),
+            title: "EULA".text.ellipsis.center.textStyle(Get.textTheme.headline1!.copyWith(color: Get.theme.colorScheme.primary)).make(),
           ),
           body: WillPopScope(
             onWillPop: () {
@@ -99,12 +99,12 @@ class EulaView extends GetView {
                           DashboardController dashboardController = Get.find();
                           dashboardController.fetchLabelData();
                           GetStorage().write('EULA_agree', true);
-                          // if (GetStorage().read('welcomeAudioPlayed') == null || GetStorage().read('welcomeAudioPlayed') == '') {
-                          //   Helper.playWelcomeSound();
-                          // }
+                          if (GetStorage().read('welcomeAudioPlayed') == null || GetStorage().read('welcomeAudioPlayed') == '') {
+                            Helper.playWelcomeSound();
+                          }
                           Get.toNamed('/login');
                         },
-                        child: "Agree".text.ellipsis.center.textStyle(Get.textTheme.headline3.copyWith(color: Get.theme.highlightColor)).make().centered(),
+                        child: "Agree".text.ellipsis.center.textStyle(Get.textTheme.headline3!.copyWith(color: Get.theme.highlightColor)).make().centered(),
                       ).pSymmetric(h: 20),
                     ),
                   ),

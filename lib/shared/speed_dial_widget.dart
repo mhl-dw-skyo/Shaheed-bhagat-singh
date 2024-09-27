@@ -2,12 +2,11 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
-
 import '../../core.dart';
 
 class SpeedDialWidget extends StatelessWidget {
   SpeedDialWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
   CommonService commonService = Get.find();
   @override
@@ -24,7 +23,7 @@ class SpeedDialWidget extends StatelessWidget {
                   SpeedDialChild(
                     onTap: () {
                       AssetsAudioPlayer.allPlayers().forEach((key, value) {
-                        //value.stop();
+                        value.stop();
                       });
                     },
                     foregroundColor: Get.theme.highlightColor,
@@ -37,7 +36,7 @@ class SpeedDialWidget extends StatelessWidget {
                   SpeedDialChild(
                     onTap: () {
                       AssetsAudioPlayer.allPlayers().forEach((key, value) {
-                     //   value.playOrPause();
+                        value.playOrPause();
                       });
                     },
                     foregroundColor: Get.theme.highlightColor,
@@ -45,7 +44,7 @@ class SpeedDialWidget extends StatelessWidget {
                     child: StreamBuilder(
                         stream: commonService.assetsAudioPlayer.value.isPlaying,
                         builder: (context, asyncSnapshot) {
-                          final bool isPlaying = asyncSnapshot.data;
+                          final bool isPlaying = asyncSnapshot.data as bool;
                           return Icon(
                             isPlaying ? Icons.pause : Icons.play_arrow,
                             color: Get.theme.highlightColor,
