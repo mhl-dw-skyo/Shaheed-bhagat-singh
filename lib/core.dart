@@ -1,9 +1,0 @@
-export 'package:velocity_x/velocity_x.dart';
-export 'bindings/xcore.dart';
-export 'controllers/xcore.dart';
-export 'routes.dart';
-export 'views/xcore.dart';
-export 'models/xcore.dart';
-export 'shared/xcore.dart';
-export 'services/xcore.dart';
-export 'apis/xcore.dart';
