@@ -28,33 +28,6 @@ late  DateTime currentBackPressTime;
           key: scaffoldDashboardKey,
           backgroundColor: Get.theme.primaryColor,
           appBar: AppBar(),
-          // AppBar(
-          //   bottomOpacity: 0,
-          //   shadowColor: Colors.transparent,
-          //   backgroundColor: Get.theme.primaryColor,
-          //   elevation: 0,
-          //   automaticallyImplyLeading: false,
-          //   centerTitle: true,
-          //   title: commonService.labelData.value.data.punjabTourism.text
-          //       .textStyle(
-          //         headline1().copyWith(
-          //           color: Get.theme.indicatorColor,
-          //         ),
-          //       )
-          //       .make(),
-          //   actions: [
-          //     InkWell(
-          //       onTap: () {
-          //         scaffoldDashboardKey.currentState?.openEndDrawer();
-          //       },
-          //       child: SvgPicture.asset(
-          //         "assets/images/menu.svg",
-          //         color: Get.theme.indicatorColor,
-          //       ),
-          //     ).pOnly(right: 20)
-          //   ],
-          // ),
-          // endDrawer: DrawerWidget(),
           body: Container(
             width: Get.width,
             height: Get.height,
@@ -79,12 +52,7 @@ late  DateTime currentBackPressTime;
               ],
             ),
           ),
-          bottomNavigationBar: BottomNavWidget(
-            onTap: (int index) {
-              Helper.onBottomBarClick(null, index);
-            },
-          ),
-          floatingActionButton: SpeedDialWidget(),
+
         ),
       ),
     );

@@ -38,19 +38,8 @@ class NearByView extends GetView<NearByController> {
                   size: 25,
                 )),
             centerTitle: false,
-            actions: [
-              InkWell(
-                onTap: () {
-                  scaffoldDashboardKey.currentState?.openEndDrawer();
-                },
-                child: SvgPicture.asset(
-                  "assets/images/menu.svg",
-                  color: Get.theme.indicatorColor,
-                ),
-              ).pOnly(right: 20)
-            ],
+
           ),
-          endDrawer: DrawerWidget(),
           body: SingleChildScrollView(
             child: Obx(
               () => Column(
@@ -531,12 +520,7 @@ class NearByView extends GetView<NearByController> {
               ).pOnly(bottom: 60, left: 20, right: 20),
             ),
           ),
-          bottomNavigationBar: BottomNavWidget(
-            onTap: (int index) async {
-              Helper.onBottomBarClick(null, index);
-            },
-          ),
-          floatingActionButton: SpeedDialWidget(),
+
         ),
       ),
     );

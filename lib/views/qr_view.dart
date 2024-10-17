@@ -48,19 +48,8 @@ class QRView extends GetView<GuestController> {
               ),
             ),
             centerTitle: false,
-            actions: [
-              InkWell(
-                onTap: () {
-                  scaffoldDashboardKey.currentState?.openEndDrawer();
-                },
-                child: SvgPicture.asset(
-                  "assets/images/menu.svg",
-                  color: Get.theme.indicatorColor,
-                ),
-              ).pOnly(right: 20)
-            ],
+
           ),
-          endDrawer: DrawerWidget(),
           body: WillPopScope(
             onWillPop: () {
               controller.page = 1;
@@ -342,12 +331,7 @@ class QRView extends GetView<GuestController> {
               ),
             ),
           ),
-          bottomNavigationBar: BottomNavWidget(
-            onTap: (int index) async {
-              Helper.onBottomBarClick(controller, index);
-            },
-          ),
-          floatingActionButton: SpeedDialWidget(),
+
         ),
       ),
     );

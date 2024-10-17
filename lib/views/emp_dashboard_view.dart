@@ -51,17 +51,6 @@ class EmpDashboardView extends GetView<GuestController> {
                     ),
                   )
                   .make(),
-              actions: [
-                InkWell(
-                  onTap: () {
-                    scaffoldDashboardKey.currentState?.openEndDrawer();
-                  },
-                  child: SvgPicture.asset(
-                    "assets/images/menu.svg",
-                    color: Get.theme.indicatorColor,
-                  ),
-                ).pOnly(right: 20)
-              ],
             ),
             endDrawer: DrawerWidget(),
             body: WillPopScope(

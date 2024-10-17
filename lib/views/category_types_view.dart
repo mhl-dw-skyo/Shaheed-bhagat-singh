@@ -40,19 +40,8 @@ class CategoryTypesView extends GetView<CategoryTypeController> {
                   size: 25,
                 )),
             centerTitle: false,
-            actions: [
-              InkWell(
-                onTap: () {
-                  scaffoldDashboardKey.currentState?.openEndDrawer();
-                },
-                child: SvgPicture.asset(
-                  "assets/images/menu.svg",
-                  color: Get.theme.indicatorColor,
-                ),
-              ).pOnly(right: 20)
-            ],
+
           ),
-          endDrawer: DrawerWidget(),
           body: SizedBox(
             width: Get.width,
             height: Get.height,
@@ -182,12 +171,6 @@ class CategoryTypesView extends GetView<CategoryTypeController> {
               ],
             ).pOnly(bottom: 25),
           ),
-          bottomNavigationBar: BottomNavWidget(
-            onTap: (int index) {
-              Helper.onBottomBarClick(null, index);
-            },
-          ),
-          floatingActionButton: SpeedDialWidget(),
         ),
       ),
     );

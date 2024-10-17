@@ -203,6 +203,7 @@ class DashboardView extends GetView<DashboardController> {
                               ),
                             ],
                           ).pSymmetric(h: 20),
+                          SizedBox(height: 8),
                           Transform.translate(
                             offset: Offset(0, -10),
                             child: commonService

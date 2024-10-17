@@ -58,19 +58,7 @@ class DetailView extends GetView<DetailController> {
                   size: 25,
                 )),
             centerTitle: false,
-            actions: [
-              InkWell(
-                onTap: () {
-                  scaffoldDashboardKey.currentState?.openEndDrawer();
-                },
-                child: SvgPicture.asset(
-                  "assets/images/menu.svg",
-                  color: Get.theme.highlightColor,
-                ),
-              ).pOnly(right: 20)
-            ],
           ),
-          endDrawer: DrawerWidget(),
           body: SingleChildScrollView(
             child: Obx(
               () => Column(
@@ -364,12 +352,7 @@ class DetailView extends GetView<DetailController> {
               ).pOnly(bottom: 40),
             ),
           ),
-          bottomNavigationBar: BottomNavWidget(
-            onTap: (int index) {
-              Helper.onBottomBarClick(null, index);
-            },
-          ),
-          floatingActionButton: SpeedDialWidget(),
+
         ),
       ),
     ));
