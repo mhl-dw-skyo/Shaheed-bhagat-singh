@@ -6,12 +6,13 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:punjab_tourism/utils.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../core.dart';
 
 class GuestInformationHistoryView extends GetView<GuestController> {
-  GuestInformationHistoryView({Key key}) : super(key: key);
+  GuestInformationHistoryView({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
@@ -56,7 +57,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
             actions: [
               InkWell(
                 onTap: () {
-                  scaffoldDashboardKey.currentState.openEndDrawer();
+                  scaffoldDashboardKey.currentState?.openEndDrawer();
                 },
                 child: SvgPicture.asset(
                   "assets/images/menu.svg",
@@ -89,7 +90,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                     controller.forUser.value
                         ? commonService.labelData.value.data.history.text.center
                             .textStyle(
-                              Get.textTheme.headline2.copyWith(
+                              headline2().copyWith(
                                 color: Get.theme.indicatorColor,
                               ),
                             )
@@ -101,7 +102,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                               commonService.labelData.value.data.guestsEntered
                                   .text.center
                                   .textStyle(
-                                    Get.textTheme.headline2.copyWith(
+                                    headline2().copyWith(
                                       color: Get.theme.indicatorColor,
                                     ),
                                   )
@@ -184,7 +185,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                           commonService.labelData.value.data
                                               .name.text.center
                                               .textStyle(
-                                                Get.textTheme.headline4
+                                                headline4()
                                                     .copyWith(
                                                   color: Get.theme.colorScheme
                                                       .primary,
@@ -196,7 +197,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                               .text
                                               .center
                                               .textStyle(
-                                                Get.textTheme.headline4
+                                                headline4()
                                                     .copyWith(
                                                   color: Get.theme.colorScheme
                                                       .primary,
@@ -206,7 +207,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                               .pOnly(right: 15),
                                           currentValue.name.text.center
                                               .textStyle(
-                                                Get.textTheme.bodyMedium
+                                                Get.textTheme.bodyMedium!
                                                     .copyWith(
                                                   color:
                                                       Get.theme.indicatorColor,
@@ -225,7 +226,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                           commonService.labelData.value.data
                                               .guests.text.center
                                               .textStyle(
-                                                Get.textTheme.headline4
+                                                headline4()
                                                     .copyWith(
                                                   color: Get.theme.colorScheme
                                                       .primary,
@@ -237,7 +238,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                               .text
                                               .center
                                               .textStyle(
-                                                Get.textTheme.headline4
+                                                headline4()
                                                     .copyWith(
                                                   color: Get.theme.colorScheme
                                                       .primary,
@@ -247,7 +248,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                               .pOnly(right: 15),
                                           currentValue.guests.text.center
                                               .textStyle(
-                                                Get.textTheme.bodyMedium
+                                                Get.textTheme.bodyMedium!
                                                     .copyWith(
                                                   color:
                                                       Get.theme.indicatorColor,
@@ -266,7 +267,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                             .text
                                             .center
                                             .textStyle(
-                                              Get.textTheme.bodyMedium.copyWith(
+                                              Get.textTheme.bodyMedium!.copyWith(
                                                 color: Get.theme.indicatorColor,
                                               ),
                                             )
@@ -295,10 +296,10 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                                         .theme
                                                         .colorScheme
                                                         .primary,
-                                                    context: Get.context,
-                                                    animType: AnimType.SCALE,
+                                                    context: Get.context!,
+                                                    animType: AnimType.scale,
                                                     dialogType:
-                                                        DialogType.QUESTION,
+                                                        DialogType.question,
                                                     body: Padding(
                                                       padding:
                                                           const EdgeInsets.only(
@@ -320,9 +321,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                                               .delete
                                                               .text
                                                               .center
-                                                              .textStyle(Get
-                                                                  .textTheme
-                                                                  .headline1
+                                                              .textStyle(headline1()
                                                                   .copyWith(
                                                                       color: Get
                                                                           .theme
@@ -340,9 +339,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                                                               .deleteRequestDesc
                                                               .text
                                                               .center
-                                                              .textStyle(Get
-                                                                  .textTheme
-                                                                  .bodyText1
+                                                              .textStyle(bodyText1
                                                                   .copyWith(
                                                                       color: Get
                                                                           .theme
@@ -460,7 +457,7 @@ class GuestInformationHistoryView extends GetView<GuestController> {
                         child: "No any history"
                             .text
                             .center
-                            .textStyle(Get.theme.textTheme.bodyMedium
+                            .textStyle(Get.theme.textTheme.bodyMedium!
                                 .copyWith(color: Get.theme.indicatorColor))
                             .make()
                             .centered(),

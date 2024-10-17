@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:punjab_tourism/utils.dart';
 
 import '../../core.dart';
 
 class BirdViewWidget extends StatelessWidget {
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final Attributes attributes;
   final bool showTitle;
   final bool showVideoIcon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   const BirdViewWidget({
-    Key key,
+    Key? key,
     this.width,
     this.height,
-    this.attributes,
-    this.showTitle,
-    this.showVideoIcon,
+    required this.attributes,
+    required this.showTitle,
+    required this.showVideoIcon,
     this.onTap,
   }) : super(key: key);
 
@@ -51,11 +52,11 @@ class BirdViewWidget extends StatelessWidget {
                       bottomRight: Radius.circular(50),
                     ),
                     child: Image.asset(
-                      Helper.localAssetPath(attributes.imagePath),
+                      Helper.localAssetPath(attributes?.imagePath??''),
                       fit: BoxFit.cover,
                       width: width,
                       height: height,
-                      errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+                      errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                         return Image.asset(
                           'assets/images/loading.gif',
                           width: width,
@@ -68,7 +69,7 @@ class BirdViewWidget extends StatelessWidget {
                 ).pOnly(bottom: 5),
                 attributes.title.text
                     .textStyle(
-                      Get.textTheme.headline3.copyWith(
+                      headline3().copyWith(
                         color: Get.theme.indicatorColor,
                       ),
                     )
@@ -102,9 +103,9 @@ class BirdViewWidget extends StatelessWidget {
                       fit: BoxFit.cover,
                       width: width,
                       height: height,
-                      errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+                      errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                         return Image.asset(
-                          'assets/images/loafing.gif',
+                          'assets/images/loading.gif',
                           width: width,
                           height: height,
                           fit: BoxFit.cover,

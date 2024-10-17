@@ -22,8 +22,8 @@ class GuestItem {
   int iScanned = 0;
   String name = '';
   String qrUrl = '';
-  String date = '';
-  String time = '';
+  String? date = '';
+  String? time = '';
   int isScanned = 0;
   GuestItem();
   GuestItem.fromJSON(Map<String, dynamic> json) {

@@ -5,6 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:punjab_tourism/utils.dart';
 
 import '../core.dart';
 
@@ -18,7 +19,7 @@ class GuestController extends GetxController {
   int limit = 10;
   var forUser = true.obs;
   bool showLoadMore = true;
-  VoidCallback guestScrollListener;
+  late VoidCallback guestScrollListener;
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -27,7 +28,8 @@ class GuestController extends GetxController {
   Future saveGuestInformation() async {
     FocusManager.instance.primaryFocus?.unfocus();
     EasyLoading.show(status: 'loading...');
-    var response = await guestApi.saveGuestInformation(name.value, guests.value);
+    var response =
+        await guestApi.saveGuestInformation(name.value, guests.value);
     EasyLoading.dismiss();
     print(response);
     if (response['status']) {
@@ -45,15 +47,16 @@ class GuestController extends GetxController {
       commonService.guestData.value.id = response['id'];
       commonService.guestData.value.name = response['name'];
       commonService.guestData.value.guests = response['guests'];
-      commonService.guestData.value.date = response['date'];
-      commonService.guestData.value.time = response['time'];
+      commonService.guestData.value.date = response['date'] ?? '';
+      commonService.guestData.value.time = response['time'] ?? '';
+
       commonService.guestData.value.qrUrl = response['qr_url'];
       commonService.guestData.refresh();
       Get.toNamed('/qr');
     } else {
       Fluttertoast.showToast(
         msg: response['msg'],
-        backgroundColor: Get.theme.errorColor,
+        backgroundColor: errorColor,
         gravity: ToastGravity.TOP,
       );
     }
@@ -76,7 +79,7 @@ class GuestController extends GetxController {
     } else {
       Fluttertoast.showToast(
         msg: response['message'],
-        backgroundColor: Get.theme.errorColor,
+        backgroundColor: errorColor,
         gravity: ToastGravity.TOP,
       );
     }
@@ -102,39 +105,48 @@ class GuestController extends GetxController {
       commonService.qrStatus.value = response['qr_status'];
       commonService.qrStatus.refresh();
     }
-    Map<String, dynamic> notification = {
-      "body": "",
-      "title": "",
-      "click_action": 'FLUTTER_NOTIFICATION_CLICK',
-    };
-    Map<String, dynamic> data = {
-      "qr_status": commonService.qrStatus.value.toString(),
-      "click_action": 'FLUTTER_NOTIFICATION_CLICK',
-      "fcm_token": GetStorage().read('fcm_token') ?? '',
-    };
-    Helper.sendNotification(response['fcm_token'], notification, data);
+    if (response['fcm_token'] != null && response['fcm_token'] != "") {
+      Map<String, dynamic> notification = {
+        "body": "",
+        "title": "",
+        "click_action": 'FLUTTER_NOTIFICATION_CLICK',
+      };
+      Map<String, dynamic> data = {
+        "qr_status": commonService.qrStatus.value.toString(),
+        "click_action": 'FLUTTER_NOTIFICATION_CLICK',
+        "fcm_token": GetStorage().read('fcm_token') ?? '',
+      };
+      Helper.sendNotification(response['fcm_token'], notification, data);
+    }
   }
 
   Future<void> fetchGuestInformationHistory() async {
     EasyLoading.show(status: 'loading...');
-    var response = await guestApi.fetchGuestInformationHistory(page, limit, forUser.value);
+    var response =
+        await guestApi.fetchGuestInformationHistory(page, limit, forUser.value);
     EasyLoading.dismiss();
     if (response['status']) {
       if (page == 1) {
         scrollController.value = ScrollController();
         scrollController.refresh();
-        commonService.guestInformationData.value = GuestModel.fromJSON(response);
+        commonService.guestInformationData.value =
+            GuestModel.fromJSON(response);
       } else {
-        commonService.guestInformationData.value.data.addAll(GuestModel.fromJSON(response).data);
+        commonService.guestInformationData.value.data
+            .addAll(GuestModel.fromJSON(response).data);
       }
       commonService.guestInformationData.refresh();
-      if (commonService.guestInformationData.value.data.length >= commonService.guestInformationData.value.total) {
+      if (commonService.guestInformationData.value.data.length >=
+          commonService.guestInformationData.value.total) {
         showLoadMore = false;
       }
       if (page == 1) {
         guestScrollListener = () {
-          if (scrollController.value.position.pixels == scrollController.value.position.maxScrollExtent) {
-            if (commonService.guestInformationData.value.data.length != commonService.guestInformationData.value.total && showLoadMore) {
+          if (scrollController.value.position.pixels ==
+              scrollController.value.position.maxScrollExtent) {
+            if (commonService.guestInformationData.value.data.length !=
+                    commonService.guestInformationData.value.total &&
+                showLoadMore) {
               page = page + 1;
               fetchGuestInformationHistory();
             }

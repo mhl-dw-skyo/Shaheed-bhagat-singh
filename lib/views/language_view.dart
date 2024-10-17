@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:punjab_tourism/utils.dart';
 
+import '../controllers/bottom_nav_controller.dart';
 import '../core.dart';
 
 class LanguageView extends GetView {
-  LanguageView({Key key}) : super(key: key);
-  DateTime currentBackPressTime;
+  LanguageView({Key? key}) : super(key: key);
+  late DateTime currentBackPressTime;
   CategoryTypeController categoryTypeController = Get.find();
   DetailController detailController = Get.find();
   NearByController nearByController = Get.find();
   DashboardController dashboardController = Get.find();
   GuestController guestController = Get.find();
   CommonService commonService = Get.find();
+  BottomNavController controller = Get.put(BottomNavController());
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Get.theme.primaryColor, statusBarIconBrightness: Brightness.dark),
+      SystemUiOverlayStyle(
+          statusBarColor: Get.theme.primaryColor,
+          statusBarIconBrightness: Brightness.dark),
     );
     return Scaffold(
       backgroundColor: Get.theme.primaryColorDark,
@@ -29,14 +34,20 @@ class LanguageView extends GetView {
         foregroundColor: Get.theme.indicatorColor,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        automaticallyImplyLeading: (GetStorage().read('isBackToHomeLangPage') == '' || GetStorage().read('isBackToHomeLangPage') == null) ? false : true,
+        automaticallyImplyLeading:
+            (GetStorage().read('isBackToHomeLangPage') == '' ||
+                    GetStorage().read('isBackToHomeLangPage') == null)
+                ? false
+                : true,
         centerTitle: false,
       ),
       body: WillPopScope(
         onWillPop: () {
-          if (GetStorage().read('isBackToHomeLangPage') == '' || GetStorage().read('isBackToHomeLangPage') == null) {
+          if (GetStorage().read('isBackToHomeLangPage') == '' ||
+              GetStorage().read('isBackToHomeLangPage') == null) {
             DateTime now = DateTime.now();
-            if (currentBackPressTime == null || now.difference(currentBackPressTime) > const Duration(seconds: 2)) {
+            if (now.difference(currentBackPressTime) >
+                const Duration(seconds: 2)) {
               currentBackPressTime = now;
               Fluttertoast.showToast(msg: "Tap again to exit an app.");
               return Future.value(false);
@@ -65,9 +76,9 @@ class LanguageView extends GetView {
               ),
               commonService.labelData.value.data.selectLanguage.text
                   .textStyle(
-                    Get.textTheme.headline1.copyWith(
+                    headline1().copyWith(
                       color: Get.theme.indicatorColor,
-                      fontSize: 35,
+                      fontSize: 30,
                     ),
                   )
                   .shadow(1, 1, 5, Get.theme.highlightColor)
@@ -75,7 +86,7 @@ class LanguageView extends GetView {
                   .pOnly(bottom: 10),
               commonService.labelData.value.data.selectLangDesc.text
                   .textStyle(
-                    Get.textTheme.bodyText1.copyWith(
+                    bodyText1.copyWith(
                       color: Get.theme.indicatorColor.withOpacity(0.5),
                       fontSize: 18,
                     ),
@@ -93,7 +104,7 @@ class LanguageView extends GetView {
                   categoryTypeController.fetchTrailsData();
                   detailController.getOfflineLocationsData();
                   nearByController.getNearByData();
-                  // commonService.firstTime=false;
+                  controller.updateIndex();
                   if (GetStorage().read('user_type') != "U") {
                     Get.toNamed('/emp_dashboard');
                     guestController.page = 1;
@@ -104,12 +115,11 @@ class LanguageView extends GetView {
                   } else {
                     Get.toNamed('/dashboard');
                     await dashboardController.fetchBeaconData();
-                    dashboardController.initBeaconService();
                   }
                 },
                 child: Container(
                   width: Get.width * 0.4,
-                  height: 70,
+                  height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     gradient: LinearGradient(
@@ -125,7 +135,7 @@ class LanguageView extends GetView {
                   child: "ਪੰਜਾਬੀ"
                       .text
                       .textStyle(
-                        Get.textTheme.headline3.copyWith(
+                        headline4().copyWith(
                           color: Get.theme.highlightColor,
                         ),
                       )
@@ -141,7 +151,7 @@ class LanguageView extends GetView {
                   categoryTypeController.fetchTrailsData();
                   detailController.getOfflineLocationsData();
                   nearByController.getNearByData();
-                  // commonService.firstTime=false;
+                  controller.updateIndex();
 
                   if (GetStorage().read('user_type') != "U") {
                     Get.toNamed('/emp_dashboard');
@@ -153,12 +163,11 @@ class LanguageView extends GetView {
                   } else {
                     Get.toNamed('/dashboard');
                     await dashboardController.fetchBeaconData();
-                    dashboardController.initBeaconService();
                   }
                 },
                 child: Container(
                   width: Get.width * 0.4,
-                  height: 70,
+                  height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     gradient: LinearGradient(
@@ -174,7 +183,7 @@ class LanguageView extends GetView {
                   child: "हिन्दी"
                       .text
                       .textStyle(
-                        Get.textTheme.headline3.copyWith(
+                        headline4().copyWith(
                           color: Get.theme.highlightColor,
                         ),
                       )
@@ -190,7 +199,7 @@ class LanguageView extends GetView {
                   categoryTypeController.fetchTrailsData();
                   detailController.getOfflineLocationsData();
                   nearByController.getNearByData();
-                  // commonService.firstTime=false;
+                  controller.updateIndex();
 
                   if (GetStorage().read('user_type') != "U") {
                     Get.toNamed('/emp_dashboard');
@@ -202,12 +211,11 @@ class LanguageView extends GetView {
                   } else {
                     Get.toNamed('/dashboard');
                     await dashboardController.fetchBeaconData();
-                    dashboardController.initBeaconService();
                   }
                 },
                 child: Container(
                   width: Get.width * 0.4,
-                  height: 70,
+                  height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     gradient: LinearGradient(
@@ -223,7 +231,7 @@ class LanguageView extends GetView {
                   child: "English"
                       .text
                       .textStyle(
-                        Get.textTheme.headline3.copyWith(
+                        headline4().copyWith(
                           color: Get.theme.highlightColor,
                         ),
                       )

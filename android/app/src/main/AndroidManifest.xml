@@ -6,6 +6,7 @@
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
     <!-- Request legacy Bluetooth permissions on older devices. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <!--BLUETOOTH PERMISSION-->
     <!-- Request legacy Bluetooth permissions on older devices. -->
@@ -29,9 +30,7 @@
             <action android:name="android.speech.RecognitionService" />
         </intent>
     </queries>
-    <queries>
-        <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
-    </queries>
+
 	<application
         android:name="${applicationName}"
         android:label="Bhagat Singh Museum"
@@ -115,27 +114,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="vek"
+                <data android:scheme="bsm"
                     android:host=""/>
             </intent-filter>
         </activity>
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-    android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-          <activity android:name="com.facebook.FacebookActivity"
-          android:configChanges=
-                    "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-          android:label="@string/app_name" />
-
-          <activity
-          android:name="com.facebook.CustomTabActivity">
-          <intent-filter>
-               <action android:name="android.intent.action.VIEW" />
-               <category android:name="android.intent.category.DEFAULT" />
-               <category android:name="android.intent.category.BROWSABLE" />
-               <data android:scheme="@string/fb_login_protocol_scheme" />
-          </intent-filter>
-          </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

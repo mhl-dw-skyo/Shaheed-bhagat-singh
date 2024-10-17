@@ -12,8 +12,8 @@ import 'package:http/http.dart' as http;
 class CategoryTypeController extends GetxController with GetTickerProviderStateMixin {
   ScrollController scrollController = ScrollController();
   ScrollController listViewScrollController = ScrollController();
-  ItemScrollController itemScrollController;
-  ItemPositionsListener itemPositionsListener;
+  late ItemScrollController itemScrollController;
+  late ItemPositionsListener itemPositionsListener;
   CommonService commonService = Get.find();
   var buttonLoader = false.obs;
   var loader = false.obs;
@@ -21,7 +21,7 @@ class CategoryTypeController extends GetxController with GetTickerProviderStateM
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
 
   final List<StreamSubscription> audioSubscriptions = [];
-  TabController tabController;
+  late TabController tabController;
   var isBufferingStream = false.obs;
   @override
   Future<void> onInit() async {

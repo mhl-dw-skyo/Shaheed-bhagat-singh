@@ -13,7 +13,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:punjab_tourism/models/label_model.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:punjab_tourism/controllers/permmisions_controller.dart';
+import 'package:punjab_tourism/utils.dart';
+import 'package:punjab_tourism/views/permissions_widget.dart';
 
 import '../core.dart';
 
@@ -28,63 +31,58 @@ class DashboardController extends GetxController {
   var message = "".obs;
   var skipFirstTimeSteamData = true.obs;
   List<Beacon> beaconsJsonData = [];
-  final StreamController<BluetoothState> streamController = StreamController();
-  StreamSubscription<BluetoothState> _streamBluetooth;
-  StreamSubscription<RangingResult> _streamRanging;
+  StreamController<BluetoothState> streamController = StreamController();
+  StreamSubscription<BluetoothState>? _streamBluetooth;
+  StreamSubscription<RangingResult>? _streamRanging;
   bool authorizationStatusOk = false;
   bool locationServiceEnabled = false;
   bool bluetoothEnabled = false;
   var catId = 0.obs;
   final _beacons = <Beacon>[];
   final GlobalKey<FormState> complaintFormKey = GlobalKey<FormState>();
+
   @override
   Future<void> onInit() async {
     super.onInit();
-
-  }
-  @override
-  void onReady() {
-    super.onReady();
-
   }
 
-  startWelcomeSound(){
-
-    // print(GetStorage().read('welcomeAudioPlayed'));
-    // if (GetStorage().read('welcomeAudioPlayed') == null ||
-    //     GetStorage().read('welcomeAudioPlayed') == '') {
-      Helper.playWelcomeSound();
-    // }
+  Future<bool> permissionGranted() async {
+    var location = await Permission.location.isGranted;
+    var btConnect = await Permission.bluetoothConnect.isGranted;
+    var ble = await Permission.bluetooth.isGranted;
+    if (Platform.isAndroid)
+      return location && btConnect;
+    else
+      return location && ble;
   }
+
   initBeaconService() async {
-    // if (BluetoothState.stateOff.value == "STATE_OFF") {
-    //   if (Platform.isAndroid) {
-    //     try {
-    //       await flutterBeacon.openBluetoothSettings;
-    //     } on PlatformException catch (e) {
-    //       print("Bluetooth Error: $e");
-    //     }
-    //   }
-    // }
-    print("3333333333");
-    try {
-      _streamBluetooth = flutterBeacon.bluetoothStateChanged().listen((BluetoothState state) async {
-        print("stateddd $state");
-        streamController.add(state);
-        switch (state.value) {
-          case 'STATE_ON':
-            print("Bluetooth On");
-            initScanBeacon();
-            break;
-          case 'STATE_OFF':
-            print("Bluetooth Off");
-            await pauseScanBeacon();
-            await checkAllRequirements();
-            break;
-        }
-      });
-    } catch (e) {
-      print("Exception $e");
+    var permissionsGranted = await permissionGranted();
+    if (!permissionsGranted) {
+      Get.put(PermissionsController());
+      await Get.dialog(PermissionsWidget());
+      initBeaconService();
+    } else {
+      try {
+        var enabled = await flutterBeacon.bluetoothState;
+        streamController.add(enabled);
+        _streamBluetooth = flutterBeacon
+            .bluetoothStateChanged()
+            .listen((BluetoothState state) async {
+          streamController.add(state);
+          switch (state.value) {
+            case 'STATE_ON':
+              print("Bluetooth On");
+              initScanBeacon();
+              break;
+            case 'STATE_OFF':
+              print("Bluetooth Off");
+              await pauseScanBeacon();
+              await checkAllRequirements();
+              break;
+          }
+        });
+      } catch (e) {}
     }
   }
 
@@ -99,17 +97,14 @@ class DashboardController extends GetxController {
     final bluetoothState = await flutterBeacon.bluetoothState;
     final bluetoothEnabled = bluetoothState == BluetoothState.stateOn;
     await flutterBeacon.authorizationStatus.then((element) async {
-      final authorizationStatusOk = element.value == "ALLOWED" || element.value == "ALWAYS" || element.value == "WHEN_IN_USE";
-      final locationServiceEnabled = await flutterBeacon.checkLocationServicesIfEnabled;
-
-      // setState(() {
+      final authorizationStatusOk = element.value == "ALLOWED" ||
+          element.value == "ALWAYS" ||
+          element.value == "WHEN_IN_USE";
+      final locationServiceEnabled =
+          await flutterBeacon.checkLocationServicesIfEnabled;
       this.authorizationStatusOk = authorizationStatusOk;
       this.locationServiceEnabled = locationServiceEnabled;
       this.bluetoothEnabled = bluetoothEnabled;
-      print("this.authorizationStatusOk ${this.authorizationStatusOk}");
-      print("this.locationServiceEnabled ${this.locationServiceEnabled}");
-      print("this.bluetoothEnabled ${this.bluetoothEnabled}");
-      // });
     });
   }
 
@@ -123,16 +118,19 @@ class DashboardController extends GetxController {
       print("EXEPPPPPPP $e");
     }
     await checkAllRequirements();
-    print("$authorizationStatusOk -- $locationServiceEnabled -- $bluetoothEnabled");
-    if (!authorizationStatusOk || !locationServiceEnabled || !bluetoothEnabled) {
+    print(
+        "$authorizationStatusOk -- $locationServiceEnabled -- $bluetoothEnabled");
+    if (!authorizationStatusOk ||
+        !locationServiceEnabled ||
+        !bluetoothEnabled) {
       return;
     }
     List<Region> regions = [];
     if (Platform.isAndroid) {
       for (var item in commonService.macAddresses) {
         regions.add(Region(
-          identifier: item,
-          macAddress: item,
+          identifier: item, proximityUUID: item,
+          // macAddress: item,
         ));
       }
     } else {
@@ -144,22 +142,18 @@ class DashboardController extends GetxController {
       }
     }
 
-    if (_streamRanging != null) {
-      if (_streamRanging.isPaused) {
-        _streamRanging.resume();
-        return;
-      }
-    }
-
     if (regions.isNotEmpty) {
       List<Region> regionsList = regions;
       if (Platform.isAndroid) {
         regionsList = [regions.first];
       }
-      // print(regionsList);
-      _streamRanging = flutterBeacon.ranging(regionsList).listen((RangingResult result) async {
+      var regionsA =
+          Platform.isIOS ? regions : [Region(identifier: 'com.beacon')];
+      print(regionsList);
+      _streamRanging =
+          flutterBeacon.ranging(regionsA).listen((RangingResult result) async {
         // print("Entered");
-        // print(result);
+        print(result);
         if (result != null && result.beacons.isNotEmpty) {
           beaconsJsonData = result.beacons;
           beaconsJsonData?.sort((m1, m2) {
@@ -176,110 +170,109 @@ class DashboardController extends GetxController {
   }
 
   beaconExecutionAlgorithm() async {
-    if (beaconsJsonData.isNotEmpty) {
-      Beacon beaconItem = beaconsJsonData.first;
-      if (commonService.beaconsData.value.data.isNotEmpty) {
-        double deviceDistanceInMeter = 99999999999999;
-        if (beaconItem.rssi != 0) {
-          deviceDistanceInMeter = double.parse(pow(10, (((beaconItem.rssi).abs() - (-59).abs()) / (10 * 2))).toStringAsFixed(2).toString());
+    // Return early if no beacons found
+    if (beaconsJsonData.isEmpty) return;
+
+    Beacon beaconItem = beaconsJsonData.first;
+
+    // Return if there is no beacon data to compare
+    if (commonService.beaconsData.value.data.isEmpty) return;
+
+    // Skip if this UUID was already played
+    if (commonService.lastPlayedMacAddress.value == beaconItem.proximityUUID) {
+      return;
+    }
+
+    // Calculate distance if RSSI is available
+    double deviceDistanceInMeter = (beaconItem.rssi != 0)
+        ? double.parse(pow(10, (((beaconItem.rssi).abs() - 59) / (10 * 2)))
+            .toStringAsFixed(2))
+        : 99999999999999;
+
+    // Find if device is in range
+    int deviceInOurRangeIndex = commonService.beaconsData.value.data.indexWhere(
+        (element) =>
+            element.uuid.toLowerCase() ==
+                beaconItem.proximityUUID.toString().toLowerCase() &&
+            (element.startRange <= deviceDistanceInMeter &&
+                deviceDistanceInMeter <= element.endRange));
+
+    // Return if no beacon is found within range
+    if (deviceInOurRangeIndex == -1) return;
+
+    // Get the beacon item object
+    BeaconItem beaconItemObj =
+        commonService.beaconsData.value.data[deviceInOurRangeIndex];
+
+    // Stop everything and exit if the action is '2'
+    if (beaconItemObj.action == '2') {
+      commonService.inMuseum.value = false;
+      commonService.inMuseum.refresh();
+      AssetsAudioPlayer.allPlayers().forEach((_, player) {
+        player.stop();
+      });
+      commonService.assetsAudioPlayer.value.dispose();
+      commonService.assetsAudioPlayer.value = AssetsAudioPlayer();
+      commonService.sameCategoryBeacons
+          .clear(); // Clear instead of reassigning empty array
+      commonService.sameCategoryBeacons.refresh();
+      commonService.lastPlayedMacAddress.value = '';
+      commonService.lastPlayedMacAddress.refresh();
+      return;
+    }
+
+    // Update inMuseum status
+    commonService.inMuseum.value = true;
+    commonService.inMuseum.refresh();
+
+    // Handle for Android (can be expanded for iOS)
+    if (commonService.lastPlayedMacAddress.value != beaconItemObj.uuid) {
+      commonService.selectedBeacon.value = beaconItemObj;
+      commonService.selectedBeacon.refresh();
+
+      if (commonService.selectedFileType.value == "V") {
+        if (!commonService.isPopSVPopupOpen.value) {
+          Helper.skipVideoConfirmation(beaconItemObj.locationId);
         }
-        int deviceInOurRangeIndex = -1;
-        if (Platform.isAndroid) {
-          deviceInOurRangeIndex = commonService.beaconsData.value.data.indexWhere((element) {
-            return (element.macAddress.toLowerCase() == beaconItem.macAddress.toString().toLowerCase()) && (element.startRange <= deviceDistanceInMeter && deviceDistanceInMeter <= element.endRange);
-          });
-          //print("111MacAddress : ${beaconItem.macAddress} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter");
+        commonService.isPopSVPopupOpen.value = true;
+        commonService.isPopSVPopupOpen.refresh();
+      } else {
+        if (Get.currentRoute != "/detail") {
+          DetailController detailController = Get.find();
+          detailController.getLocationDetailData(beaconItemObj.locationId);
+          Get.toNamed('/detail');
         } else {
-          deviceInOurRangeIndex = commonService.beaconsData.value.data.indexWhere((element) {
-            return (element.uuid.toLowerCase() == beaconItem.proximityUUID.toString().toLowerCase()) && (element.startRange <= deviceDistanceInMeter && deviceDistanceInMeter <= element.endRange);
-          });
-          //print("proximityUUID : ${beaconItem.proximityUUID} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter");
+          Get.back();
+          DetailController detailController = Get.find();
+          detailController.getLocationDetailData(beaconItemObj.locationId);
+          Get.toNamed('/detail');
         }
+      }
+      // Update category ID
+      catId.value = beaconItemObj.type;
+    }
 
-        if (deviceInOurRangeIndex > -1) {
-          BeaconItem beaconItemObj = commonService.beaconsData.value.data.elementAt(deviceInOurRangeIndex);
-          if (Platform.isAndroid) {
-            print("Detected 111MacAddress : ${beaconItem.macAddress} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter");
-          } else {
-            print("Detected 111proximityUUID : ${beaconItem.proximityUUID} --- RSSI : ${beaconItem.rssi} --- Distance : $deviceDistanceInMeter --- ${beaconItemObj.startRange}:${beaconItemObj.endRange}");
-          }
-          if (beaconItemObj.action == '2') {
-            commonService.inMuseum.value = false;
-            commonService.inMuseum.refresh();
-            AssetsAudioPlayer.allPlayers().forEach((key, value) {
-              //value.stop();
-            });
-            commonService.assetsAudioPlayer.value.dispose();
-            commonService.assetsAudioPlayer.value = AssetsAudioPlayer();
-            commonService.sameCategoryBeacons.value = [];
-            commonService.sameCategoryBeacons.refresh();
-            commonService.lastPlayedMacAddress.value = '';
-            commonService.lastPlayedMacAddress.refresh();
-            return;
-          } else {
-            commonService.inMuseum.value = true;
-            commonService.inMuseum.refresh();
-            if (Platform.isAndroid) {
-              if (commonService.lastPlayedMacAddress.value != beaconItemObj.macAddress) {
-                commonService.selectedBeacon.value = beaconItemObj;
-                commonService.selectedBeacon.refresh();
-                if (commonService.selectedFileType.value == "V") {
-                  print("Sarita ${beaconItemObj.locationId}");
-                  if (!commonService.isPopSVPopupOpen.value) {
-                    Helper.skipVideoConfirmation(beaconItemObj.locationId);
-                  }
-                  commonService.isPopSVPopupOpen.value = true;
-                  commonService.isPopSVPopupOpen.refresh();
-                } else {
-                  DetailController detailController = Get.find();
-                  detailController.getLocationDetailData(beaconItemObj.locationId);
-                  if (Get.currentRoute != "/detail") {
-                    Get.toNamed('/detail');
-                  }
-                }
-                catId.value = beaconItemObj.type;
-              }
-            } else {
-              if (commonService.lastPlayedMacAddress.value != beaconItemObj.uuid) {
-                commonService.selectedBeacon.value = beaconItemObj;
-                commonService.selectedBeacon.refresh();
-                if (commonService.selectedFileType.value == "V") {
-                  if (!commonService.isPopSVPopupOpen.value) {
-                    Helper.skipVideoConfirmation(beaconItemObj.locationId);
-                  }
-                  commonService.isPopSVPopupOpen.value = true;
-                  commonService.isPopSVPopupOpen.refresh();
-                } else {
-                  DetailController detailController = Get.find();
-                  detailController.getLocationDetailData(beaconItemObj.locationId);
-                  if (Get.currentRoute != "/detail") {
-                    Get.toNamed('/detail');
-                  }
-                }
-                catId.value = beaconItemObj.type;
-              }
-            }
-
-            for (var element in commonService.beaconsData.value.data) {
-              if (element.type == beaconItemObj.type && element.locationId > 0) {
-                int sameTypeBeaconIndex = commonService.sameCategoryBeacons.indexWhere((ele) => ele.locationId == element.locationId);
-                if (sameTypeBeaconIndex == -1) {
-                  commonService.sameCategoryBeacons.add(element);
-                  commonService.sameCategoryBeacons.refresh();
-                }
-              }
-            }
-          }
-          commonService.lastPlayedMacAddress.value = Platform.isAndroid ? beaconItemObj.macAddress : beaconItemObj.uuid;
-          commonService.lastPlayedMacAddress.refresh();
+    // Update beacons of the same category
+    for (var element in commonService.beaconsData.value.data) {
+      if (element.type == beaconItemObj.type && element.locationId > 0) {
+        int sameTypeBeaconIndex = commonService.sameCategoryBeacons
+            .indexWhere((ele) => ele.locationId == element.locationId);
+        if (sameTypeBeaconIndex == -1) {
+          commonService.sameCategoryBeacons.add(element);
+          commonService.sameCategoryBeacons.refresh();
         }
       }
     }
+
+    // Update last played UUID
+    commonService.lastPlayedMacAddress.value = beaconItemObj.uuid;
+    commonService.lastPlayedMacAddress.refresh();
   }
 
   Future<void> fetchEmpDashboardData() async {
     String file = "dashboard.json";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+    if (GetStorage().read('language_id') != '' ||
+        GetStorage().read('language_id') != null) {
       switch (GetStorage().read('language_id')) {
         case 1:
           file = "dashboard.json";
@@ -293,7 +286,8 @@ class DashboardController extends GetxController {
       }
     }
     try {
-      final String data = await rootBundle.loadString('assets/data_files/$file');
+      final String data =
+          await rootBundle.loadString('assets/data_files/$file');
       var response = jsonDecode(data);
       if (response['status']) {
         commonService.dashboardData.value = DashboardModel.fromJSON(response);
@@ -306,7 +300,8 @@ class DashboardController extends GetxController {
 
   Future<void> fetchDashboardData() async {
     String file = "dashboard.json";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+    if (GetStorage().read('language_id') != '' ||
+        GetStorage().read('language_id') != null) {
       switch (GetStorage().read('language_id')) {
         case 1:
           file = "dashboard.json";
@@ -320,7 +315,8 @@ class DashboardController extends GetxController {
       }
     }
     try {
-      final String data = await rootBundle.loadString('assets/data_files/$file');
+      final String data =
+          await rootBundle.loadString('assets/data_files/$file');
       var response = jsonDecode(data);
       if (response['status']) {
         commonService.dashboardData.value = DashboardModel.fromJSON(response);
@@ -333,7 +329,8 @@ class DashboardController extends GetxController {
 
   Future<void> fetchLabelData() async {
     String file = "label.json";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+    if (GetStorage().read('language_id') != '' ||
+        GetStorage().read('language_id') != null) {
       switch (GetStorage().read('language_id')) {
         case 1:
           file = "label.json";
@@ -347,7 +344,8 @@ class DashboardController extends GetxController {
       }
     }
     try {
-      final String data = await rootBundle.loadString('assets/data_files/$file');
+      final String data =
+          await rootBundle.loadString('assets/data_files/$file');
       var response = jsonDecode(data);
       if (response['status']) {
         commonService.labelData.value = LabelModel.fromJSON(response);
@@ -360,25 +358,29 @@ class DashboardController extends GetxController {
 
   Future<void> fetchBeaconData() async {
     String file = "beacon.json";
-    String folderName = "english";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+    // String folderName = "english";
+    String folderName = "hindi";
+
+    if (GetStorage().read('language_id') != '' ||
+        GetStorage().read('language_id') != null) {
       switch (GetStorage().read('language_id')) {
-        case 1:
-          file = "beacon.json";
-          folderName = "english";
-          break;
-        case 2:
-          file = "beacon_hi.json";
-          folderName = "hindi";
-          break;
-        case 3:
-          file = "beacon_pu.json";
-          folderName = "punjabi";
-          break;
+        // case 1:
+        //   file = "beacon.json";
+        //   folderName = "english";
+        //   break;
+        // case 2:
+        //   file = "beacon_hi.json";
+        //   folderName = "hindi";
+        //   break;
+        // case 3:
+        //   file = "beacon_pu.json";
+        //   folderName = "punjabi";
+        //   break;
       }
     }
     try {
-      final String data = await rootBundle.loadString('assets/data_files/$file');
+      final String data =
+          await rootBundle.loadString('assets/data_files/$file');
       var response = jsonDecode(data);
       if (response['status'] == 200) {
         commonService.soundFiles.value = [];
@@ -386,10 +388,13 @@ class DashboardController extends GetxController {
         commonService.beaconsData.value = BeaconModel.fromJSON(response);
         commonService.beaconsData.refresh();
         for (var element in commonService.beaconsData.value.data) {
-          if (!commonService.soundFiles.contains(element.soundFile) && element.soundFile.isNotEmpty && element.id > 10) {
+          if (!commonService.soundFiles.contains(element.soundFile) &&
+              element.soundFile.isNotEmpty &&
+              element.id > 10) {
             commonService.soundFiles.add(element.soundFile);
           }
-          if (!commonService.macAddresses.contains(element.macAddress) && element.macAddress.length == 17) {
+          if (!commonService.macAddresses.contains(element.macAddress) &&
+              element.macAddress.length == 17) {
             commonService.macAddresses.add(element.macAddress);
           }
           if (!commonService.uuid.contains(element.uuid)) {
@@ -399,13 +404,13 @@ class DashboardController extends GetxController {
         commonService.soundFiles.refresh();
         commonService.macAddresses.refresh();
         commonService.uuid.refresh();
-        Directory appDocDir;
+        Directory? appDocDir;
         if (Platform.isAndroid) {
           appDocDir = await getExternalStorageDirectory();
         } else {
           appDocDir = await getApplicationDocumentsDirectory();
         }
-        String outputDirectory = '${appDocDir.path}/$folderName';
+        String outputDirectory = '${appDocDir?.path}/$folderName';
         await Directory(outputDirectory).create(recursive: true);
         Helper.downloadAudios(folderName);
       }
@@ -420,10 +425,10 @@ class DashboardController extends GetxController {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        "Inside Virasat e khalsa"
+        "Inside Bhagat Singh Museum"
             .text
             .textStyle(
-              Get.textTheme.headline2.copyWith(
+              headline2().copyWith(
                 color: Get.theme.indicatorColor.withOpacity(0.5),
               ),
             )
@@ -440,9 +445,11 @@ class DashboardController extends GetxController {
               shrinkWrap: true,
               itemCount: 5,
               itemBuilder: (context, index) {
-                LocationModel locationModel = LocationModel(image: 'assets/images/1.jpg');
+                LocationModel locationModel =
+                    LocationModel(image: 'assets/images/1.jpg');
                 return SmallLocationViewWidget(
                   data: locationModel,
+                  onTap: (int) {},
                 );
               }),
         ).pSymmetric(h: 20)
@@ -471,7 +478,7 @@ class DashboardController extends GetxController {
     } else {
       Fluttertoast.showToast(
         msg: response['message'],
-        backgroundColor: Get.theme.errorColor,
+        backgroundColor: errorColor,
         gravity: ToastGravity.TOP,
       );
     }

@@ -5,7 +5,6 @@ import 'dart:math';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -15,18 +14,27 @@ import 'package:get_storage/get_storage.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:punjab_tourism/utils.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../core.dart';
 
 class Helper {
-  BuildContext context;
-  DateTime currentBackPressTime;
+  BuildContext? context;
+  DateTime? currentBackPressTime;
   Helper.of(BuildContext _context) {
     context = _context;
   }
+  static bool isPhoneNumber(String s) {
+    // Regular expression for validating Indian phone numbers
+    // The pattern allows optional country code (+91), and ensures the number has exactly 10 digits
+    final pattern = r'^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$';
 
+    // Check if the string matches the pattern
+    return RegExp(pattern).hasMatch(s);
+  }
   static String truncateString(int cutoff, String myString) {
     return (myString.length <= cutoff)
         ? myString
@@ -175,7 +183,7 @@ class Helper {
     }
   }
 
-  static String convertUrlToId(String url, {bool trimWhitespaces = true}) {
+  static String? convertUrlToId(String url, {bool trimWhitespaces = true}) {
     assert(url?.isNotEmpty ?? false, 'Url cannot be empty');
     if (!url.contains("http") && (url.length == 11)) return url;
     if (trimWhitespaces) url = url.trim();
@@ -187,7 +195,7 @@ class Helper {
           r"^https:\/\/(?:www\.|m\.)?youtube(?:-nocookie)?\.com\/embed\/([_\-a-zA-Z0-9]{11}).*$"),
       RegExp(r"^https:\/\/youtu\.be\/([_\-a-zA-Z0-9]{11}).*$")
     ]) {
-      Match match = exp.firstMatch(url);
+      Match? match = exp.firstMatch(url);
       if (match != null && match.groupCount >= 1) return match.group(1);
     }
 
@@ -265,7 +273,7 @@ class Helper {
         isDismissible: true,
         isScrollControlled: true,
         barrierColor: Colors.black.withOpacity(0.9),
-        context: Get.context,
+        context: Get.context!,
         builder: (BuildContext context) {
           return StatefulBuilder(builder: (BuildContext context,
               StateSetter setState /*You can rename this!*/) {
@@ -936,7 +944,7 @@ class Helper {
                                                     .locationId;
                                                 DetailController
                                                     detailController =
-                                                    Get.find();
+                                                Get.put(DetailController());
                                                 detailController
                                                     .getLocationDetailData(
                                                         locationId);
@@ -1024,13 +1032,13 @@ class Helper {
       CommonService commonService, String folderName) async {
     if (commonService.soundFiles.isNotEmpty) {
       try {
-        Directory appDocDir;
+        Directory? appDocDir;
         if (Platform.isAndroid) {
           appDocDir = await getExternalStorageDirectory();
         } else {
           appDocDir = await getApplicationDocumentsDirectory();
         }
-        String outputDirectory = '${appDocDir.path}/$folderName';
+        String outputDirectory = '${appDocDir?.path}/$folderName';
         String fileName = commonService.soundFiles.elementAt(0).split('/').last;
         print(File("$outputDirectory/$fileName").existsSync());
         if (!File("$outputDirectory/$fileName").existsSync()) {
@@ -1076,10 +1084,10 @@ class Helper {
         '#ff6666', 'Cancel', true, ScanMode.BARCODE);
     print(barcodeScanRes);
     if (barcodeScanRes.isNotEmpty) {
-      PendingDynamicLinkData initialLink = await FirebaseDynamicLinks.instance
+      var initialLink = await FirebaseDynamicLinks.instance
           .getDynamicLink(Uri.parse(barcodeScanRes));
       print(initialLink);
-      var locId = initialLink.link.queryParameters['loc_id'];
+      var locId = initialLink?.link.queryParameters['loc_id'];
       print(locId);
       if (locId.toString().isNotEmpty) {
         DetailController detailController = Get.find();
@@ -1115,28 +1123,12 @@ class Helper {
   }
 
   static playWelcomeSound() async {
-    String file = "welcome.mp3";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
-      switch (GetStorage().read('language_id')) {
-        case 1:
-          file = "welcome_en.mp3";
-          break;
-        case 2:
-          file = "welcome_hi.mp3";
-          break;
-        case 3:
-          file = "welcome.mp3";
-          break;
-      }
-    }
-
     AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
-    AssetsAudioPlayer.allPlayers().forEach((key, value) {value.stop();});
     await assetsAudioPlayer.open(
-      Audio('data/assets/audios/$file'),
+      Audio('data/assets/audios/welcome.mp3'),
       showNotification: true,
       autoStart: true,
-      playInBackground: PlayInBackground.disabledRestoreOnForeground,
+      playInBackground: PlayInBackground.enabled,
     );
     await GetStorage().write('welcomeAudioPlayed', 1);
   }
@@ -1145,9 +1137,9 @@ class Helper {
     CommonService commonService = Get.find();
     AwesomeDialog(
       dialogBackgroundColor: Get.theme.colorScheme.primary,
-      context: Get.context,
-      animType: AnimType.SCALE,
-      dialogType: DialogType.QUESTION,
+      context: Get.context!,
+      animType: AnimType.scale,
+      dialogType: DialogType.question,
       body: Padding(
         padding: const EdgeInsets.only(bottom: 10, left: 5, right: 5),
         child: Column(
@@ -1155,13 +1147,13 @@ class Helper {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             commonService.labelData.value.data.deleteAccount.text.center
-                .textStyle(Get.textTheme.headline1
+                .textStyle(headline1()
                     .copyWith(color: Get.theme.highlightColor, fontSize: 25))
                 .make()
                 .centered()
                 .pOnly(bottom: 10),
             commonService.labelData.value.data.deleteAccountDesc.text.center
-                .textStyle(Get.textTheme.bodyText1
+                .textStyle(bodyText1
                     .copyWith(color: Get.theme.highlightColor))
                 .make()
                 .centered()
@@ -1230,9 +1222,9 @@ class Helper {
     CommonService commonService = Get.find();
     AwesomeDialog(
       dialogBackgroundColor: Get.theme.primaryColorDark,
-      context: Get.context,
-      animType: AnimType.SCALE,
-      dialogType: DialogType.QUESTION,
+      context: Get.context!,
+      animType: AnimType.scale,
+      dialogType: DialogType.question,
       body: Padding(
         padding: const EdgeInsets.only(bottom: 10, left: 5, right: 5),
         child: Column(
@@ -1240,13 +1232,13 @@ class Helper {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             commonService.labelData.value.data.signOut.text.center
-                .textStyle(Get.textTheme.headline1
+                .textStyle(headline1()
                     .copyWith(color: Get.theme.indicatorColor, fontSize: 25))
                 .make()
                 .centered()
                 .pOnly(bottom: 10),
             commonService.labelData.value.data.logoutMsg.text.center
-                .textStyle(Get.textTheme.bodyText1
+                .textStyle(bodyText1
                     .copyWith(color: Get.theme.indicatorColor))
                 .make()
                 .centered()
@@ -1259,7 +1251,7 @@ class Helper {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Get.theme.errorColor,
+                        color: errorColor,
                       ),
                       child: commonService.labelData.value.data.cancel.text
                           .size(18)
@@ -1307,9 +1299,9 @@ class Helper {
     CommonService commonService = Get.find();
     AwesomeDialog(
       dialogBackgroundColor: Get.theme.primaryColorDark,
-      context: Get.context,
-      animType: AnimType.SCALE,
-      dialogType: DialogType.QUESTION,
+      context: Get.context!,
+      animType: AnimType.scale,
+      dialogType: DialogType.question,
       body: Padding(
         padding: const EdgeInsets.only(bottom: 10, left: 5, right: 5),
         child: Column(
@@ -1317,7 +1309,7 @@ class Helper {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             commonService.labelData.value.data.skipVideo.text.center
-                .textStyle(Get.textTheme.headline3
+                .textStyle(headline3()
                     .copyWith(color: Get.theme.indicatorColor, fontSize: 25))
                 .make()
                 .centered()
@@ -1334,7 +1326,7 @@ class Helper {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Get.theme.errorColor,
+                        color: errorColor,
                       ),
                       child: commonService.labelData.value.data.cancel.text
                           .size(18)
@@ -1414,9 +1406,9 @@ class Helper {
   static alertDialog(String title, String msg) {
     AwesomeDialog(
       dialogBackgroundColor: Get.theme.colorScheme.secondary,
-      context: Get.context,
-      animType: AnimType.SCALE,
-      dialogType: DialogType.WARNING,
+      context: Get.context!,
+      animType: AnimType.scale,
+      dialogType: DialogType.warning,
       body: Padding(
         padding: const EdgeInsets.only(bottom: 10, left: 5, right: 5),
         child: Column(
@@ -1424,7 +1416,7 @@ class Helper {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             title.text.center
-                .textStyle(Get.textTheme.headline1
+                .textStyle(headline1()
                     .copyWith(color: Get.theme.highlightColor, fontSize: 25))
                 .make()
                 .centered()
@@ -1433,7 +1425,7 @@ class Helper {
                 .toString()
                 .text
                 .center
-                .textStyle(Get.textTheme.bodyText1
+                .textStyle(bodyText1
                     .copyWith(color: Get.theme.highlightColor))
                 .make()
                 .centered()
@@ -1479,10 +1471,10 @@ class Helper {
   static Future<void> logout() async {
     CommonService commonService = Get.find();
     AuthService authService = Get.find();
-    GetStorage().remove('token');
-    GetStorage().remove('username');
-    GetStorage().remove('fcm_token');
-    GetStorage().remove('user_type');
+    await GetStorage().remove('token');
+    await GetStorage().remove('username');
+    // await GetStorage().remove('fcm_token');
+    await GetStorage().remove('user_type');
     commonService.guestInformationData.value = GuestModel();
     commonService.guestInformationData.refresh();
     commonService.guestData.value = GuestItem();
@@ -1506,6 +1498,8 @@ class Helper {
         return Color(int.parse("0xFF" + colorCode));
       } else if (colorCode.length == 8) {
         return Color(int.parse("0x" + colorCode));
+      } else {
+        return const Color(0xFFCCCCCC).withOpacity(1);
       }
     } catch (e) {
       return const Color(0xFFCCCCCC).withOpacity(1);
@@ -1537,7 +1531,7 @@ class Helper {
           "Please wait. Loading..."
               .text
               .minFontSize(5)
-              .textStyle(Get.textTheme.bodyText2
+              .textStyle(bodyText2
                   .copyWith(fontSize: 16, color: Get.theme.indicatorColor))
               .make(),
           const SizedBox(
@@ -1616,7 +1610,7 @@ class Helper {
     }
   }
 
-  static onBottomBarClick(GuestController guestController, int index) async {
+  static onBottomBarClick(GuestController? guestController, int index) async {
     if (index == 0) {
       launchUrlString("tel://01887232592");
     }
@@ -1626,30 +1620,30 @@ class Helper {
           Helper.openDialPad();
           break;
         case 2:
-          Get.toNamed('/nearby');
-          break;
-        case 3:
-          GuestController guestController = Get.find();
-          guestController.page = 1;
-          await guestController
-              .fetchGuestInformationHistory();
-          Get.toNamed('/guest-information');
+          Get.toNamed('/dashboard');
           break;
         case 4:
-          Get.toNamed('/dashboard');
+          GuestController guestController = Get.find();
+          guestController.page = 1;
+          await guestController.fetchGuestInformationHistory();
+          Get.toNamed('/guest-information');
+          break;
+        case 3:
+          Get.toNamed('/nearby');
           break;
       }
     } else {
       switch (index) {
         case 1:
-          String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-              '#ff6666', 'Cancel', true, ScanMode.BARCODE);
-          if (barcodeScanRes.isNotEmpty && guestController != null) {
-            guestController.scanQR(barcodeScanRes);
-          }
+          Get.toNamed('/emp_dashboard');
           break;
         case 2:
-          Get.toNamed('/emp_dashboard');
+          String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+              '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+
+          if (barcodeScanRes.isNotEmpty && barcodeScanRes != "-1" && guestController != null) {
+            guestController.scanQR(barcodeScanRes);
+          }
           break;
       }
     }

@@ -7,25 +7,31 @@ import 'package:http/http.dart' as http;
 import '../core.dart';
 
 class GuestApi extends GetConnect {
-  Future updateFCMToken(String token) async {
+  Future updateFCMToken(String fcmToken) async {
     print(GetStorage().read('token'));
-    Uri uri = Helper.getUri('EntryQrController/update_fcm');
-    Map<String, String> headers = {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': "Bearer ${GetStorage().read('token') ?? ''}",
-    };
-    print(jsonEncode({
-      'fcm_token': token,
-    }));
-    var response = await http.post(
-      uri,
-      headers: headers,
-      body: jsonEncode({
-        'fcm_token': token,
-      }),
-    );
-    print(response.body);
-    return jsonDecode(response.body);
+    if (GetStorage().read('token') != null &&
+        GetStorage().read('token') != "") {
+      Uri uri = Helper.getUri('EntryQrController/update_fcm');
+      Map<String, String> headers = {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': "Bearer ${GetStorage().read('token') ?? ''}",
+      };
+      print(jsonEncode({
+        'fcm_token': fcmToken,
+      }));
+      var response = await http.post(
+        uri,
+        headers: headers,
+        body: jsonEncode({
+          'fcm_token': fcmToken,
+        }),
+      );
+      print(response.body);
+      return jsonDecode(response.body);
+    }else {
+
+
+    }
   }
 
   Future saveGuestInformation(String name, String guests) async {
@@ -89,7 +95,10 @@ class GuestApi extends GetConnect {
     print(GetStorage().read('token'));
     Uri uri = Helper.getUri('EntryQrController/fetch_entry_qr_data');
 
-    Map<String, String> headers = {'Accept': 'application/json;', 'Content-Type': 'application/json;'};
+    Map<String, String> headers = {
+      'Accept': 'application/json;',
+      'Content-Type': 'application/json;'
+    };
     if (forUser) {
       headers['Authorization'] = "Bearer ${GetStorage().read('token') ?? ''}";
     }
@@ -99,7 +108,11 @@ class GuestApi extends GetConnect {
     });
     var response = await get(
       uri.toString(),
-      query: {'page': page.toString(), 'limit': limit.toString(), 'type': !forUser ? commonService.dateType.value : ''},
+      query: {
+        'page': page.toString(),
+        'limit': limit.toString(),
+        'type': !forUser ? commonService.dateType.value.toLowerCase() : ''
+      },
       headers: headers,
     );
     print(response.body);

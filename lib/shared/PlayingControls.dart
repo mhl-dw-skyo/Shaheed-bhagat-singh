@@ -13,14 +13,14 @@ class PlayingControls extends StatelessWidget {
   final Function() onStop;
 
   PlayingControls({
-    this.isPlaying,
+    required this.isPlaying,
     this.isPlaylist = false,
-    this.loopMode,
-    this.toggleLoop,
-    this.onPrevious,
-    this.onPlay,
-    this.onNext,
-    this.onStop,
+    required this.loopMode,
+    required this.toggleLoop,
+    required this.onPrevious,
+    required this.onPlay,
+    required this.onNext,
+    required this.onStop,
   });
 
   @override

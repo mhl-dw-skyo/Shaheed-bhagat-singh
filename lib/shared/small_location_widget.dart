@@ -7,9 +7,9 @@ class SmallLocationViewWidget extends StatelessWidget {
   final LocationModel data;
   final Function(int) onTap;
   const SmallLocationViewWidget({
-    Key key,
-    this.data,
-    this.onTap,
+     Key? key,
+    required this.data,
+    required this.onTap,
   }) : super(key: key);
 
   @override

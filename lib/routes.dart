@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:punjab_tourism/bindings/permission_binding.dart';
+import 'package:punjab_tourism/views/permissions_widget.dart';
 
 import 'core.dart';
 
@@ -50,13 +52,16 @@ class Router {
       binding: AuthBinding(),
     ),
     GetPage(
-      name: '/verify-otp',
-      page: () => VerifyOTPView(),
+      name: '/permissions',
+      page: () => PermissionsWidget(),
+      binding: PermissionBinding(),
+    ),
+    GetPage(
+      name: '/verify-otp', page: () => VerifyOTPView(),
       // binding: AuthBinding(),
     ),
     GetPage(
-      name: '/guest-information',
-      page: () => GuestInformationView(),
+      name: '/guest-information', page: () => GuestInformationView(),
       // binding: AuthBinding(),
     ),
     GetPage(
@@ -65,8 +70,7 @@ class Router {
       // binding: AuthBinding(),
     ),
     GetPage(
-      name: '/qr',
-      page: () => QRView(),
+      name: '/qr', page: () => QRView(),
       // binding: AuthBinding(),
     ),
     GetPage(

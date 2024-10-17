@@ -24,6 +24,8 @@ class LabelItem {
   String submit = '';
   String nameFieldValidation = '';
   String phoneFieldValidation = '';
+  String phoneInvalid = '';
+
   String titleFieldValidation = '';
   String messageFieldValidation = '';
   String login = '';
@@ -82,10 +84,14 @@ class LabelItem {
   String today = '';
   String weekly = '';
   String monthly = '';
+  String scanNextQr='';
+
   LabelItem();
   LabelItem.fromJSON(Map<String, dynamic> json) {
     punjabTourism = json["punjab_tourism"] ?? '';
     welcomeTo = json["welcome_to"] ?? '';
+    scanNextQr=json["scan_next_qr"] ?? '';
+
     virastEKhalsa = json["virast_e_khalsa"] ?? '';
     signOut = json["sign_out"] ?? '';
     logoutMsg = json["logout_msg"] ?? '';
@@ -99,6 +105,7 @@ class LabelItem {
     enterTitle = json["enter_title"] ?? '';
     enterMessage = json["enter_message"] ?? '';
     submit = json["submit"] ?? '';
+    phoneInvalid= json["phone_invalid"] ?? 'Enter a valid phone Number.';
     nameFieldValidation = json["name_field_validation"] ?? '';
     phoneFieldValidation = json["phone_field_validation"] ?? '';
     titleFieldValidation = json["title_field_validation"] ?? '';

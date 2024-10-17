@@ -7,12 +7,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:punjab_tourism/utils.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../core.dart';
 
 class GuestInformationView extends GetView<GuestController> {
-  GuestInformationView({Key key}) : super(key: key);
+  GuestInformationView({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
@@ -56,7 +57,7 @@ class GuestInformationView extends GetView<GuestController> {
             actions: [
               InkWell(
                 onTap: () {
-                  scaffoldDashboardKey.currentState.openEndDrawer();
+                  scaffoldDashboardKey.currentState?.openEndDrawer();
                 },
                 child: SvgPicture.asset(
                   "assets/images/menu.svg",
@@ -79,7 +80,7 @@ class GuestInformationView extends GetView<GuestController> {
                   commonService
                       .labelData.value.data.provideNecessaryInfo.text.center
                       .textStyle(
-                        Get.textTheme.headline1.copyWith(
+                        headline1().copyWith(
                           color: Get.theme.indicatorColor,
                           fontSize: 25,
                         ),
@@ -112,7 +113,7 @@ class GuestInformationView extends GetView<GuestController> {
                                   color: Get.theme.colorScheme.primary),
                             ),
                             errorStyle: const TextStyle(fontSize: 15),
-                            hintStyle: Get.theme.textTheme.bodyText1.copyWith(
+                            hintStyle: bodyText1.copyWith(
                                 color:
                                     Get.theme.indicatorColor.withOpacity(0.3)),
                             border: UnderlineInputBorder(
@@ -136,7 +137,7 @@ class GuestInformationView extends GetView<GuestController> {
                             errorBorder: UnderlineInputBorder(
                                 borderRadius: BorderRadius.circular(0),
                                 borderSide: BorderSide(
-                                    width: 1, color: Get.theme.errorColor)),
+                                    width: 1, color: errorColor)),
                             focusedErrorBorder: UnderlineInputBorder(
                                 borderRadius: BorderRadius.circular(0),
                                 borderSide: BorderSide(
@@ -148,16 +149,30 @@ class GuestInformationView extends GetView<GuestController> {
                       : SizedBox(),
                   TextFormField(
                     style: TextStyle(
-                        color: Get.theme.indicatorColor,
-                        fontWeight: FontWeight.w300),
+                      color: Get.theme.indicatorColor,
+                      fontWeight: FontWeight.w300,
+                    ),
                     keyboardType: TextInputType.number,
                     onChanged: (input) {
                       controller.guests.value = input;
                     },
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
+                      FilteringTextInputFormatter.digitsOnly,
                     ],
                     autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the number of guests'; // Error message for empty input
+                      }
+                      final int? number = int.tryParse(value);
+                      if (number == null || number <= 0) {
+                        return 'Please enter a valid number greater than zero'; // Error message for invalid number
+                      }
+                      if (number > 10) {
+                        return 'Number of guests cannot exceed 10'; // Error message for exceeding the limit
+                      }
+                      return null; // Return null if no validation errors
+                    },
                     decoration: InputDecoration(
                       hintText: commonService
                           .labelData.value.data.enterNumberOfGuests,
@@ -167,40 +182,51 @@ class GuestInformationView extends GetView<GuestController> {
                         widthFactor: 1,
                         heightFactor: 1,
                         alignment: Alignment.centerLeft,
-                        child: Icon(Icons.person,
-                            size: 20, color: Get.theme.colorScheme.primary),
+                        child: Icon(
+                          Icons.person,
+                          size: 20,
+                          color: Get.theme.colorScheme.primary,
+                        ),
                       ),
                       errorStyle: const TextStyle(fontSize: 15),
-                      hintStyle: Get.theme.textTheme.bodyText1.copyWith(
-                          color: Get.theme.indicatorColor.withOpacity(0.3)),
+                      hintStyle: Get.theme.textTheme.bodyLarge!.copyWith(
+                        color: Get.theme.indicatorColor.withOpacity(0.3),
+                      ),
                       border: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(0),
-                          borderSide: BorderSide(
-                              width: 1,
-                              color:
-                                  Get.theme.indicatorColor.withOpacity(0.5))),
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Get.theme.indicatorColor.withOpacity(0.5),
+                        ),
+                      ),
                       focusedBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(0),
-                          borderSide: BorderSide(
-                              width: 1,
-                              color:
-                                  Get.theme.indicatorColor.withOpacity(0.5))),
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Get.theme.indicatorColor.withOpacity(0.5),
+                        ),
+                      ),
                       enabledBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(0),
-                          borderSide: BorderSide(
-                              width: 1,
-                              color:
-                                  Get.theme.indicatorColor.withOpacity(0.5))),
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Get.theme.indicatorColor.withOpacity(0.5),
+                        ),
+                      ),
                       errorBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(0),
-                          borderSide: BorderSide(
-                              width: 1, color: Get.theme.errorColor)),
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Get.theme.colorScheme.error,
+                        ),
+                      ),
                       focusedErrorBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(0),
-                          borderSide: BorderSide(
-                              width: 1,
-                              color:
-                                  Get.theme.indicatorColor.withOpacity(0.5))),
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Get.theme.indicatorColor.withOpacity(0.5),
+                        ),
+                      ),
                     ),
                   ).pOnly(bottom: 30),
                   InkWell(
@@ -215,11 +241,18 @@ class GuestInformationView extends GetView<GuestController> {
                       }
                       if (controller.guests.value.isNotEmpty &&
                           controller.name.value.isNotEmpty) {
-                        controller.saveGuestInformation();
+                        if (int.parse(controller.guests.value) > 10) {
+                          Fluttertoast.showToast(
+                            msg: 'Number of guests cannot exceed 10',
+                            backgroundColor: Get.theme.colorScheme.error,
+                            gravity: ToastGravity.TOP,
+                          );
+                        } else
+                          controller.saveGuestInformation();
                       } else {
                         Fluttertoast.showToast(
                           msg: commonService.labelData.value.data.fillAboveInfo,
-                          backgroundColor: Get.theme.errorColor,
+                          backgroundColor: Get.theme.colorScheme.error,
                           gravity: ToastGravity.TOP,
                         );
                       }
@@ -239,7 +272,7 @@ class GuestInformationView extends GetView<GuestController> {
                       ),
                       child: commonService.labelData.value.data.submit.text
                           .textStyle(
-                            Get.textTheme.bodyLarge.copyWith(
+                            Get.textTheme.bodyLarge!.copyWith(
                               color: Get.theme.highlightColor,
                             ),
                           )
@@ -254,7 +287,7 @@ class GuestInformationView extends GetView<GuestController> {
                             commonService
                                 .labelData.value.data.history.text.center
                                 .textStyle(
-                                  Get.textTheme.headline4.copyWith(
+                                  headline4().copyWith(
                                     color: Get.theme.indicatorColor,
                                   ),
                                 )
@@ -262,7 +295,7 @@ class GuestInformationView extends GetView<GuestController> {
                             commonService.labelData.value.data.viewAll.text
                                 .underline.center
                                 .textStyle(
-                                  Get.textTheme.headline5.copyWith(
+                                  headline5().copyWith(
                                     color: Get.theme.colorScheme.primary,
                                   ),
                                 )
@@ -335,7 +368,7 @@ class GuestInformationView extends GetView<GuestController> {
                                         commonService.labelData.value.data.name
                                             .text.center
                                             .textStyle(
-                                              Get.textTheme.headline4.copyWith(
+                                              headline4().copyWith(
                                                 color: Get
                                                     .theme.colorScheme.primary,
                                               ),
@@ -346,7 +379,7 @@ class GuestInformationView extends GetView<GuestController> {
                                             .text
                                             .center
                                             .textStyle(
-                                              Get.textTheme.headline4.copyWith(
+                                              headline4().copyWith(
                                                 color: Get
                                                     .theme.colorScheme.primary,
                                               ),
@@ -355,7 +388,7 @@ class GuestInformationView extends GetView<GuestController> {
                                             .pOnly(right: 15),
                                         currentValue.name.text.center
                                             .textStyle(
-                                              Get.textTheme.bodyMedium.copyWith(
+                                              Get.textTheme.bodyMedium!.copyWith(
                                                 color: Get.theme.indicatorColor,
                                               ),
                                             )
@@ -372,7 +405,7 @@ class GuestInformationView extends GetView<GuestController> {
                                         commonService.labelData.value.data
                                             .guests.text.center
                                             .textStyle(
-                                              Get.textTheme.headline4.copyWith(
+                                              headline4().copyWith(
                                                 color: Get
                                                     .theme.colorScheme.primary,
                                               ),
@@ -383,7 +416,7 @@ class GuestInformationView extends GetView<GuestController> {
                                             .text
                                             .center
                                             .textStyle(
-                                              Get.textTheme.headline4.copyWith(
+                                              headline4().copyWith(
                                                 color: Get
                                                     .theme.colorScheme.primary,
                                               ),
@@ -392,7 +425,7 @@ class GuestInformationView extends GetView<GuestController> {
                                             .pOnly(right: 15),
                                         currentValue.guests.text.center
                                             .textStyle(
-                                              Get.textTheme.bodyMedium.copyWith(
+                                              Get.textTheme.bodyMedium!.copyWith(
                                                 color: Get.theme.indicatorColor,
                                               ),
                                             )
@@ -409,7 +442,7 @@ class GuestInformationView extends GetView<GuestController> {
                                           .text
                                           .center
                                           .textStyle(
-                                            Get.textTheme.bodyMedium.copyWith(
+                                            Get.textTheme.bodyMedium!.copyWith(
                                               color: Get.theme.indicatorColor,
                                             ),
                                           )
@@ -438,10 +471,10 @@ class GuestInformationView extends GetView<GuestController> {
                                                       .theme
                                                       .colorScheme
                                                       .primary,
-                                                  context: Get.context,
-                                                  animType: AnimType.SCALE,
+                                                  context: Get.context!,
+                                                  animType: AnimType.scale,
                                                   dialogType:
-                                                      DialogType.QUESTION,
+                                                      DialogType.question,
                                                   body: Padding(
                                                     padding:
                                                         const EdgeInsets.only(
@@ -463,9 +496,7 @@ class GuestInformationView extends GetView<GuestController> {
                                                             .delete
                                                             .text
                                                             .center
-                                                            .textStyle(Get
-                                                                .textTheme
-                                                                .headline1
+                                                            .textStyle(headline1()
                                                                 .copyWith(
                                                                     color: Get
                                                                         .theme
@@ -482,9 +513,7 @@ class GuestInformationView extends GetView<GuestController> {
                                                             .deleteRequestDesc
                                                             .text
                                                             .center
-                                                            .textStyle(Get
-                                                                .textTheme
-                                                                .bodyText1
+                                                            .textStyle(bodyText1
                                                                 .copyWith(
                                                                     color: Get
                                                                         .theme

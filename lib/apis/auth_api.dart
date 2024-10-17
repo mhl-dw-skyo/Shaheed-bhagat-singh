@@ -11,20 +11,13 @@ class AuthApi {
       'Content-Type': 'application/json; charset=UTF-8',
     };
 
-    var response;
-    try {
-      response = await http.post(
-        uri,
-        headers: headers,
-        body: jsonEncode({
-          'mobile_no': phone.toString(),
-        }),
-      );
-    } catch (e) {
-      response =
-          '{"status":true,"data":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lucHV0IjoidGVzdEBnbWFpbC5jb20ifQ.NHs_UUf40WdKKAAk2hB0A4gUMJTAztuL3Sscq9En0w0","username":"test@gmail.com","usertype":"U"}';
-      return jsonDecode(response);
-    }
+    var response = await http.post(
+      uri,
+      headers: headers,
+      body: jsonEncode({
+        'mobile_no': phone.toString(),
+      }),
+    );
     return jsonDecode(response.body);
   }
 

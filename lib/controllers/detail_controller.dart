@@ -1,15 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+
 import '../core.dart';
 
 class DetailController extends GetxController {
@@ -19,8 +20,8 @@ class DetailController extends GetxController {
   CommonService commonService = Get.find();
   final List<StreamSubscription> audioSubscriptions = [];
   var isBufferingStream = false.obs;
-  ItemScrollController itemScrollController;
-  ItemPositionsListener itemPositionsListener;
+  late ItemScrollController itemScrollController;
+  late ItemPositionsListener itemPositionsListener;
   var selectedBeaconId = 0.obs;
   @override
   Future<void> onInit() async {
@@ -33,7 +34,8 @@ class DetailController extends GetxController {
     if (file.isNotEmpty) {
       if (beaconId > 10) {
         String folderName = "english";
-        if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+        if (GetStorage().read('language_id') != '' ||
+            GetStorage().read('language_id') != null) {
           switch (GetStorage().read('language_id')) {
             case 1:
               folderName = "english";
@@ -46,14 +48,14 @@ class DetailController extends GetxController {
               break;
           }
         }
-        Directory appDocDir;
+        Directory? appDocDir;
         if (Platform.isAndroid) {
           appDocDir = await getExternalStorageDirectory();
         } else {
           appDocDir = await getApplicationDocumentsDirectory();
         }
         String fileName = file.split('/').last;
-        String outputDirectory = '${appDocDir.path}/$folderName';
+        String outputDirectory = '${appDocDir?.path}/$folderName';
         if (!File("$outputDirectory/$fileName").existsSync()) {
           await commonService.assetsAudioPlayer.value.open(
             Audio.network(
@@ -76,8 +78,8 @@ class DetailController extends GetxController {
           Audio(
             Helper.localAssetPath(file),
           ),
-          showNotification: false,
-          autoStart: false,
+          showNotification: true,
+          autoStart: true,
         );
       }
       switch (commonService.selectedBeacon.value.action) {
@@ -87,20 +89,25 @@ class DetailController extends GetxController {
             print("Entering");
 
             AssetsAudioPlayer.allPlayers().forEach((key, value) {
-             // value.stop();
+              value.stop();
             });
             commonService.assetsAudioPlayer.value.play();
             commonService.isAudioPlaying.value = false;
             commonService.isAudioPlaying.refresh();
-            int selectedLocationIndex = commonService.sameCategoryBeacons.indexWhere((element) => element.locationId == commonService.selectedBeacon.value.locationId);
+            int selectedLocationIndex = commonService.sameCategoryBeacons
+                .indexWhere((element) =>
+                    element.locationId ==
+                    commonService.selectedBeacon.value.locationId);
             if (selectedLocationIndex > -1) {
-              itemScrollController.scrollTo(index: selectedLocationIndex, duration: const Duration(milliseconds: 200));
+              itemScrollController.scrollTo(
+                  index: selectedLocationIndex,
+                  duration: const Duration(milliseconds: 200));
             }
           }
-
           break;
       }
-      commonService.assetsAudioPlayer.value.playlistAudioFinished.listen((Playing playing) {
+      commonService.assetsAudioPlayer.value.playlistAudioFinished
+          .listen((Playing playing) {
         commonService.isAudioPlaying.value = false;
         commonService.isAudioPlaying.refresh();
       });
@@ -112,37 +119,34 @@ class DetailController extends GetxController {
     final id = Helper.convertUrlToId(file);
 
     commonService.ytpController.value = YoutubePlayerController(
-      initialVideoId: id,
       params: YoutubePlayerParams(
-        autoPlay: true,
-        startAt: Duration(seconds: 0),
+        origin: id,
         showControls: true,
         showFullscreenButton: true,
         loop: false,
         strictRelatedVideos: true,
         enableJavaScript: true,
         playsInline: true,
-        desktopMode: true,
-        privacyEnhanced: true,
-        useHybridComposition: true,
       ),
     );
-    commonService.ytpController.value.play();
-    commonService.ytpController.value.hideTopMenu();
-    commonService.ytpController.value.onEnterFullscreen = () {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.landscapeRight,
-      ]);
-    };
-    commonService.ytpController.value.onExitFullscreen = () {
-      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-      Future.delayed(const Duration(seconds: 1), () {
-        commonService.ytpController.value.play();
-      });
-      Future.delayed(const Duration(seconds: 5), () {
-        SystemChrome.setPreferredOrientations(DeviceOrientation.values);
-      });
+    commonService.ytpController.value.playVideo();
+    // todo Manish kumar - check this todo before release
+    //commonService.ytpController.value.hideTopMenu();
+    commonService.ytpController.value.onFullscreenChange = (entered) {
+      if (entered) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeLeft,
+          DeviceOrientation.landscapeRight,
+        ]);
+      } else {
+        SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+        Future.delayed(const Duration(seconds: 1), () {
+          commonService.ytpController.value.playVideo();
+        });
+        Future.delayed(const Duration(seconds: 5), () {
+          SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+        });
+      }
     };
   }
 
@@ -151,29 +155,80 @@ class DetailController extends GetxController {
     selectedBeaconId.value = 0;
     commonService.selectedFileType.value = "";
     AssetsAudioPlayer.allPlayers().forEach((key, value) {
-    //  value.stop();
+      value.stop();
     });
     commonService.assetsAudioPlayer.value.dispose();
     commonService.assetsAudioPlayer.value = AssetsAudioPlayer();
     if (commonService.offlineLocationDetailData.value.data.isNotEmpty) {
-      int locDataIndex = commonService.offlineLocationDetailData.value.data.indexWhere((element) => element.locationId == locationId);
+      int locDataIndex = commonService.offlineLocationDetailData.value.data
+          .indexWhere((element) => element.locationId == locationId);
       if (locDataIndex > -1) {
-        commonService.selectedLocationName.value = commonService.offlineLocationDetailData.value.data.elementAt(locDataIndex).locationName;
-        commonService.selectedLocationId.value = commonService.offlineLocationDetailData.value.data.elementAt(locDataIndex).locationId;
-        commonService.locationDetailData.value = commonService.offlineLocationDetailData.value.data.elementAt(locDataIndex).locationDetail;
-        int audioFileIndex = commonService.offlineLocationDetailData.value.data.elementAt(locDataIndex).locationDetail.attributes.baconListing.indexWhere((element) => element.isPrimary == 1);
+        commonService.selectedLocationName.value = commonService
+            .offlineLocationDetailData.value.data
+            .elementAt(locDataIndex)
+            .locationName;
+        commonService.selectedLocationId.value = commonService
+            .offlineLocationDetailData.value.data
+            .elementAt(locDataIndex)
+            .locationId;
+        commonService.locationDetailData.value = commonService
+            .offlineLocationDetailData.value.data
+            .elementAt(locDataIndex)
+            .locationDetail;
+        int audioFileIndex = commonService.offlineLocationDetailData.value.data
+            .elementAt(locDataIndex)
+            .locationDetail
+            .attributes
+            .baconListing
+            .indexWhere((element) => element.isPrimary == 1);
         if (audioFileIndex > -1) {
-          commonService.selectedFileType.value = commonService.offlineLocationDetailData.value.data.elementAt(locDataIndex).locationDetail.attributes.baconListing.elementAt(audioFileIndex).fileType;
+          commonService.selectedFileType.value = commonService
+              .offlineLocationDetailData.value.data
+              .elementAt(locDataIndex)
+              .locationDetail
+              .attributes
+              .baconListing
+              .elementAt(audioFileIndex)
+              .fileType;
           if (GetStorage().read('language_id') == 1) {
-            commonService.selectedAudioFile.value = commonService.offlineLocationDetailData.value.data.elementAt(locDataIndex).locationDetail.attributes.baconListing.elementAt(audioFileIndex).englishSoundFile;
+            commonService.selectedAudioFile.value = commonService
+                .offlineLocationDetailData.value.data
+                .elementAt(locDataIndex)
+                .locationDetail
+                .attributes
+                .baconListing
+                .elementAt(audioFileIndex)
+                .englishSoundFile;
           } else if (GetStorage().read('language_id') == 2) {
-            commonService.selectedAudioFile.value = commonService.offlineLocationDetailData.value.data.elementAt(locDataIndex).locationDetail.attributes.baconListing.elementAt(audioFileIndex).hindiSoundFile;
+            commonService.selectedAudioFile.value = commonService
+                .offlineLocationDetailData.value.data
+                .elementAt(locDataIndex)
+                .locationDetail
+                .attributes
+                .baconListing
+                .elementAt(audioFileIndex)
+                .hindiSoundFile;
           } else {
-            commonService.selectedAudioFile.value = commonService.offlineLocationDetailData.value.data.elementAt(locDataIndex).locationDetail.attributes.baconListing.elementAt(audioFileIndex).punjabiSoundFile;
+            commonService.selectedAudioFile.value = commonService
+                .offlineLocationDetailData.value.data
+                .elementAt(locDataIndex)
+                .locationDetail
+                .attributes
+                .baconListing
+                .elementAt(audioFileIndex)
+                .punjabiSoundFile;
           }
-          selectedBeaconId.value = commonService.offlineLocationDetailData.value.data.elementAt(locDataIndex).locationDetail.attributes.baconListing.elementAt(audioFileIndex).id;
+          selectedBeaconId.value = commonService
+              .offlineLocationDetailData.value.data
+              .elementAt(locDataIndex)
+              .locationDetail
+              .attributes
+              .baconListing
+              .elementAt(audioFileIndex)
+              .id;
           if (commonService.selectedFileType.value == "A") {
-            openPlayer(commonService.selectedAudioFile.value, selectedBeaconId.value);
+            openPlayer(
+                commonService.selectedAudioFile.value, selectedBeaconId.value);
           } else {
             initializeAndPlayYTPlayer(commonService.selectedAudioFile.value);
           }
@@ -184,7 +239,8 @@ class DetailController extends GetxController {
 
   Future getOfflineLocationsData() async {
     String file = "";
-    if (GetStorage().read('language_id') != '' || GetStorage().read('language_id') != null) {
+    if (GetStorage().read('language_id') != '' ||
+        GetStorage().read('language_id') != null) {
       switch (GetStorage().read('language_id')) {
         case 1:
           file = "offline_locations.json";
@@ -198,10 +254,12 @@ class DetailController extends GetxController {
       }
     }
     try {
-      final String data = await rootBundle.loadString('assets/data_files/$file');
+      final String data =
+          await rootBundle.loadString('assets/data_files/$file');
       var response = jsonDecode(data);
       if (response['status']) {
-        commonService.offlineLocationDetailData.value = OfflineLocationsModel.fromJson(response);
+        commonService.offlineLocationDetailData.value =
+            OfflineLocationsModel.fromJson(response);
         commonService.offlineLocationDetailData.refresh();
         // print(response['data']);
       }

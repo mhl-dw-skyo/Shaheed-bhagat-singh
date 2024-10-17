@@ -2,51 +2,40 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:punjab_tourism/utils.dart';
+import 'package:punjab_tourism/views/enable_bt.dart';
+import 'package:punjab_tourism/views/mk_button.dart';
 import 'package:upgrader/upgrader.dart';
 
 import '../core.dart';
 
-class DashboardView extends StatefulWidget {
-  DashboardView({Key key}) : super(key: key);
+class DashboardView extends GetView<DashboardController> {
+  DashboardView({Key? key}) : super(key: key) {
+    controller.initBeaconService();
+  }
 
-  @override
-  _DashboardViewState createState() => _DashboardViewState();
-}
-
-class _DashboardViewState extends State<DashboardView> {
-  DateTime currentBackPressTime;
+  late DateTime currentBackPressTime;
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
   GuestController guestController = Get.find();
-  DashboardController controller = Get.find();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!commonService.firstTime) {
-        commonService.firstTime = true;
-        controller.startWelcomeSound();
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: Get.theme.primaryColor,
-        statusBarIconBrightness: Brightness.dark,
-      ),
+          statusBarColor: Get.theme.primaryColor,
+          statusBarIconBrightness: Brightness.dark),
     );
     return UpgradeAlert(
-      upgrader: Platform.isIOS
-          ? Upgrader(dialogStyle: UpgradeDialogStyle.cupertino)
-          : Upgrader(dialogStyle: UpgradeDialogStyle.material),
+      dialogStyle: Platform.isIOS
+          ? UpgradeDialogStyle.cupertino
+          : UpgradeDialogStyle.material,
+      upgrader: Upgrader(),
       child: Container(
         color: Get.theme.primaryColor,
         child: SafeArea(
@@ -63,7 +52,7 @@ class _DashboardViewState extends State<DashboardView> {
                 centerTitle: true,
                 title: commonService.labelData.value.data.punjabTourism.text
                     .textStyle(
-                      Get.textTheme.headline1.copyWith(
+                      headline1().copyWith(
                         color: Get.theme.indicatorColor,
                       ),
                     )
@@ -71,7 +60,7 @@ class _DashboardViewState extends State<DashboardView> {
                 actions: [
                   InkWell(
                     onTap: () {
-                      scaffoldDashboardKey.currentState.openEndDrawer();
+                      scaffoldDashboardKey.currentState?.openEndDrawer();
                     },
                     child: SvgPicture.asset(
                       "assets/images/menu.svg",
@@ -84,9 +73,8 @@ class _DashboardViewState extends State<DashboardView> {
               body: WillPopScope(
                 onWillPop: () {
                   DateTime now = DateTime.now();
-                  if (currentBackPressTime == null ||
-                      now.difference(currentBackPressTime) >
-                          const Duration(seconds: 2)) {
+                  if (now.difference(currentBackPressTime) >
+                      const Duration(seconds: 2)) {
                     currentBackPressTime = now;
                     Fluttertoast.showToast(msg: "Tap again to exit an app.");
                     return Future.value(false);
@@ -106,13 +94,62 @@ class _DashboardViewState extends State<DashboardView> {
                           const SizedBox(
                             height: 25,
                           ),
+                          StreamBuilder<BluetoothState>(
+                              stream: controller.streamController.stream,
+                              builder: (context, snapshot) {
+                                return Visibility(
+                                  visible: snapshot.hasData &&
+                                      snapshot.data == BluetoothState.stateOff,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 24, left: 20, right: 20),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Enable Bluetooth",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                              SizedBox(height: 4),
+                                              Text(
+                                                "Please enable Bluetooth on your device.",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ]),
+                                        Spacer(),
+                                        MkButton(
+                                            width: 80,
+                                            borderRadius: 4,
+                                            padding: EdgeInsets.only(
+                                                top: 8, bottom: 8),
+                                            onTap: () {
+                                              Get.dialog(EnableBt());
+                                            },
+                                            text: "Enable")
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               commonService.labelData.value.data.welcomeTo.text
                                   .textStyle(
-                                    Get.textTheme.headline1.copyWith(
+                                    headline1().copyWith(
                                       color: Get.theme.indicatorColor
                                           .withOpacity(0.5),
                                     ),
@@ -135,22 +172,21 @@ class _DashboardViewState extends State<DashboardView> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                     gradient: LinearGradient(
-                                      colors: [
-                                        Get.theme.colorScheme.primary,
-                                        Get.theme.colorScheme.secondary,
-                                      ],
-                                      begin: const FractionalOffset(0.0, 0.0),
-                                      end: const FractionalOffset(0.0, 1.0),
-                                      stops: const [0.0, 1.0],
-                                      tileMode: TileMode.clamp,
-                                    ),
+                                        colors: [
+                                          Get.theme.colorScheme.primary,
+                                          Get.theme.colorScheme.secondary,
+                                        ],
+                                        begin: const FractionalOffset(0.0, 0.0),
+                                        end: const FractionalOffset(0.0, 1.0),
+                                        stops: const [0.0, 1.0],
+                                        tileMode: TileMode.clamp),
                                   ),
                                   child: Row(
                                     children: [
                                       commonService
                                           .labelData.value.data.entryAccess.text
                                           .textStyle(
-                                            Get.textTheme.headline4.copyWith(
+                                            headline4().copyWith(
                                               color: Get.theme.highlightColor,
                                             ),
                                           )
@@ -172,7 +208,7 @@ class _DashboardViewState extends State<DashboardView> {
                             child: commonService
                                 .labelData.value.data.virastEKhalsa.text
                                 .textStyle(
-                                  Get.textTheme.headline1.copyWith(
+                                  headline1().copyWith(
                                     color: Get.theme.indicatorColor,
                                     fontSize: 35,
                                   ),

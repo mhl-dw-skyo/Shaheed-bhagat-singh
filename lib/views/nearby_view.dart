@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-// import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
+import 'package:punjab_tourism/utils.dart';
 import '../core.dart';
 
 class NearByView extends GetView<NearByController> {
-  NearByView({Key key}) : super(key: key);
+  NearByView({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
@@ -45,7 +41,7 @@ class NearByView extends GetView<NearByController> {
             actions: [
               InkWell(
                 onTap: () {
-                  scaffoldDashboardKey.currentState.openEndDrawer();
+                  scaffoldDashboardKey.currentState?.openEndDrawer();
                 },
                 child: SvgPicture.asset(
                   "assets/images/menu.svg",
@@ -67,7 +63,7 @@ class NearByView extends GetView<NearByController> {
                   ),
                   commonService.labelData.value.data.nearBy.text
                       .textStyle(
-                        Get.textTheme.headline1.copyWith(
+                        headline1().copyWith(
                           color: Get.theme.indicatorColor,
                           fontSize: 28,
                         ),
@@ -78,7 +74,7 @@ class NearByView extends GetView<NearByController> {
                   ),
                   commonService.labelData.value.data.selectLangDesc.text
                       .textStyle(
-                        Get.textTheme.bodyText1.copyWith(
+                        bodyText1.copyWith(
                           color: Get.theme.indicatorColor.withOpacity(0.5),
                           fontSize: 18,
                         ),
@@ -129,10 +125,10 @@ class NearByView extends GetView<NearByController> {
                                           ),
                                         );
                                       }).toList(),
-                                      onChanged: (DirectionModel newValue) {
+                                      onChanged: (DirectionModel? newValue) {
                                         // controller.distance.value = "";
                                         // controller.distance.refresh();
-                                        if (newValue.id == 2) {
+                                        if (newValue?.id == 2) {
                                           controller.loader.value = true;
                                           controller.loader.refresh();
                                           controller.getUserLocation('from');
@@ -153,7 +149,7 @@ class NearByView extends GetView<NearByController> {
                                           }
                                         }
                                         controller.firstSelected.value =
-                                            newValue;
+                                            newValue!;
                                         controller.firstSelected.refresh();
                                       },
                                     ),
@@ -200,19 +196,19 @@ class NearByView extends GetView<NearByController> {
                                           ),
                                         );
                                       }).toList(),
-                                      onChanged: (NearByItem data) {
+                                      onChanged: (NearByItem? data) {
                                         // controller.distance.value = "";
                                         // controller.distance.refresh();
                                         controller.selectedDropDown.value =
-                                            data;
+                                            data!;
                                         controller.selectedDropDown.refresh();
                                         controller.fromLat.value =
-                                            double.parse(data.latitude);
+                                            double.parse(data?.latitude??'0');
                                         controller.fromLat.refresh();
                                         print("KAKAKAK");
                                         print(controller.fromLat.value);
                                         controller.fromLng.value =
-                                            double.parse(data.longitude);
+                                            double.parse(data?.longitude??'0');
                                         controller.fromLng.refresh();
                                         if (controller.fromLat.value != 0.0 &&
                                             controller.fromLng.value != 0.0 &&
@@ -299,11 +295,11 @@ class NearByView extends GetView<NearByController> {
                                           ),
                                         );
                                       }).toList(),
-                                      onChanged: (NearByItem data) {
+                                      onChanged: (NearByItem? data) {
                                         // controller.distance.value = "";
                                         // controller.distance.refresh();
                                         controller.selectedDropDown.value =
-                                            data;
+                                            data!;
                                         controller.selectedDropDown.refresh();
                                         print(data.latitude);
                                         controller.toLat.value =
@@ -370,10 +366,10 @@ class NearByView extends GetView<NearByController> {
                                           ),
                                         );
                                       }).toList(),
-                                      onChanged: (DirectionModel newValue) {
+                                      onChanged: (DirectionModel? newValue) {
                                         // controller.distance.value = "";
                                         // controller.distance.refresh();
-                                        if (newValue.id == 2) {
+                                        if (newValue?.id == 2) {
                                           controller.loader.value = true;
                                           controller.loader.refresh();
                                           controller.getUserLocation('to');
@@ -395,7 +391,7 @@ class NearByView extends GetView<NearByController> {
                                           }
                                         }
                                         controller.firstSelected.value =
-                                            newValue;
+                                            newValue!;
                                         controller.firstSelected.refresh();
                                       },
                                     ),
@@ -439,7 +435,7 @@ class NearByView extends GetView<NearByController> {
                                         fit: BoxFit.cover,
                                         errorBuilder: (BuildContext context,
                                             Object exception,
-                                            StackTrace stackTrace) {
+                                            StackTrace? stackTrace) {
                                           return Image.asset(
                                             Helper.localAssetPath(
                                               controller
@@ -462,7 +458,7 @@ class NearByView extends GetView<NearByController> {
                                           controller
                                               .selectedDropDown.value.title.text
                                               .textStyle(
-                                                Get.textTheme.headline2
+                                                headline2()
                                                     .copyWith(
                                                   color:
                                                       Get.theme.indicatorColor,
@@ -488,7 +484,7 @@ class NearByView extends GetView<NearByController> {
                                                 )
                                               : controller.distance.value.text
                                                   .textStyle(
-                                                    Get.textTheme.headline3
+                                                    headline3()
                                                         .copyWith(
                                                       color: Get
                                                           .theme.indicatorColor
@@ -517,7 +513,7 @@ class NearByView extends GetView<NearByController> {
                                     commonService
                                         .labelData.value.data.getDirection.text
                                         .textStyle(
-                                          Get.textTheme.bodyText2.copyWith(
+                                          bodyText2.copyWith(
                                             color: Get.theme.indicatorColor,
                                           ),
                                         )

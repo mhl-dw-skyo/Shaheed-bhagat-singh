@@ -3,14 +3,12 @@ import 'package:flutter/services.dart';
 // import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:punjab_tourism/utils.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import '../core.dart';
 
 class CategoryTypesView extends GetView<CategoryTypeController> {
-  CategoryTypesView({Key key}) : super(key: key);
+  CategoryTypesView({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
@@ -45,7 +43,7 @@ class CategoryTypesView extends GetView<CategoryTypeController> {
             actions: [
               InkWell(
                 onTap: () {
-                  scaffoldDashboardKey.currentState.openEndDrawer();
+                  scaffoldDashboardKey.currentState?.openEndDrawer();
                 },
                 child: SvgPicture.asset(
                   "assets/images/menu.svg",
@@ -68,7 +66,7 @@ class CategoryTypesView extends GetView<CategoryTypeController> {
                 ),
                 commonService.selectedCategoryName.value.text
                     .textStyle(
-                      Get.textTheme.headline1.copyWith(
+                      headline1().copyWith(
                         color: Get.theme.indicatorColor,
                         fontSize: 30,
                       ),
@@ -108,7 +106,7 @@ class CategoryTypesView extends GetView<CategoryTypeController> {
                                 height: 65,
                                 child: currentValue.title.text
                                     .textStyle(
-                                      Get.textTheme.headline2.copyWith(
+                                      headline2().copyWith(
                                         color: Get.theme.indicatorColor,
                                       ),
                                     )
@@ -167,10 +165,10 @@ class CategoryTypesView extends GetView<CategoryTypeController> {
                                     height: controller
                                                 .firstVisibleItemIndex.value ==
                                             ind
-                                        ? 212
-                                        : 192,
+                                        ? 240
+                                        : 220,
                                     width: Get.width,
-                                    attributes: item,
+                                    attributes: item, showTitle: false, showVideoIcon: false,
                                   ).pOnly(bottom: 0),
                                 );
                               },

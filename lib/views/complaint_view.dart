@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:punjab_tourism/utils.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 import '../core.dart';
 
 class ComplaintView extends GetView<DashboardController> {
-  ComplaintView({Key key}) : super(key: key);
+  ComplaintView({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldDashboardKey =
       GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
@@ -40,7 +44,7 @@ class ComplaintView extends GetView<DashboardController> {
             actions: [
               InkWell(
                 onTap: () {
-                  scaffoldDashboardKey.currentState.openEndDrawer();
+                  scaffoldDashboardKey.currentState?.openEndDrawer();
                 },
                 child: SvgPicture.asset(
                   "assets/images/menu.svg",
@@ -63,7 +67,7 @@ class ComplaintView extends GetView<DashboardController> {
                   ),
                   commonService.labelData.value.data.feedback.text
                       .textStyle(
-                        Get.textTheme.headline1.copyWith(
+                        headline1().copyWith(
                           color: Get.theme.indicatorColor,
                           fontSize: 28,
                         ),
@@ -78,8 +82,8 @@ class ComplaintView extends GetView<DashboardController> {
                         color: Get.theme.indicatorColor,
                         fontWeight: FontWeight.w300),
                     keyboardType: TextInputType.text,
-                    validator: (String input) {
-                      if (input.isEmpty) {
+                    validator: (String? input) {
+                      if (input != null && input.isEmpty) {
                         return commonService
                             .labelData.value.data.nameFieldValidation;
                       } else {
@@ -126,7 +130,7 @@ class ComplaintView extends GetView<DashboardController> {
                       errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(
-                              width: 1, color: Get.theme.errorColor)),
+                              width: 1, color: errorColor)),
                       focusedErrorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(
@@ -143,8 +147,8 @@ class ComplaintView extends GetView<DashboardController> {
                         color: Get.theme.indicatorColor,
                         fontWeight: FontWeight.w300),
                     keyboardType: TextInputType.text,
-                    validator: (String input) {
-                      if (input.isEmpty) {
+                    validator: (String? input) {
+                      if (input!=null&&input.isEmpty) {
                         return commonService
                             .labelData.value.data.phoneFieldValidation;
                       } else {
@@ -191,7 +195,7 @@ class ComplaintView extends GetView<DashboardController> {
                       errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(
-                              width: 1, color: Get.theme.errorColor)),
+                              width: 1, color: errorColor)),
                       focusedErrorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(
@@ -208,8 +212,8 @@ class ComplaintView extends GetView<DashboardController> {
                         color: Get.theme.indicatorColor,
                         fontWeight: FontWeight.w300),
                     keyboardType: TextInputType.text,
-                    validator: (String input) {
-                      if (input.isEmpty) {
+                    validator: (String? input) {
+                      if (input!=null&&input.isEmpty) {
                         return commonService
                             .labelData.value.data.titleFieldValidation;
                       } else {
@@ -234,7 +238,7 @@ class ComplaintView extends GetView<DashboardController> {
                         ),
                       ),
                       errorStyle: const TextStyle(fontSize: 15),
-                      hintStyle: Get.theme.textTheme.bodyText1.copyWith(
+                      hintStyle: bodyText1.copyWith(
                           color: Get.theme.indicatorColor.withOpacity(0.3)),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -257,7 +261,7 @@ class ComplaintView extends GetView<DashboardController> {
                       errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(
-                              width: 1, color: Get.theme.errorColor)),
+                              width: 1, color: errorColor)),
                       focusedErrorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(
@@ -274,8 +278,9 @@ class ComplaintView extends GetView<DashboardController> {
                         color: Get.theme.indicatorColor,
                         fontWeight: FontWeight.w300),
                     keyboardType: TextInputType.text,
-                    validator: (String input) {
-                      if (input.isEmpty) {
+                    validator: (String? input) {
+                      if (input!=null&&input.isEmpty) {
+
                         return commonService
                             .labelData.value.data.messageFieldValidation;
                       } else {
@@ -302,7 +307,7 @@ class ComplaintView extends GetView<DashboardController> {
                         ),
                       ),
                       errorStyle: const TextStyle(fontSize: 15),
-                      hintStyle: Get.theme.textTheme.bodyText1.copyWith(
+                      hintStyle: bodyText1.copyWith(
                           color: Get.theme.indicatorColor.withOpacity(0.3)),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -325,7 +330,7 @@ class ComplaintView extends GetView<DashboardController> {
                       errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(
-                              width: 1, color: Get.theme.errorColor)),
+                              width: 1, color: errorColor)),
                       focusedErrorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(
@@ -339,7 +344,7 @@ class ComplaintView extends GetView<DashboardController> {
                   ),
                   InkWell(
                     onTap: () async {
-                      if (controller.complaintFormKey.currentState.validate()) {
+                      if (controller.complaintFormKey.currentState!.validate()) {
                         controller.submitComplaint();
                       }
                     },
@@ -360,7 +365,7 @@ class ComplaintView extends GetView<DashboardController> {
                       ),
                       child: commonService.labelData.value.data.submit.text
                           .textStyle(
-                            Get.textTheme.headline3.copyWith(
+                            headline3().copyWith(
                               color: Get.theme.highlightColor,
                             ),
                           )

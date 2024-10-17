@@ -28,12 +28,13 @@ class CommonService extends GetxService {
   var selectedFileType = "".obs;
   var isPopSVPopupOpen = false.obs;
   var isBluetoothPermissionPopupOpened = false.obs;
+  // todo Manish kumar - check this todo before release
   var ytpController = YoutubePlayerController().obs;
+  //var ytpController = YoutubePlayerController(initialVideoId: '').obs;
   var inMuseum = false.obs;
   var labelData = LabelModel().obs;
   var guestInformationData = GuestModel().obs;
   var guestData = GuestItem().obs;
   var qrStatus = 3.obs;
   var dateType = "T".obs;
-  bool firstTime=false;
 }

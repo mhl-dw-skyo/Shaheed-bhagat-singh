@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:punjab_tourism/utils.dart';
 import 'package:readmore/readmore.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
@@ -10,15 +11,26 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../core.dart';
 
 class DetailView extends GetView<DetailController> {
-  DetailView({Key key}) : super(key: key);
-  GlobalKey<ScaffoldState> scaffoldDashboardKey = GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
+  DetailView({Key? key}) : super(key: key);
+  GlobalKey<ScaffoldState> scaffoldDashboardKey =
+      GlobalKey<ScaffoldState>(debugLabel: '_scaffoldDashboardKey');
   CommonService commonService = Get.find();
+  Future<bool> _onWillPop() async {
+    // Stop all audio players before navigating back
+    AssetsAudioPlayer.allPlayers().forEach((key, value) {
+      value.stop();
+    });
+    return true; // Return true to allow the back navigation
+  }
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent, statusBarIconBrightness: Brightness.dark),
+      const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark),
     );
-    return Container(
+    return WillPopScope(
+        onWillPop: _onWillPop,child:  Container(
       color: Get.theme.primaryColor,
       child: SafeArea(
         child: Scaffold(
@@ -34,7 +46,12 @@ class DetailView extends GetView<DetailController> {
             elevation: 0,
             // automaticallyImplyLeading: true,
             leading: IconButton(
-                onPressed: () => Get.back(),
+                onPressed: () {
+                  AssetsAudioPlayer.allPlayers().forEach((key, value) {
+                    value.stop();
+                  });
+                  Get.back();
+                },
                 icon: Icon(
                   Icons.arrow_back,
                   color: Get.theme.highlightColor,
@@ -44,7 +61,7 @@ class DetailView extends GetView<DetailController> {
             actions: [
               InkWell(
                 onTap: () {
-                  scaffoldDashboardKey.currentState.openEndDrawer();
+                  scaffoldDashboardKey.currentState?.openEndDrawer();
                 },
                 child: SvgPicture.asset(
                   "assets/images/menu.svg",
@@ -61,7 +78,8 @@ class DetailView extends GetView<DetailController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  commonService.selectedFileType.value == "V" && commonService.inMuseum.value
+                  commonService.selectedFileType.value == "V" &&
+                          commonService.inMuseum.value
                       ? Container(
                           width: Get.width,
                           height: Get.height * 0.45,
@@ -71,7 +89,8 @@ class DetailView extends GetView<DetailController> {
                                 aspectRatio: 16 / 9,
                                 child: commonService.ytpController.value != null
                                     ? YoutubePlayerIFrame(
-                                        controller: commonService.ytpController.value,
+                                        controller:
+                                            commonService.ytpController.value,
                                       )
                                     : Helper.showLoaderSpinner(),
                               )),
@@ -82,14 +101,19 @@ class DetailView extends GetView<DetailController> {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                Helper.localAssetPath(commonService.locationDetailData.value.attributes.imagePath),
+                                Helper.localAssetPath(commonService
+                                    .locationDetailData
+                                    .value
+                                    .attributes
+                                    .imagePath),
                               ),
                               fit: BoxFit.cover,
                             ),
                           ),
-                          child: commonService.locationDetailData.value.attributes.locationName.text
+                          child: commonService.locationDetailData.value
+                              .attributes.locationName.text
                               .textStyle(
-                                Get.textTheme.headline1.copyWith(
+                                headline1().copyWith(
                                   color: Get.theme.indicatorColor,
                                   fontSize: 30,
                                 ),
@@ -99,37 +123,57 @@ class DetailView extends GetView<DetailController> {
                               .pOnly(top: 70, left: 20),
                         ),
                   SizedBox(
-                    height: commonService.selectedFileType.value == "A" && commonService.selectedAudioFile.value.isNotEmpty && commonService.inMuseum.value ? 25 : 0,
+                    height: commonService.selectedFileType.value == "A" &&
+                            commonService.selectedAudioFile.value.isNotEmpty &&
+                            commonService.inMuseum.value
+                        ? 25
+                        : 0,
                   ),
-                  commonService.selectedFileType.value == "A" && commonService.selectedAudioFile.value.isNotEmpty && commonService.inMuseum.value
+                  commonService.selectedFileType.value == "A" &&
+                          commonService.selectedAudioFile.value.isNotEmpty &&
+                          commonService.inMuseum.value
                       ? Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             SizedBox(
                               width: 30,
-                              child: commonService.assetsAudioPlayer.value.builderLoopMode(
+                              child: commonService.assetsAudioPlayer.value
+                                  .builderLoopMode(
                                 builder: (context, loopMode) {
                                   return PlayerBuilder.isPlaying(
-                                      player: commonService.assetsAudioPlayer.value,
+                                      player:
+                                          commonService.assetsAudioPlayer.value,
                                       builder: (context, isPlaying) {
-                                        controller.audioSubscriptions.add(commonService.assetsAudioPlayer.value.isBuffering.listen((isBuffering) {
+                                        controller.audioSubscriptions.add(
+                                            commonService.assetsAudioPlayer
+                                                .value.isBuffering
+                                                .listen((isBuffering) {
                                           if (isBuffering) {
-                                            controller.isBufferingStream.value = true;
+                                            controller.isBufferingStream.value =
+                                                true;
                                           } else {
-                                            controller.isBufferingStream.value = false;
+                                            controller.isBufferingStream.value =
+                                                false;
                                           }
                                         }));
-                                        return Obx(() => controller.isBufferingStream.value
-                                            ? Helper.showSimpleSpinner(const Color(0xff1262CC))
+                                        return Obx(() => controller
+                                                .isBufferingStream.value
+                                            ? Helper.showSimpleSpinner(
+                                                const Color(0xff1262CC))
                                             : InkWell(
                                                 onTap: () {
-                                                  AssetsAudioPlayer.allPlayers().forEach((key, value) {
-                                                  //  value.pause();
+                                                  AssetsAudioPlayer.allPlayers()
+                                                      .forEach((key, value) {
+                                                    value.pause();
                                                   });
-                                                  commonService.assetsAudioPlayer.value.playOrPause();
+                                                  commonService
+                                                      .assetsAudioPlayer.value
+                                                      .playOrPause();
                                                 },
                                                 child: SvgPicture.asset(
-                                                  isPlaying ? "assets/images/pause.svg" : "assets/images/play.svg",
+                                                  isPlaying
+                                                      ? "assets/images/pause.svg"
+                                                      : "assets/images/play.svg",
                                                   width: 25,
                                                   height: 25,
                                                 ),
@@ -139,7 +183,9 @@ class DetailView extends GetView<DetailController> {
                               ),
                             ),
                             Expanded(
-                              child: commonService.assetsAudioPlayer.value.builderRealtimePlayingInfos(builder: (context, RealtimePlayingInfos infos) {
+                              child: commonService.assetsAudioPlayer.value
+                                  .builderRealtimePlayingInfos(builder:
+                                      (context, RealtimePlayingInfos infos) {
                                 if (infos == null) {
                                   return const SizedBox();
                                 }
@@ -147,7 +193,8 @@ class DetailView extends GetView<DetailController> {
                                   currentPosition: infos.currentPosition,
                                   duration: infos.duration,
                                   seekTo: (to) {
-                                    commonService.assetsAudioPlayer.value.seek(to);
+                                    commonService.assetsAudioPlayer.value
+                                        .seek(to);
                                   },
                                 ).pSymmetric(h: 25);
                               }),
@@ -155,15 +202,15 @@ class DetailView extends GetView<DetailController> {
                           ],
                         ).pSymmetric(h: 25)
                       : const SizedBox(height: 0),
-                  const SizedBox(
-                    height: 15,
-                  ),
                   SizedBox(
-                    height: commonService.selectedAudioFile.value.isNotEmpty ? 20 : 0,
+                    height: commonService.selectedAudioFile.value.isNotEmpty
+                        ? 20
+                        : 0,
                   ),
-                  commonService.locationDetailData.value.attributes.locationName.text
+                  commonService
+                      .locationDetailData.value.attributes.locationName.text
                       .textStyle(
-                        Get.textTheme.headline1.copyWith(
+                        headline1().copyWith(
                           color: Get.theme.indicatorColor,
                           fontSize: 22,
                         ),
@@ -174,105 +221,145 @@ class DetailView extends GetView<DetailController> {
                   const SizedBox(
                     height: 10,
                   ),
-                  commonService.locationDetailData.value.attributes.description.isNotEmpty
+                  commonService.locationDetailData.value.attributes.description
+                          .isNotEmpty
                       ? ReadMoreText(
-                          commonService.locationDetailData.value.attributes.description,
-                          trimLines: commonService.sameCategoryBeacons.isNotEmpty && commonService.sameCategoryBeacons.length > 1 ? 4 : commonService.locationDetailData.value.attributes.description.length,
+                          commonService
+                              .locationDetailData.value.attributes.description,
+                          trimLines: commonService
+                                      .sameCategoryBeacons.isNotEmpty &&
+                                  commonService.sameCategoryBeacons.length > 1
+                              ? 4
+                              : commonService.locationDetailData.value
+                                  .attributes.description.length,
                           colorClickableText: Get.theme.colorScheme.primary,
                           trimMode: TrimMode.Line,
-                          style: TextStyle(color: Get.theme.indicatorColor, fontSize: 16),
-                          trimCollapsedText: commonService.labelData.value.data.more,
-                          trimExpandedText: commonService.labelData.value.data.less,
-                          moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Get.theme.colorScheme.primary),
+                          style: TextStyle(
+                              color: Get.theme.indicatorColor, fontSize: 16),
+                          trimCollapsedText:
+                              commonService.labelData.value.data.more,
+                          trimExpandedText:
+                              commonService.labelData.value.data.less,
+                          moreStyle: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Get.theme.colorScheme.primary),
                         ).pSymmetric(h: 20)
-                      : SizedBox(
+                      :
+                  SizedBox(
                           height: 0,
                         ),
                   SizedBox(
-                    height: commonService.sameCategoryBeacons.isNotEmpty ? 30 : 0,
+                    height:
+                        commonService.sameCategoryBeacons.isNotEmpty ? 30 : 0,
                   ),
-                  commonService.sameCategoryBeacons.isNotEmpty && commonService.sameCategoryBeacons.length > 1
-                      ? SizedBox(
-                          width: Get.width,
-                          height: 210,
-                          child: ScrollablePositionedList.builder(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              itemCount: commonService.sameCategoryBeacons.length,
-                              itemScrollController: controller.itemScrollController,
-                              itemPositionsListener: controller.itemPositionsListener,
-                              itemBuilder: (context, index) {
-                                BeaconItem beaconItem = commonService.sameCategoryBeacons.elementAt(index);
-                                return InkWell(
-                                  onTap: () {
-                                    commonService.selectedBeacon.value = beaconItem;
-                                    commonService.selectedBeacon.refresh();
-                                    controller.getLocationDetailData(beaconItem.locationId);
-                                  },
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: 150,
-                                        height: 150,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: commonService.selectedBeacon.value.locationId == beaconItem.locationId ? Get.theme.colorScheme.primary : Colors.transparent,
-                                            width: commonService.selectedBeacon.value.locationId == beaconItem.locationId ? 4 : 0,
-                                          ),
-                                          color: Colors.grey,
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(50),
-                                            topRight: Radius.circular(15),
-                                            bottomLeft: Radius.circular(15),
-                                            bottomRight: Radius.circular(50),
-                                          ),
-                                        ),
-                                        child: ClipRRect(
-                                            borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(50),
-                                              topRight: Radius.circular(15),
-                                              bottomLeft: Radius.circular(15),
-                                              bottomRight: Radius.circular(50),
-                                            ),
-                                            child: Image.asset(
-                                              Helper.localAssetPath(beaconItem.locationImage),
-                                              fit: BoxFit.cover,
-                                              width: 150,
-                                              height: 150,
-                                              errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
-                                                return Image.asset(
-                                                  Helper.localAssetPath(beaconItem.locationImage),
-                                                  width: 150,
-                                                  height: 150,
-                                                  fit: BoxFit.cover,
-                                                );
-                                              },
-                                            )),
-                                      ).pOnly(bottom: 5),
-                                      SizedBox(
-                                        width: 150,
-                                        child: beaconItem.locationName.text
-                                            .textStyle(
-                                              Get.textTheme.headline3.copyWith(
-                                                color: Get.theme.indicatorColor,
-                                              ),
-                                            )
-                                            .maxLines(2)
-                                            .ellipsis
-                                            .shadow(1, 1, 5, Get.theme.highlightColor)
-                                            .make(),
-                                      )
-                                    ],
-                                  ).pOnly(right: 20),
-                                );
-                              }),
-                        ).pSymmetric(h: 15)
-                      : const SizedBox(
-                          height: 0,
-                        )
+                  // commonService.sameCategoryBeacons.isNotEmpty &&
+                  //         commonService.sameCategoryBeacons.length > 3
+                  //     ? SizedBox(
+                  //         width: Get.width,
+                  //         height: 210,
+                  //         child: ScrollablePositionedList.builder(
+                  //             scrollDirection: Axis.horizontal,
+                  //             shrinkWrap: true,
+                  //             itemCount:
+                  //                 commonService.sameCategoryBeacons.length,
+                  //             itemScrollController:
+                  //                 controller.itemScrollController,
+                  //             itemPositionsListener:
+                  //                 controller.itemPositionsListener,
+                  //             itemBuilder: (context, index) {
+                  //               BeaconItem beaconItem = commonService
+                  //                   .sameCategoryBeacons
+                  //                   .elementAt(index);
+                  //               return InkWell(
+                  //                 onTap: () {
+                  //                   commonService.selectedBeacon.value =
+                  //                       beaconItem;
+                  //                   commonService.selectedBeacon.refresh();
+                  //                   controller.getLocationDetailData(
+                  //                       beaconItem.locationId);
+                  //                 },
+                  //                 child: Column(
+                  //                   mainAxisSize: MainAxisSize.min,
+                  //                   mainAxisAlignment: MainAxisAlignment.start,
+                  //                   crossAxisAlignment:
+                  //                       CrossAxisAlignment.start,
+                  //                   children: [
+                  //                     Container(
+                  //                       width: 150,
+                  //                       height: 150,
+                  //                       decoration: BoxDecoration(
+                  //                         border: Border.all(
+                  //                           color: commonService.selectedBeacon
+                  //                                       .value.locationId ==
+                  //                                   beaconItem.locationId
+                  //                               ? Get.theme.colorScheme.primary
+                  //                               : Colors.transparent,
+                  //                           width: commonService.selectedBeacon
+                  //                                       .value.locationId ==
+                  //                                   beaconItem.locationId
+                  //                               ? 4
+                  //                               : 0,
+                  //                         ),
+                  //                         color: Colors.grey,
+                  //                         borderRadius: const BorderRadius.only(
+                  //                           topLeft: Radius.circular(50),
+                  //                           topRight: Radius.circular(15),
+                  //                           bottomLeft: Radius.circular(15),
+                  //                           bottomRight: Radius.circular(50),
+                  //                         ),
+                  //                       ),
+                  //                       child: ClipRRect(
+                  //                           borderRadius:
+                  //                               const BorderRadius.only(
+                  //                             topLeft: Radius.circular(50),
+                  //                             topRight: Radius.circular(15),
+                  //                             bottomLeft: Radius.circular(15),
+                  //                             bottomRight: Radius.circular(50),
+                  //                           ),
+                  //                           child: Image.asset(
+                  //                             Helper.localAssetPath(
+                  //                                 beaconItem.locationImage),
+                  //                             fit: BoxFit.cover,
+                  //                             width: 150,
+                  //                             height: 150,
+                  //                             errorBuilder:
+                  //                                 (BuildContext context,
+                  //                                     Object exception,
+                  //                                     StackTrace? stackTrace) {
+                  //                               return Image.asset(
+                  //                                 Helper.localAssetPath(
+                  //                                     beaconItem.locationImage),
+                  //                                 width: 150,
+                  //                                 height: 150,
+                  //                                 fit: BoxFit.cover,
+                  //                               );
+                  //                             },
+                  //                           )),
+                  //                     ).pOnly(bottom: 5),
+                  //                     SizedBox(
+                  //                       width: 150,
+                  //                       child: beaconItem.locationName.text
+                  //                           .textStyle(
+                  //                             headline3().copyWith(
+                  //                               color: Get.theme.indicatorColor,
+                  //                             ),
+                  //                           )
+                  //                           .maxLines(2)
+                  //                           .ellipsis
+                  //                           .shadow(1, 1, 5,
+                  //                               Get.theme.highlightColor)
+                  //                           .make(),
+                  //                     )
+                  //                   ],
+                  //                 ).pOnly(right: 20),
+                  //               );
+                  //             }),
+                  //       ).pSymmetric(h: 15)
+                  //     :
+                  const SizedBox(
+                    height: 0,
+                  )
                 ],
               ).pOnly(bottom: 40),
             ),
@@ -285,6 +372,6 @@ class DetailView extends GetView<DetailController> {
           floatingActionButton: SpeedDialWidget(),
         ),
       ),
-    );
+    ));
   }
 }
