@@ -62,7 +62,7 @@ class DetailController extends GetxController {
               file,
             ),
             showNotification: false,
-            autoStart: false,
+            autoStart: true,
           );
         } else {
           await commonService.assetsAudioPlayer.value.open(
@@ -70,7 +70,7 @@ class DetailController extends GetxController {
               "$outputDirectory/$fileName",
             ),
             showNotification: false,
-            autoStart: false,
+            autoStart: true,
           );
         }
       } else {
@@ -190,6 +190,7 @@ class DetailController extends GetxController {
               .baconListing
               .elementAt(audioFileIndex)
               .fileType;
+
           if (GetStorage().read('language_id') == 1) {
             commonService.selectedAudioFile.value = commonService
                 .offlineLocationDetailData.value.data

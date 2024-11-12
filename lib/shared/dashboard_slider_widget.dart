@@ -182,6 +182,7 @@ class DashboardSliderWidget extends StatelessWidget {
                           commonService.sameCategoryBeacons.refresh();
                           DetailController detailController = Get.find();
                           detailController.getLocationDetailData(attributesData.locationId);
+                          commonService.inMuseum.value = false;
                           Get.toNamed('/detail');
                         }
                       }

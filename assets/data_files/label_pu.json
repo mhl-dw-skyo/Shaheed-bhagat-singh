@@ -76,8 +76,30 @@
     "weekly": "ਹਫ਼ਤਾਵਾਰ",
     "monthly": "ਮਹੀਨਾਵਾਰ", "delete_account": "ਖਾਤਾ ਮਿਟਾਓ", "delete_msg": "ਤੁਹਾਡਾ ਖਾਤਾ ਸਫਲਤਾਪੂਰਵਕ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ",
         "delete_account_desc": "ਕੀ ਤੁਸੀਂ ਆਪਣਾ ਖਾਤਾ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
-        "resend_in": "ਮੁੜ ਭੇਜੋ"
+        "resend_in": "ਮੁੜ ਭੇਜੋ",
+        "about_bhaghat_singh": "ਭਗਤ ਸਿੰਘ ਬਾਰੇ",
 
-
-}
+        "enable_bluetooth": "ਬਲੂਟੁੱਥ ਚਾਲੂ ਕਰੋ",
+        "please_enable_bluetoothon_yourdevice": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਡਿਵਾਈਸ 'ਤੇ ਬਲੂਟੁੱਥ ਨੂੰ ਚਾਲੂ ਕਰੋ।",
+        "enable": "ਚਾਲੂ ਕਰੋ",
+        "improve_bluetooth_accuracy": "ਬਲੂਟੁੱਥ ਸ਼ੁੱਧਤਾ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਡਿਵਾਈਸ 'ਤੇ ਬਲੂਟੁੱਥ ਨੂੰ ਚਾਲੂ ਕਰੋ।",
+        "steps_toturnon_bluetooth": "ਬਲੂਟੁੱਥ ਨੂੰ ਚਾਲੂ ਕਰਨ ਲਈ ਕਦਮ",
+        "open_settings": "1. ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ: ",
+        "go_toyour_device": "ਆਪਣੀ ਡਿਵਾਈਸ ਦੀ ਹੋਮ ਸਕ੍ਰੀਨ 'ਤੇ ਜਾਓ ਅਤੇ ਸੈਟਿੰਗਜ਼ ਐਪ 'ਤੇ ਟੈਪ ਕਰੋ।",
+        "go_to_Bluetooth_dialog": "2. ਬਲੂਟੁੱਥ 'ਤੇ ਜਾਓ: ",
+        "depending_onyour_device": "ਤੁਹਾਡੀ ਡਿਵਾਈਸ 'ਤੇ ਨਿਰਭਰ ਕਰਦੇ ਹੋਏ, ਕਨੈਕਸ਼ਨਾਂ 'ਤੇ ਜਾਂ ਸਿੱਧੇ ਬਲੂਟੁੱਥ 'ਤੇ ਟੈਪ ਕਰੋ।",
+        "enable_bluetooth_dialog": "3. ਬਲੂਟੁੱਥ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ: ",
+        "toggle_switch": "ਬਲੂਟੁੱਥ ਨੂੰ ਚਾਲੂ ਕਰਨ ਲਈ ਸਵਿੱਚ ਨੂੰ ਟੌਗਲ ਕਰੋ।",
+        "go_to_bluetooth": "ਬਲੂਟੁੱਥ 'ਤੇ ਜਾਓ",
+        "grant_following_permissions": "ਹੇਠ ਲਿਖੀਆਂ ਇਜਾਜ਼ਤਾਂ ਦਿਓ",
+        "need_following_permissions": "ਭਗਤ ਸਿੰਘ ਮਿਊਜ਼ੀਅਮ ਨੂੰ ਬਿਹਤਰ ਐਪ ਅਨੁਭਵ ਲਈ ਹੇਠ ਲਿਖੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ",
+        "geolocation": "ਭੂਗੋਲਿਕ ਸਥਾਨ",
+        "tap_to_grant_permission": "ਇਜਾਜ਼ਤ ਦੇਣ ਲਈ ਬਟਨ 'ਤੇ ਟੈਪ ਕਰੋ।",
+        "bluetooth": "ਬਲੂਟੁੱਥ",
+        "continue": "ਜਾਰੀ ਰੱਖੋ",
+        "granted": "ਦਿੱਤੀ ਗਈ",
+        "denied": "ਇਨਕਾਰ ਕੀਤਾ",
+        "grant": "ਗ੍ਰਾਂਟ",
+        "permissions_require":  "ਸਾਰੀਆਂ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਦਿਓ"
+    }
 }

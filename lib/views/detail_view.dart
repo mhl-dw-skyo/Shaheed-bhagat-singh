@@ -174,9 +174,6 @@ class DetailView extends GetView<DetailController> {
                               child: commonService.assetsAudioPlayer.value
                                   .builderRealtimePlayingInfos(builder:
                                       (context, RealtimePlayingInfos infos) {
-                                if (infos == null) {
-                                  return const SizedBox();
-                                }
                                 return PositionSeekWidget(
                                   currentPosition: infos.currentPosition,
                                   duration: infos.duration,

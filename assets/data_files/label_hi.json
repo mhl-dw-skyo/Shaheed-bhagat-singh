@@ -77,6 +77,30 @@
         "delete_account": "खाता हटाएं",
         "delete_msg": "आपका खाता सफलतापूर्वक हटा दिया गया है",
         "delete_account_desc": "क्या आप अपना खाता हटाना चाहते हैं?",
-        "resend_in": "पुनः भेजें"
+        "resend_in": "पुनः भेजें",
+        "about_bhaghat_singh": "भगत सिंह के बारे में",
+
+        "enable_bluetooth": "ब्लूटूथ सक्षम करें",
+        "please_enable_bluetoothon_yourdevice": "ਕकृपया अपने डिवाइस पर ब्लूटूथ सक्षम करें।",
+        "enable": "सक्षम",
+        "improve_bluetooth_accuracy": "ब्लूटूथ सटीकता में सुधार करने के लिए, कृपया अपने डिवाइस पर ब्लूटूथ सक्षम करें।",
+        "steps_toturnon_bluetooth": "ब्लूटूथ चालू करने के चरण",
+        "open_settings": "1. सेटिंग्स खोलें: ",
+        "go_toyour_device": "अपने डिवाइस की होम स्क्रीन पर जाएं और सेटिंग ऐप पर टैप करें।",
+        "go_to_Bluetooth_dialog": "2. ब्लूटूथ पर जाएं: ",
+        "depending_onyour_device": "अपनी डिवाइस के आधार पर, कनेक्शन या सीधे ब्लूटूथ पर टैप करें।",
+        "enable_bluetooth_dialog": "3. ब्लूटूथ सक्षम करें: ",
+        "toggle_switch": "ब्लूटूथ चालू करने के लिए स्विच को टॉगल करें.",
+        "go_to_bluetooth": "ब्लूटूथ पर जाएँ",
+        "grant_following_permissions": "निम्नलिखित अनुमतियाँ प्रदान करें",
+        "need_following_permissions": "भगत सिंह संग्रहालय को बेहतर ऐप अनुभव के लिए निम्नलिखित अनुमति की आवश्यकता है",
+        "geolocation": "जियोलोकेशन",
+        "tap_to_grant_permission": "अनुमति देने के लिए बटन पर टैप करें।",
+        "bluetooth": "ब्लूटूथ",
+        "continue": "जारी रखना",
+        "granted": "मंज़ूर किया",
+        "denied": "अस्वीकृत",
+        "grant": "अनुदान",
+        "permissions_require":  "सभी अनुमतियाँ आवश्यक हैं, कृपया प्रदान करें"
     }
 }

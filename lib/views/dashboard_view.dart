@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -14,8 +15,12 @@ import 'package:upgrader/upgrader.dart';
 import '../core.dart';
 
 class DashboardView extends GetView<DashboardController> {
+  StreamController<BluetoothState> streamController = StreamController();
+
   DashboardView({Key? key}) : super(key: key) {
-    controller.initBeaconService();
+    controller.initBeaconService(onUpdate: (state) {
+      streamController.add(state);
+    });
   }
 
   late DateTime currentBackPressTime;
@@ -95,7 +100,7 @@ class DashboardView extends GetView<DashboardController> {
                             height: 25,
                           ),
                           StreamBuilder<BluetoothState>(
-                              stream: controller.streamController.stream,
+                              stream: streamController.stream,
                               builder: (context, snapshot) {
                                 return Visibility(
                                   visible: snapshot.hasData &&
@@ -110,7 +115,7 @@ class DashboardView extends GetView<DashboardController> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "Enable Bluetooth",
+                                                commonService.labelData.value.data.enable_bluetooth,
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16,
@@ -119,7 +124,7 @@ class DashboardView extends GetView<DashboardController> {
                                               ),
                                               SizedBox(height: 4),
                                               Text(
-                                                "Please enable Bluetooth on your device.",
+                                                commonService.labelData.value.data.please_enable_bluetoothon_yourdevice,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Colors.grey,
@@ -135,9 +140,9 @@ class DashboardView extends GetView<DashboardController> {
                                             padding: EdgeInsets.only(
                                                 top: 8, bottom: 8),
                                             onTap: () {
-                                              Get.dialog(EnableBt());
+                                              Get.dialog(EnableBt(commonService:commonService));
                                             },
-                                            text: "Enable")
+                                            text: commonService.labelData.value.data.enable)
                                       ],
                                     ),
                                   ),

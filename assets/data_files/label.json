@@ -77,7 +77,32 @@
         "delete_account": "Delete Account",
         "delete_msg": "Your account has been deleted successfully",
         "delete_account_desc": "Do you want to delete your account ?",
-        "resend_in": "Resend In"
+        "resend_in": "Resend In",
+        "about_bhaghat_singh": "About Bhaghat Singh",
+
+        "enable_bluetooth": "Enable Bluetooth",
+        "please_enable_bluetoothon_yourdevice": "Please enable Bluetooth on your device.",
+        "enable": "Enable",
+        "improve_bluetooth_accuracy": "To improve Bluetooth accuracy, please enable Bluetooth on your device.",
+        "steps_toturnon_bluetooth": "Steps to turn on Bluetooth",
+        "open_settings": "1. Open Settings: ",
+        "go_toyour_device": "Go to your device's home screen and tap on the Settings app.",
+        "go_to_Bluetooth_dialog": "2. Go to Bluetooth: ",
+        "depending_onyour_device": "Depending on your device, tap on Connections or directly on Bluetooth.",
+        "enable_bluetooth_dialog": "3. Enable Bluetooth: ",
+        "toggle_switch": "Toggle the switch to turn Bluetooth on.",
+        "go_to_bluetooth": "Go To Bluetooth",
+
+        "grant_following_permissions": "Grant Following permissions",
+        "need_following_permissions": "Bhagat Singh Museum  needs following permission to for better app experience",
+        "geolocation": "Geolocation",
+        "tap_to_grant_permission": "Tap on button to grant permission.",
+        "bluetooth": "Bluetooth",
+        "continue": "Continue",
+        "granted": "Granted",
+        "denied": "Denied",
+        "grant": "Grant",
+        "permissions_require":  "All the permissions are required, Please grant"
 
     }
 }

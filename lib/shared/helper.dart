@@ -948,6 +948,7 @@ class Helper {
                                                 detailController
                                                     .getLocationDetailData(
                                                         locationId);
+                                                commonService.inMuseum.value = false;
                                                 Get.toNamed('/detail');
                                               } else {
                                                 Fluttertoast.showToast(
@@ -1356,9 +1357,11 @@ class Helper {
                       if (commonService.selectedFileType.value == "V") {
                         Get.back();
                         await Future.delayed(Duration(seconds: 1));
+                        commonService.inMuseum.value = false;
                         Get.toNamed('/detail');
                       } else {
                         if (Get.currentRoute != "/detail") {
+                          commonService.inMuseum.value = false;
                           Get.toNamed('/detail');
                         }
                       }

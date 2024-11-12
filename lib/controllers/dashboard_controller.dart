@@ -31,7 +31,6 @@ class DashboardController extends GetxController {
   var message = "".obs;
   var skipFirstTimeSteamData = true.obs;
   List<Beacon> beaconsJsonData = [];
-  StreamController<BluetoothState> streamController = StreamController();
   StreamSubscription<BluetoothState>? _streamBluetooth;
   StreamSubscription<RangingResult>? _streamRanging;
   bool authorizationStatusOk = false;
@@ -56,20 +55,20 @@ class DashboardController extends GetxController {
       return location && ble;
   }
 
-  initBeaconService() async {
+  initBeaconService({required Function(BluetoothState) onUpdate}) async {
     var permissionsGranted = await permissionGranted();
     if (!permissionsGranted) {
       Get.put(PermissionsController());
       await Get.dialog(PermissionsWidget());
-      initBeaconService();
+      initBeaconService(onUpdate: onUpdate);
     } else {
       try {
         var enabled = await flutterBeacon.bluetoothState;
-        streamController.add(enabled);
+        onUpdate(enabled);
         _streamBluetooth = flutterBeacon
             .bluetoothStateChanged()
             .listen((BluetoothState state) async {
-          streamController.add(state);
+          onUpdate(state);
           switch (state.value) {
             case 'STATE_ON':
               print("Bluetooth On");
@@ -154,9 +153,9 @@ class DashboardController extends GetxController {
           flutterBeacon.ranging(regionsA).listen((RangingResult result) async {
         // print("Entered");
         print(result);
-        if (result != null && result.beacons.isNotEmpty) {
+        if (result.beacons.isNotEmpty) {
           beaconsJsonData = result.beacons;
-          beaconsJsonData?.sort((m1, m2) {
+          beaconsJsonData.sort((m1, m2) {
             var r = m2.rssi.compareTo(m1.rssi);
             if (r != 0) return r;
             return m2.rssi.compareTo(m1.rssi);

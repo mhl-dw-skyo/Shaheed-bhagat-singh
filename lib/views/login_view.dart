@@ -22,9 +22,6 @@ class LoginView extends GetView<AuthController> {
     return Scaffold(
         backgroundColor: Get.theme.primaryColorDark,
         body:
-            // SingleChildScrollView(
-            //   child:
-
             Container(
           width: Get.width,
           height: Get.height,

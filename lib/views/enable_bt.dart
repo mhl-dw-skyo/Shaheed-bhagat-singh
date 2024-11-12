@@ -4,12 +4,14 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:get/get.dart';
+import 'package:punjab_tourism/services/common_service.dart';
 import 'package:punjab_tourism/utils.dart';
 import 'package:punjab_tourism/views/mk_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EnableBt extends StatelessWidget {
-  const EnableBt({super.key});
+  CommonService commonService;
+  EnableBt({super.key, required this.commonService });
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class EnableBt extends StatelessWidget {
                   ),
                   SizedBox(height: 34),
                   Text(
-                    "Enable Bluetooth",
+                    commonService.labelData.value.data.enable_bluetooth,
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
@@ -54,7 +56,7 @@ class EnableBt extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    "To improve Bluetooth accuracy, please enable Bluetooth on your device.",
+                    commonService.labelData.value.data.improve_bluetooth_accuracy,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         height: 1.6,
@@ -66,7 +68,7 @@ class EnableBt extends StatelessWidget {
               ),
               SizedBox(height: 40),
               Text(
-                "Steps to turn on Bluetooth",
+                commonService.labelData.value.data.steps_toturnon_bluetooth,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -78,7 +80,7 @@ class EnableBt extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   children: [
                     TextSpan(
-                      text: "1. Open Settings: ",
+                      text: commonService.labelData.value.data.open_settings,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
@@ -86,7 +88,7 @@ class EnableBt extends StatelessWidget {
                     ),
                     TextSpan(
                       text:
-                          "Go to your device's home screen and tap on the Settings app.",
+                      commonService.labelData.value.data.go_toyour_device,
                       style: TextStyle(
                         color: Colors.grey,
                         height: 1.5,
@@ -104,7 +106,7 @@ class EnableBt extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   children: [
                     TextSpan(
-                      text: "2. Go to Bluetooth: ",
+                      text: commonService.labelData.value.data.go_to_Bluetooth_dialog,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
@@ -112,7 +114,7 @@ class EnableBt extends StatelessWidget {
                     ),
                     TextSpan(
                       text:
-                          "Depending on your device, tap on Connections or directly on Bluetooth.",
+                      commonService.labelData.value.data.depending_onyour_device,
                       style: TextStyle(
                         color: Colors.grey,
                         height: 1.5,
@@ -130,14 +132,14 @@ class EnableBt extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   children: [
                     TextSpan(
-                      text: "3. Enable Bluetooth: ",
+                      text: commonService.labelData.value.data.enable_bluetooth_dialog,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
                     ),
                     TextSpan(
-                      text: "Toggle the switch to turn Bluetooth on.",
+                      text: commonService.labelData.value.data.toggle_switch,
                       style: TextStyle(
                         color: Colors.grey,
                         height: 1.5,
@@ -163,7 +165,7 @@ class EnableBt extends StatelessWidget {
                             flutterBeacon.openBluetoothSettings;
                           } catch (e) {}
                         },
-                        text: "Go To Bluetooth"),
+                        text: commonService.labelData.value.data.go_to_bluetooth),
                   ],
                 ),
               )

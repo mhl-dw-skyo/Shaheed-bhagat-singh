@@ -5,10 +5,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler_platform_interface/permission_handler_platform_interface.dart';
 import 'package:punjab_tourism/controllers/permmisions_controller.dart';
+import 'package:punjab_tourism/services/common_service.dart';
 import 'package:punjab_tourism/utils.dart';
 import 'package:punjab_tourism/views/mk_button.dart';
 
 class PermissionsWidget extends GetView<PermissionsController> {
+  CommonService commonService = Get.find();
   PermissionsWidget({super.key}) {
     controller.onInit();
   }
@@ -24,7 +26,8 @@ class PermissionsWidget extends GetView<PermissionsController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Grant Following permissions',
+                      commonService
+                          .labelData.value.data.grant_following_permissions,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                           fontSize: 18,
@@ -33,7 +36,8 @@ class PermissionsWidget extends GetView<PermissionsController> {
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      'Bhagat Singh Museum  needs following permission to for better app experience',
+                      commonService
+                          .labelData.value.data.need_following_permissions,
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                           fontSize: 14,
@@ -49,7 +53,7 @@ class PermissionsWidget extends GetView<PermissionsController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Geolocation',
+                                commonService.labelData.value.data.geolocation,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.poppins(
                                     fontSize: 16,
@@ -58,7 +62,8 @@ class PermissionsWidget extends GetView<PermissionsController> {
                                     fontWeight: FontWeight.w500),
                               ),
                               Text(
-                                'Tap on button to grant permission.',
+                                commonService.labelData.value.data
+                                    .tap_to_grant_permission,
                                 textAlign: TextAlign.start,
                                 style: GoogleFonts.poppins(
                                     fontSize: 12,
@@ -88,7 +93,7 @@ class PermissionsWidget extends GetView<PermissionsController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Bluetooth',
+                                commonService.labelData.value.data.bluetooth,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.poppins(
                                     fontSize: 16,
@@ -97,7 +102,8 @@ class PermissionsWidget extends GetView<PermissionsController> {
                                     fontWeight: FontWeight.w500),
                               ),
                               Text(
-                                'Tap on button to grant permission.',
+                                commonService.labelData.value.data
+                                    .tap_to_grant_permission,
                                 textAlign: TextAlign.start,
                                 style: GoogleFonts.poppins(
                                     fontSize: 12,
@@ -113,9 +119,15 @@ class PermissionsWidget extends GetView<PermissionsController> {
                           borderRadius: 4,
                           padding: EdgeInsets.all(8),
                           textStyle: GoogleFonts.poppins(color: Colors.white),
-                          onTap: () => Platform.isAndroid ? controller.askForBluetoothConnect():controller.askForBluetooth(),
-                          text: Platform.isAndroid ? getStatus(controller.bleConnect.value) : getStatus(controller.ble.value),
-                          color: Platform.isAndroid ? getColor(controller.bleConnect.value):getColor(controller.ble.value),
+                          onTap: () => Platform.isAndroid
+                              ? controller.askForBluetoothConnect()
+                              : controller.askForBluetooth(),
+                          text: Platform.isAndroid
+                              ? getStatus(controller.bleConnect.value)
+                              : getStatus(controller.ble.value),
+                          color: Platform.isAndroid
+                              ? getColor(controller.bleConnect.value)
+                              : getColor(controller.ble.value),
                         ),
                       ],
                     ),
@@ -128,25 +140,25 @@ class PermissionsWidget extends GetView<PermissionsController> {
                         if (controller.granted()) {
                           Get.back(result: true);
                         } else {
-                          "All the permissions are required, Please grant"
+                          commonService.labelData.value.data.permissions_require
                               .toast();
                         }
                       },
-                      text: 'Continue',
+                      text: commonService.labelData.value.data.continuee,
                       textStyle: GoogleFonts.poppins(color: Colors.white),
                     )
                   ]),
             )));
   }
-}
 
-String getStatus(PermissionStatus value) {
-  if (value == PermissionStatus.granted) {
-    return "Granted";
-  } else if (value == PermissionStatus.denied) {
-    return "Denied";
-  } else {
-    return "Grant";
+  String getStatus(PermissionStatus value) {
+    if (value == PermissionStatus.granted) {
+      return commonService.labelData.value.data.granted;
+    } else if (value == PermissionStatus.denied) {
+      return commonService.labelData.value.data.denied;
+    } else {
+      return commonService.labelData.value.data.grant;
+    }
   }
 }
 

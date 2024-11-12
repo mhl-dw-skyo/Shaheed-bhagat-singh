@@ -144,6 +144,7 @@ class CategoryTypesView extends GetView<CategoryTypeController> {
                                           Get.find();
                                       detailController
                                           .getLocationDetailData(item.id);
+                                      commonService.inMuseum.value = false;
                                       Get.toNamed('/detail');
                                     },
                                     bigSize: controller
