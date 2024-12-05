@@ -1,0 +1,34 @@
+{
+    "status": true,
+    "code": 200,
+    "message": "Near By Places Information",
+    "data": [
+        {
+            "near_by_id": "1",
+            "title": "Bus Stand",
+            "latitude": "31.1843346",
+            "longitude": "75.9897914",
+            "distance": "2.1",
+            "image_link": "https://bhagatsm.dwgroup.in/assets/nearby/bus-station.png",
+            "postdate": "2022-11-22 05:09:17"
+        },
+        {
+            "near_by_id": "2",
+            "title": "Railway station",
+            "latitude": "31.1641",
+            "longitude": "75.9921112",
+            "distance": "2.2",
+            "image_link": "https://bhagatsm.dwgroup.in/assets/nearby/railway-station.png",
+            "postdate": "2022-11-22 05:20:35"
+        },
+        {
+            "near_by_id": "3",
+            "title": "Ancestral House of Bhagat Singh",
+            "latitude": "31.1655787",
+            "longitude": "76.0221896",
+            "distance": "1.4",
+            "image_link": "https://bhagatsm.dwgroup.in/assets/nearby/gurudwara.png",
+            "postdate": "2022-11-23 01:24:23"
+        }
+    ]
+}
