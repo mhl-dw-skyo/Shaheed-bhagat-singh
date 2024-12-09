@@ -140,6 +140,7 @@ class ComplaintView extends GetView<DashboardController> {
                         color: Get.theme.indicatorColor,
                         fontWeight: FontWeight.w300),
                     keyboardType: TextInputType.phone,
+                    maxLength: 10,
                     inputFormatters: [
                       // Only allow digits (0-9)
                       FilteringTextInputFormatter.digitsOnly,
