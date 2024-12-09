@@ -1006,28 +1006,28 @@
         <entry key="webview_flutter">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.10.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-3.0.4/lib" />
             </list>
           </value>
         </entry>
         <entry key="webview_flutter_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-4.1.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-2.10.4/lib" />
             </list>
           </value>
         </entry>
         <entry key="webview_flutter_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.10.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-1.9.5/lib" />
             </list>
           </value>
         </entry>
         <entry key="webview_flutter_wkwebview">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.16.3/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-2.9.5/lib" />
             </list>
           </value>
         </entry>
@@ -1062,14 +1062,14 @@
         <entry key="youtube_player_iframe">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_iframe-5.2.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_iframe-3.1.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="youtube_player_iframe_web">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_iframe_web-3.1.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_iframe_web-1.0.4/lib" />
             </list>
           </value>
         </entry>
@@ -1219,16 +1219,16 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vm_service-14.2.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vxstate-2.3.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/web-1.1.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.10.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-4.1.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.10.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.16.3/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-3.0.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-2.10.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-1.9.5/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-2.9.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/win32-5.5.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/win32_registry-1.1.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-0.2.0+3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xml-6.5.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_iframe-5.2.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_iframe_web-3.1.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_iframe-3.1.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_iframe_web-1.0.4/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

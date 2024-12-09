@@ -60,8 +60,7 @@ class LoginView extends GetView<AuthController> {
                               }
                             },
                             child: Container(
-                              padding: EdgeInsets.only(
-                                  left: 16, right: 16, top: 12, bottom: 12),
+                              padding: EdgeInsets.all(20),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
                                 gradient: LinearGradient(
@@ -183,8 +182,7 @@ class LoginView extends GetView<AuthController> {
                         }
                       },
                       child: Container(
-                          padding: EdgeInsets.only(
-                              left: 16, right: 16, top: 12, bottom: 12),
+                          padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
                             gradient: LinearGradient(

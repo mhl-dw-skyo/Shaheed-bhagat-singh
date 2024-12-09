@@ -94,7 +94,7 @@ class VerifyOTPView extends GetView<AuthController> {
                 //but you can show anything you want here, like your pop up saying wrong paste format or etc
                 return true;
               },
-            ).pOnly(bottom: 10),
+            ).pOnly(bottom: 16),
             InkWell(
               onTap: () {
                 if (controller.otp.value.isNotEmpty &&
@@ -110,7 +110,7 @@ class VerifyOTPView extends GetView<AuthController> {
               },
               child: Container(
                   padding:
-                      EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+                      EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     gradient: LinearGradient(

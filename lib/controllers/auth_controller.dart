@@ -106,7 +106,7 @@ class AuthController extends GetxController {
       if (response['data'] != "" && response['data'] != null) {
         await GetStorage().write('token', response['data']);
         await GetStorage().write('username', response['username']);
-        await GetStorage().write('user_type', response['user_type']);
+        await GetStorage().write('user_type', response['user_type']??"U");
         return true;
       } else {
         return true;
@@ -150,7 +150,7 @@ class AuthController extends GetxController {
       if (response['data'] != "" && response['data'] != null) {
         await GetStorage().write('token', response['data']);
         await GetStorage().write('username', response['username']);
-        await GetStorage().write('user_type', response['user_type'] ?? "G");
+        await GetStorage().write('user_type', response['user_type'] ?? "U");
         await GetStorage().write('name', response['name']);
         //updateFcmToken();
 
@@ -224,7 +224,7 @@ class AuthController extends GetxController {
   //       if (response['status']) {
   //         await GetStorage().write('token', response['data']);
   //         await GetStorage().write('username', response['username']);
-  //         await GetStorage().write('user_type', response['user_type']);
+  //         await GetStorage().write('user_type', response['user_type'] ??"U");
   //         if (GetStorage().read('language_id') == "" ||
   //             GetStorage().read('language_id') == null) {
   //           Get.toNamed('/language');
