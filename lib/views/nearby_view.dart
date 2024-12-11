@@ -125,9 +125,9 @@ class NearByView extends GetView<NearByController> {
                                           controller.loader.refresh();
                                           controller.getUserLocation('from');
                                         } else {
-                                          controller.fromLat.value = 31.2341507;
+                                          controller.fromLat.value = 31.1696467;
                                           controller.fromLat.refresh();
-                                          controller.fromLng.value = 76.5075326;
+                                          controller.fromLng.value = 76.0251579;
                                           controller.fromLng.refresh();
                                           if (controller.fromLat.value != 0.0 &&
                                               controller.fromLng.value != 0.0 &&
@@ -195,12 +195,10 @@ class NearByView extends GetView<NearByController> {
                                             data!;
                                         controller.selectedDropDown.refresh();
                                         controller.fromLat.value =
-                                            double.parse(data?.latitude??'0');
+                                            double.parse(data.latitude??'0');
                                         controller.fromLat.refresh();
-                                        print("KAKAKAK");
-                                        print(controller.fromLat.value);
                                         controller.fromLng.value =
-                                            double.parse(data?.longitude??'0');
+                                            double.parse(data.longitude??'0');
                                         controller.fromLng.refresh();
                                         if (controller.fromLat.value != 0.0 &&
                                             controller.fromLng.value != 0.0 &&
@@ -366,9 +364,9 @@ class NearByView extends GetView<NearByController> {
                                           controller.loader.refresh();
                                           controller.getUserLocation('to');
                                         } else {
-                                          controller.toLat.value = 31.2341507;
+                                          controller.toLat.value = 31.1696467;
                                           controller.toLat.refresh();
-                                          controller.toLng.value = 76.5075326;
+                                          controller.toLng.value = 76.0251579;
                                           controller.toLng.refresh();
                                           if (controller.fromLat.value != 0.0 &&
                                               controller.fromLng.value != 0.0 &&
