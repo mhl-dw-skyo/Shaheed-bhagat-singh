@@ -118,9 +118,9 @@ class NearByView extends GetView<NearByController> {
                                         );
                                       }).toList(),
                                       onChanged: (DirectionModel? newValue) {
-                                        // controller.distance.value = "";
+                                         controller.selectedDirection.value = newValue!;
                                         // controller.distance.refresh();
-                                        if (newValue?.id == 2) {
+                                        if (newValue.id == 2) {
                                           controller.loader.value = true;
                                           controller.loader.refresh();
                                           controller.getUserLocation('from');
@@ -133,11 +133,15 @@ class NearByView extends GetView<NearByController> {
                                               controller.fromLng.value != 0.0 &&
                                               controller.toLat.value != 0.0 &&
                                               controller.toLng.value != 0.0) {
+                                            NearByItem? distance;
+
+                                            if((controller.selectedDirection.value != null && controller.selectedDirection.value!.id !=2) && commonService.nearByData.value.data.any((data) => data.latitude=="${controller.toLat.value}" && data.longitude=="${controller.toLng.value}"))
+                                            distance = commonService.nearByData.value.data.firstWhere((data) => data.latitude=="${controller.toLat.value}" && data.longitude=="${controller.toLng.value}");
                                             controller.calculateDistance(
                                                 controller.fromLat.value,
                                                 controller.fromLng.value,
                                                 controller.toLat.value,
-                                                controller.toLng.value);
+                                                controller.toLng.value,item:distance);
                                           }
                                         }
                                         controller.firstSelected.value =
@@ -195,20 +199,24 @@ class NearByView extends GetView<NearByController> {
                                             data!;
                                         controller.selectedDropDown.refresh();
                                         controller.fromLat.value =
-                                            double.parse(data.latitude??'0');
+                                            double.parse(data.latitude);
                                         controller.fromLat.refresh();
                                         controller.fromLng.value =
-                                            double.parse(data.longitude??'0');
+                                            double.parse(data.longitude);
                                         controller.fromLng.refresh();
                                         if (controller.fromLat.value != 0.0 &&
                                             controller.fromLng.value != 0.0 &&
                                             controller.toLat.value != 0.0 &&
                                             controller.toLng.value != 0.0) {
+                                          NearByItem? distance;
+
+                                          if((controller.selectedDirection.value != null && controller.selectedDirection.value!.id !=2) && commonService.nearByData.value.data.any((data) => data.latitude=="${controller.toLat.value}" && data.longitude=="${controller.toLng.value}"))
+                                            distance = commonService.nearByData.value.data.firstWhere((data) => data.latitude=="${controller.toLat.value}" && data.longitude=="${controller.toLng.value}");
                                           controller.calculateDistance(
                                               controller.fromLat.value,
                                               controller.fromLng.value,
                                               controller.toLat.value,
-                                              controller.toLng.value);
+                                              controller.toLng.value,item: distance);
                                         }
                                         controller.secondSelected.value = data;
                                         controller.secondSelected.refresh();
@@ -303,11 +311,15 @@ class NearByView extends GetView<NearByController> {
                                             controller.fromLng.value != 0.0 &&
                                             controller.toLat.value != 0.0 &&
                                             controller.toLng.value != 0.0) {
+                                          NearByItem? distance;
+
+                                          if((controller.selectedDirection.value != null && controller.selectedDirection.value!.id !=2) && commonService.nearByData.value.data.any((data) => data.latitude=="${controller.toLat.value}" && data.longitude=="${controller.toLng.value}"))
+                                            distance = commonService.nearByData.value.data.firstWhere((data) => data.latitude=="${controller.toLat.value}" && data.longitude=="${controller.toLng.value}");
                                           controller.calculateDistance(
                                               controller.fromLat.value,
                                               controller.fromLng.value,
                                               controller.toLat.value,
-                                              controller.toLng.value);
+                                              controller.toLng.value,item:distance);
                                         }
                                         controller.secondSelected.value = data;
                                         controller.secondSelected.refresh();
@@ -357,9 +369,8 @@ class NearByView extends GetView<NearByController> {
                                         );
                                       }).toList(),
                                       onChanged: (DirectionModel? newValue) {
-                                        // controller.distance.value = "";
                                         // controller.distance.refresh();
-                                        if (newValue?.id == 2) {
+                                        if (newValue!.id == 2) {
                                           controller.loader.value = true;
                                           controller.loader.refresh();
                                           controller.getUserLocation('to');
@@ -372,12 +383,15 @@ class NearByView extends GetView<NearByController> {
                                               controller.fromLng.value != 0.0 &&
                                               controller.toLat.value != 0.0 &&
                                               controller.toLng.value != 0.0) {
-                                            print(4444);
+                                            NearByItem? distance;
+
+                                            if((controller.selectedDirection.value != null && controller.selectedDirection.value!.id !=2) && commonService.nearByData.value.data.any((data) => data.latitude=="${controller.toLat.value}" && data.longitude=="${controller.toLng.value}"))
+                                              distance = commonService.nearByData.value.data.firstWhere((data) => data.latitude=="${controller.toLat.value}" && data.longitude=="${controller.toLng.value}");
                                             controller.calculateDistance(
                                                 controller.fromLat.value,
                                                 controller.fromLng.value,
                                                 controller.toLat.value,
-                                                controller.toLng.value);
+                                                controller.toLng.value,item:distance);
                                           }
                                         }
                                         controller.firstSelected.value =

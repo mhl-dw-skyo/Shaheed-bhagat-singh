@@ -15,12 +15,13 @@ class NearByController extends GetxController {
   ScrollController scrollController = ScrollController();
   var buttonLoader = false.obs;
   var loader = false.obs;
+
   CommonService commonService = Get.find();
   var name = "".obs;
   var phoneNo = "".obs;
   var title = "".obs;
   var message = "".obs;
-  var selectedDirection = DirectionModel().obs;
+  Rx<DirectionModel?> selectedDirection = Rx(null);
   List<DirectionModel> directions = [];
   var selectedDropDown = NearByItem().obs;
   var isSwap = false.obs;
@@ -46,14 +47,22 @@ class NearByController extends GetxController {
     directions.add(directionModel2);
   }
 
-  calculateDistance(lat1, lon1, lat2, lon2) {
-    var p = 0.017453292519943295;
-    var c = cos;
-    var a = 0.5 - c((lat2 - lat1) * p) / 2 + c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
-    distance.value = "${(12742 * asin(sqrt(a))).toStringAsFixed(1)} km";
-    distance.refresh();
-    loader.value = false;
-    loader.refresh();
+  calculateDistance(lat1, lon1, lat2, lon2, {NearByItem? item}) {
+    if(item !=null){
+      distance.value = "${item.distance} km";
+      distance.refresh();
+      loader.value = false;
+      loader.refresh();
+    }else{
+      var p = 0.017453292519943295;
+      var c = cos;
+      var a = 0.5 - c((lat2 - lat1) * p) / 2 + c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
+      distance.value = "${(12742 * asin(sqrt(a))).toStringAsFixed(1)} km";
+      distance.refresh();
+      loader.value = false;
+      loader.refresh();
+    }
+
   }
 
   launchMapsUrl() async {
