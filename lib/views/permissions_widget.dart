@@ -119,18 +119,58 @@ class PermissionsWidget extends GetView<PermissionsController> {
                           borderRadius: 4,
                           padding: EdgeInsets.all(8),
                           textStyle: GoogleFonts.poppins(color: Colors.white),
-                          onTap: () => Platform.isAndroid
-                              ? controller.askForBluetoothConnect()
-                              : controller.askForBluetooth(),
-                          text: Platform.isAndroid
-                              ? getStatus(controller.bleConnect.value)
-                              : getStatus(controller.ble.value),
-                          color: Platform.isAndroid
-                              ? getColor(controller.bleConnect.value)
-                              : getColor(controller.ble.value),
+                          onTap: () => controller.askForBluetoothScan(),
+                          text: getStatus(controller.bleScan.value),
+                          color: getColor(controller.bleScan.value),
                         ),
                       ],
                     ),
+                    // SizedBox(height: 16),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: Column(
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           Text(
+                    //             commonService.labelData.value.data.bluetooth,
+                    //             textAlign: TextAlign.center,
+                    //             style: GoogleFonts.poppins(
+                    //                 fontSize: 16,
+                    //                 height: 1.7,
+                    //                 color: Colors.black,
+                    //                 fontWeight: FontWeight.w500),
+                    //           ),
+                    //           Text(
+                    //             commonService.labelData.value.data
+                    //                 .tap_to_grant_permission,
+                    //             textAlign: TextAlign.start,
+                    //             style: GoogleFonts.poppins(
+                    //                 fontSize: 12,
+                    //                 height: 1.7,
+                    //                 color: Colors.grey,
+                    //                 fontWeight: FontWeight.normal),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     MkButton(
+                    //       width: 95,
+                    //       borderRadius: 4,
+                    //       padding: EdgeInsets.all(8),
+                    //       textStyle: GoogleFonts.poppins(color: Colors.white),
+                    //       onTap: () => Platform.isAndroid
+                    //           ? controller.askForBluetoothConnect()
+                    //           : controller.askForBluetooth(),
+                    //       text: Platform.isAndroid
+                    //           ? getStatus(controller.bleConnect.value)
+                    //           : getStatus(controller.ble.value),
+                    //       color: Platform.isAndroid
+                    //           ? getColor(controller.bleConnect.value)
+                    //           : getColor(controller.ble.value),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(height: 50),
                     MkButton(
                       borderRadius: 4,

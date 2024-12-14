@@ -77,6 +77,8 @@ class PermissionsController extends GetxController {
 
   askForBluetoothScan() async {
     bleScan.value = await Permission.bluetoothScan.request();
+    bleConnect.value = await Permission.bluetoothConnect.request();
+    validate();
   }
 
   validate() {
@@ -87,8 +89,8 @@ class PermissionsController extends GetxController {
 
   bool granted() {
     if (Platform.isAndroid)
-      return bleConnect.value == PermissionStatus.granted &&
-          location.value == PermissionStatus.granted;
+      return bleConnect.value == PermissionStatus.granted && bleScan.value == PermissionStatus.granted &&
+       location.value == PermissionStatus.granted;
     else
       return ble.value == PermissionStatus.granted &&
           location.value == PermissionStatus.granted;

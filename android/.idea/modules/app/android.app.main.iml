@@ -71,7 +71,7 @@
     <orderEntry type="module" module-name="android.flutter_beacon.main" />
     <orderEntry type="module" module-name="android.flutter_downloader.main" />
     <orderEntry type="module" module-name="android.flutter_inappwebview_android.main" />
-    <orderEntry type="module" module-name="io.flutter.plugins.flutter_plugin_android_lifecycle.android.flutter_plugin_android_lifecycle.main~1" />
+    <orderEntry type="module" module-name="android.flutter_plugin_android_lifecycle.main" />
     <orderEntry type="module" module-name="android.fluttertoast.main" />
     <orderEntry type="module" module-name="android.location.main" />
     <orderEntry type="module" module-name="android.package_info_plus.main" />

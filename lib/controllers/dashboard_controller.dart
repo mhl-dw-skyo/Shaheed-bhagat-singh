@@ -48,9 +48,10 @@ class DashboardController extends GetxController {
   Future<bool> permissionGranted() async {
     var location = await Permission.location.isGranted;
     var btConnect = await Permission.bluetoothConnect.isGranted;
+    var btScan = await Permission.bluetoothScan.isGranted;
     var ble = await Permission.bluetooth.isGranted;
     if (Platform.isAndroid)
-      return location && btConnect;
+      return location && btConnect && btScan && ble;
     else
       return location && ble;
   }
