@@ -395,7 +395,7 @@ class NearByView extends GetView<NearByController> {
                                           }
                                         }
                                         controller.firstSelected.value =
-                                            newValue!;
+                                            newValue;
                                         controller.firstSelected.refresh();
                                       },
                                     ),
